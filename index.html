@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hola Boba Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -25,14 +25,14 @@
       position: relative;
     }
 
-    /* Gallery styling above menu */
+    /* Gallery styling: no rounded corners */
     .gallery-container {
       max-width: 800px;
       margin: 2rem auto 1rem auto;
       overflow: hidden;
-      border-radius: 15px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.1);
       background: #fff;
+      border-radius: 0 !important; /* Remove rounded corners */
     }
 
     .gallery-track {
@@ -182,14 +182,14 @@
 </head>
 <body>
 
-  <!-- Gallery scrolling above menu -->
+  <!-- Top Gallery -->
   <div class="gallery-container">
     <div class="gallery-track">
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
       <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery Image 4" />
-      <!-- Repeat images for seamless scroll -->
+      <!-- Repeat for seamless scroll -->
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
@@ -197,6 +197,7 @@
     </div>
   </div>
 
+  <!-- Menu -->
   <div class="menu">
     <div class="logo-container">
       <img src="logo.jpeg" alt="Hola Boba Logo" />
@@ -301,5 +302,21 @@
       </div>
     </section>
   </div>
+
+  <!-- Bottom Gallery -->
+  <div class="gallery-container" style="margin-top: 1rem; margin-bottom: 3rem;">
+    <div class="gallery-track" style="animation-direction: normal;">
+      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
+      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
+      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
+      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery Image 4" />
+      <!-- Repeat for seamless scroll -->
+      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
+      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
+      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
+      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery Image 4" />
+    </div>
+  </div>
+
 </body>
 </html>
