@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hola Boba Menu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100%;
+      color: white;
+    }
+
+    body {
+      background: url('Screenshot_20250524_210511_Instagram[1].jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .overlay {
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.8), rgba(0,0,0,0.5));
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-y: auto;
+    }
+
+    .menu {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 800px;
+      width: 100%;
+      backdrop-filter: blur(5px);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #fdd835;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 2rem;
+    }
+
+    li {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      .menu {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="menu">
+      <h1>Hola Boba Menu</h1>
+
+      <h2>🍵 Green Tea Refreshers – 2.000</h2>
+      <ul>
+        <li>Strawberry Lemonade</li>
+        <li>Passionfruit</li>
+        <li>Lemonade</li>
+        <li>Strawberry Orange</li>
+        <li>Raspberry</li>
+      </ul>
+
+      <h2>🧋 Milk Tea – 2.500</h2>
+      <ul>
+        <li>Original Black Tea</li>
+        <li>Vanilla</li>
+        <li>Caramel</li>
+        <li>Matcha</li>
+        <li>Taro</li>
+        <li>Oolong</li>
+        <li>Thai Tea</li>
+        <li>Jasmine Green Tea</li>
+      </ul>
+
+      <h2>🍓 Natural Smoothies – 2.300</h2>
+      <ul>
+        <li>Mango</li>
+        <li>Strawberry</li>
+        <li>Banana Cacao</li>
+        <li>Blueberry Banana</li>
+        <li>Strawberry Banana</li>
+      </ul>
+
+      <h2>🥤 Frappes in Milk – 2.800</h2>
+      <ul>
+        <li>Matcha</li>
+        <li>Taro</li>
+        <li>Thai Tea</li>
+        <li>Mocha</li>
+        <li>Chocolate</li>
+      </ul>
+
+      <h2>☕ Otros</h2>
+      <ul>
+        <li>Brown Sugar Latte – 2.500</li>
+        <li>Vietnamese Coffee – 2.300</li>
+      </ul>
+
+      <h2>🧇 Bubble Waffles – 2.000</h2>
+      <ul>
+        <li>Add Ice Cream: +500</li>
+        <li>Add Strawberries: +200</li>
+      </ul>
+
+      <h2>✨ Extras</h2>
+      <ul>
+        <li>Vegan Option (Homemade Coconut Milk)</li>
+        <li>Add: +300</li>
+        <li>Change or Substitute: +0</li>
+        <li>Tapioca: +300</li>
+        <li>Popping Pearls: +500</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
