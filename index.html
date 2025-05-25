@@ -276,11 +276,16 @@
       text-align: center;
     }
 
-    /* Category Selection */
-    .category-selection {
+    /* Screen System */
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
       display: block;
     }
 
+    /* Main Category Selection */
     .category-buttons {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -335,11 +340,7 @@
       box-shadow: 0 15px 25px rgba(142, 68, 173, 0.4);
     }
 
-    /* Category View */
-    .category-view {
-      display: none;
-    }
-
+    /* Back Button */
     .back-btn {
       background: linear-gradient(145deg, #6c757d, #5a6268);
       color: white;
@@ -360,123 +361,39 @@
       box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
     }
 
-    .category-title {
+    /* Screen Titles */
+    .screen-title {
       color: #00B0B9;
       font-size: 2rem;
       margin-bottom: 2rem;
       text-align: center;
     }
 
-    .menu-section {
-      margin-bottom: 2rem;
-    }
-
-    .menu-section h3 {
-      color: #F8C300;
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid #F8C300;
-    }
-
-    .menu-items {
+    /* Ice Cream Flavors */
+    .flavor-grid {
       display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1rem;
-    }
-
-    .menu-item {
-      background: #f8f9fa;
-      padding: 1rem;
-      border-radius: 12px;
-      border-left: 4px solid #00B0B9;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .menu-item:hover {
-      background: #e9ecef;
-      transform: translateX(5px);
-    }
-
-    .menu-item.selected {
-      background: linear-gradient(145deg, #00B0B9, #008a91);
-      color: white;
-      border-left-color: #F8C300;
-    }
-
-    .menu-item-info {
-      flex-grow: 1;
-    }
-
-    .menu-item-name {
-      font-weight: bold;
-      margin-bottom: 0.2rem;
-    }
-
-    .menu-item-price {
-      color: #F8C300;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    .menu-item.selected .menu-item-price {
-      color: #F8C300;
-    }
-
-    .selection-icon {
-      font-size: 1.2rem;
-      color: #28a745;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .menu-item.selected .selection-icon {
-      opacity: 1;
-      color: #F8C300;
-    }
-
-    /* Flavor Selection */
-    .flavor-selection {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      background: linear-gradient(145deg, #f8f9fa, #e9ecef);
-      border-radius: 15px;
-      display: none;
-    }
-
-    .flavor-selection.show {
-      display: block;
-    }
-
-    .flavor-title {
-      color: #00B0B9;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .flavor-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 0.8rem;
+      margin-bottom: 2rem;
     }
 
     .flavor-option {
       background: white;
-      border: 2px solid #e9ecef;
-      padding: 0.8rem;
-      border-radius: 10px;
+      border: 3px solid #e9ecef;
+      padding: 1.5rem;
+      border-radius: 15px;
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 1.1rem;
     }
 
     .flavor-option:hover {
       border-color: #F8C300;
       background: #fff8e1;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(248, 195, 0, 0.3);
     }
 
     .flavor-option.selected {
@@ -484,6 +401,179 @@
       border-color: #F8C300;
       color: #000;
       font-weight: bold;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(248, 195, 0, 0.4);
+    }
+
+    /* Boba Categories */
+    .boba-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .boba-category {
+      background: linear-gradient(145deg, #00B0B9, #008a91);
+      color: white;
+      border: none;
+      padding: 1.5rem;
+      border-radius: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 176, 185, 0.3);
+    }
+
+    .boba-category:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 176, 185, 0.4);
+    }
+
+    .boba-category h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .boba-category p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* Boba Flavor Selection */
+    .boba-flavor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .boba-flavor {
+      background: white;
+      border: 2px solid #e9ecef;
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .boba-flavor:hover {
+      border-color: #00B0B9;
+      background: #e8f5f5;
+      transform: translateY(-2px);
+    }
+
+    .boba-flavor.selected {
+      background: linear-gradient(145deg, #00B0B9, #008a91);
+      border-color: #00B0B9;
+      color: white;
+      font-weight: bold;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 176, 185, 0.3);
+    }
+
+    /* Extras Grid */
+    .extras-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .extra-option {
+      background: white;
+      border: 2px solid #e9ecef;
+      padding: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .extra-option:hover {
+      border-color: #F8C300;
+      background: #fff8e1;
+      transform: translateY(-2px);
+    }
+
+    .extra-option.selected {
+      background: linear-gradient(145deg, #28a745, #218838);
+      border-color: #28a745;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .extra-option.none {
+      border-color: #6c757d;
+    }
+
+    .extra-option.none:hover {
+      border-color: #495057;
+      background: #f8f9fa;
+    }
+
+    .extra-option.none.selected {
+      background: linear-gradient(145deg, #6c757d, #5a6268);
+      border-color: #6c757d;
+    }
+
+    .extra-option i {
+      font-size: 1.2rem;
+      min-width: 20px;
+    }
+
+    .extra-info {
+      flex-grow: 1;
+    }
+
+    .extra-name {
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+    }
+
+    .extra-price {
+      font-size: 0.9rem;
+      color: #F8C300;
+      font-weight: bold;
+    }
+
+    .extra-option.selected .extra-price {
+      color: #F8C300;
+    }
+
+    /* Next Button */
+    .next-btn {
+      background: linear-gradient(145deg, #28a745, #218838);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 2rem auto 0;
+    }
+
+    .next-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+    }
+
+    .next-btn:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+      opacity: 0.6;
     }
 
     /* Order Summary */
@@ -520,11 +610,18 @@
     .order-item {
       font-weight: bold;
       color: #333;
+      margin-bottom: 0.3rem;
     }
 
     .order-flavor {
       color: #666;
       font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .order-extras {
+      color: #28a745;
+      font-size: 0.85rem;
     }
 
     .order-price {
@@ -652,1045 +749,139 @@
       </div>
       <h1>Hola Boba Menu</h1>
 
-      <!-- Category Selection -->
-      <div class="category-selection" id="categorySelection">
+      <!-- Main Categories Screen -->
+      <div class="screen active" id="mainScreen">
         <div class="category-buttons">
           <button class="category-btn icecream" data-category="icecream">
             <i class="fas fa-ice-cream"></i>
             <span>Ice Cream</span>
-            <small>Bubble Waffles & Treats</small>
+            <small>Vanilla, Chocolate, Mix</small>
           </button>
           <button class="category-btn boba" data-category="boba">
             <i class="fas fa-glass-water"></i>
             <span>Boba & Drinks</span>
-            <small>Teas, Smoothies & Frappes</small>
+            <small>Boba & Smoothies</small>
           </button>
           <button class="category-btn others" data-category="others">
             <i class="fas fa-ellipsis-h"></i>
             <span>Others</span>
-            <small>Coffee & Extras</small>
+            <small>Coffee & Waffles</small>
           </button>
         </div>
       </div>
 
-      <!-- Category Views -->
-      <div class="category-view" id="icecreamView">
-        <button class="back-btn" data-back="category">
+      <!-- Ice Cream Flavors Screen -->
+      <div class="screen" id="icecreamScreen">
+        <button class="back-btn" onclick="menuSystem.goToScreen('main')">
+          <i class="fas fa-arrow-left"></i>
+          Back to Menu
+        </button>
+        <h2 class="screen-title">🍦 Choose Your Ice Cream Flavor</h2>
+        
+        <div class="flavor-grid">
+          <div class="flavor-option" data-flavor="vanilla">
+            <i class="fas fa-ice-cream" style="font-size: 2rem; margin-bottom: 0.5rem; color: #F8C300;"></i>
+            <div>Vanilla</div>
+          </div>
+          <div class="flavor-option" data-flavor="chocolate">
+            <i class="fas fa-ice-cream" style="font-size: 2rem; margin-bottom: 0.5rem; color: #8B4513;"></i>
+            <div>Chocolate</div>
+          </div>
+          <div class="flavor-option" data-flavor="mix">
+            <i class="fas fa-ice-cream" style="font-size: 2rem; margin-bottom: 0.5rem; color: #FF69B4;"></i>
+            <div>Mix</div>
+          </div>
+        </div>
+
+        <button class="next-btn" id="icecreamNextBtn" disabled onclick="menuSystem.goToScreen('icecreamExtras')">
+          Next: Add Extras
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Ice Cream Extras Screen -->
+      <div class="screen" id="icecreamExtrasScreen">
+        <button class="back-btn" onclick="menuSystem.goToScreen('icecream')">
+          <i class="fas fa-arrow-left"></i>
+          Back to Flavors
+        </button>
+        <h2 class="screen-title">✨ Add Ice Cream Extras</h2>
+        
+        <div class="extras-grid">
+          <div class="extra-option none" data-extra="none" data-price="0">
+            <i class="fas fa-times"></i>
+            <div class="extra-info">
+              <div class="extra-name">None</div>
+              <div style="font-size: 0.85rem; color: #666;">No extras</div>
+            </div>
+          </div>
+          <div class="extra-option" data-extra="chocolate-chips" data-price="300">
+            <i class="fas fa-cookie-bite"></i>
+            <div class="extra-info">
+              <div class="extra-name">Chocolate Chips</div>
+              <div class="extra-price">+₡300</div>
+            </div>
+          </div>
+          <div class="extra-option" data-extra="nutella" data-price="500">
+            <i class="fas fa-heart"></i>
+            <div class="extra-info">
+              <div class="extra-name">Nutella</div>
+              <div class="extra-price">+₡500</div>
+            </div>
+          </div>
+          <div class="extra-option" data-extra="sprinkles" data-price="200">
+            <i class="fas fa-star"></i>
+            <div class="extra-info">
+              <div class="extra-name">Sprinkles</div>
+              <div class="extra-price">+₡200</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Boba Categories Screen -->
+      <div class="screen" id="bobaScreen">
+        <button class="back-btn" onclick="menuSystem.goToScreen('main')">
+          <i class="fas fa-arrow-left"></i>
+          Back to Menu
+        </button>
+        <h2 class="screen-title">🧋 Choose Your Category</h2>
+        
+        <div class="boba-categories">
+          <button class="boba-category" data-category="boba-drinks">
+            <h3>🧋 Boba Drinks</h3>
+            <p>Milk Tea, Green Tea Refreshers, Frappes</p>
+          </button>
+          <button class="boba-category" data-category="smoothies">
+            <h3>🍓 Smoothies</h3>
+            <p>Natural fruit smoothies</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Boba Drinks Flavors Screen -->
+      <div class="screen" id="bobaDrinksScreen">
+        <button class="back-btn" onclick="menuSystem.goToScreen('boba')">
           <i class="fas fa-arrow-left"></i>
           Back to Categories
         </button>
-        <h2 class="category-title">🍦 Ice Cream & Treats</h2>
+        <h2 class="screen-title">🧋 Choose Your Boba Flavor</h2>
         
-        <div class="menu-section">
-          <h3>Bubble Waffles</h3>
-          <div class="menu-items">
-            <div class="menu-item" data-item="bubble-waffle" data-price="2000" data-has-flavors="true">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Bubble Waffle</div>
-              </div>
-              <div class="menu-item-price">₡2.000</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: #00B0B9; margin-bottom: 1rem;">🍃 Green Tea Refreshers (₡2.000)</h3>
+          <div class="boba-flavor-grid">
+            <div class="boba-flavor" data-flavor="strawberry-lemonade" data-price="2000" data-type="Green Tea Refresher">Strawberry Lemonade</div>
+            <div class="boba-flavor" data-flavor="passionfruit" data-price="2000" data-type="Green Tea Refresher">Passionfruit</div>
+            <div class="boba-flavor" data-flavor="lemonade" data-price="2000" data-type="Green Tea Refresher">Lemonade</div>
+            <div class="boba-flavor" data-flavor="strawberry-orange" data-price="2000" data-type="Green Tea Refresher">Strawberry Orange</div>
+            <div class="boba-flavor" data-flavor="raspberry" data-price="2000" data-type="Green Tea Refresher">Raspberry</div>
           </div>
         </div>
 
-        <div class="menu-section">
-          <h3>Add-ons</h3>
-          <div class="menu-items">
-            <div class="menu-item" data-item="ice-cream-addon" data-price="500">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Add Ice Cream</div>
-              </div>
-              <div class="menu-item-price">+₡500</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-            <div class="menu-item" data-item="strawberries-addon" data-price="200">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Add Strawberries</div>
-              </div>
-              <div class="menu-item-price">+₡200</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flavor-selection" id="icecreamFlavors">
-          <h4 class="flavor-title">Choose your waffle flavor:</h4>
-          <div class="flavor-options">
-            <div class="flavor-option" data-flavor="original">Original</div>
-            <div class="flavor-option" data-flavor="chocolate">Chocolate</div>
-            <div class="flavor-option" data-flavor="vanilla">Vanilla</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="category-view" id="bobaView">
-        <button class="back-btn" data-back="category">
-          <i class="fas fa-arrow-left"></i>
-          Back to Categories
-        </button>
-        <h2 class="category-title">🧋 Boba & Drinks</h2>
-        
-        <div class="category-buttons">
-          <button class="category-btn green-tea" data-subcategory="green-tea">
-            <i class="fas fa-leaf"></i>
-            <span>Green Tea Refreshers</span>
-            <small>₡2.000</small>
-          </button>
-          <button class="category-btn milk-tea" data-subcategory="milk-tea">
-            <i class="fas fa-mug-hot"></i>
-            <span>Milk Tea</span>
-            <small>₡2.500</small>
-          </button>
-          <button class="category-btn smoothies" data-subcategory="smoothies">
-            <i class="fas fa-blender"></i>
-            <span>Natural Smoothies</span>
-            <small>₡2.300</small>
-          </button>
-          <button class="category-btn frappes" data-subcategory="frappes">
-            <i class="fas fa-snowflake"></i>
-            <span>Frappes in Milk</span>
-            <small>₡2.800</small>
-          </button>
-          <button class="category-btn extras" data-subcategory="extras">
-            <i class="fas fa-plus-circle"></i>
-            <span>Extras & Add-ons</span>
-            <small>+₡300-500</small>
-          </button>
-        </div>
-      </div>
-
-      <!-- Green Tea Refreshers Subcategory -->
-      <div class="category-view" id="greenTeaView">
-        <button class="back-btn" data-back="boba">
-          <i class="fas fa-arrow-left"></i>
-          Back to Boba & Drinks
-        </button>
-        <h2 class="category-title">🍃 Green Tea Refreshers - ₡2.000</h2>
-        
-        <div class="flavor-selection show">
-          <h4 class="flavor-title">Choose your Green Tea Refresher flavor:</h4>
-          <div class="flavor-options">
-            <div class="flavor-option" data-flavor="strawberry-lemonade" data-price="2000">Strawberry Lemonade</div>
-            <div class="flavor-option" data-flavor="passionfruit" data-price="2000">Passionfruit</div>
-            <div class="flavor-option" data-flavor="lemonade" data-price="2000">Lemonade</div>
-            <div class="flavor-option" data-flavor="strawberry-orange" data-price="2000">Strawberry Orange</div>
-            <div class="flavor-option" data-flavor="raspberry" data-price="2000">Raspberry</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Milk Tea Subcategory -->
-      <div class="category-view" id="milkTeaView">
-        <button class="back-btn" data-back="boba">
-          <i class="fas fa-arrow-left"></i>
-          Back to Boba & Drinks
-        </button>
-        <h2 class="category-title">🥛 Milk Tea - ₡2.500</h2>
-        
-        <div class="flavor-selection show">
-          <h4 class="flavor-title">Choose your Milk Tea flavor:</h4>
-          <div class="flavor-options">
-            <div class="flavor-option" data-flavor="original-black" data-price="2500">Original Black Tea</div>
-            <div class="flavor-option" data-flavor="vanilla" data-price="2500">Vanilla</div>
-            <div class="flavor-option" data-flavor="caramel" data-price="2500">Caramel</div>
-            <div class="flavor-option" data-flavor="matcha" data-price="2500">Matcha</div>
-            <div class="flavor-option" data-flavor="taro" data-price="2500">Taro</div>
-            <div class="flavor-option" data-flavor="oolong" data-price="2500">Oolong</div>
-            <div class="flavor-option" data-flavor="thai-tea" data-price="2500">Thai Tea</div>
-            <div class="flavor-option" data-flavor="jasmine-green" data-price="2500">Jasmine Green Tea</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Natural Smoothies Subcategory -->
-      <div class="category-view" id="smoothiesView">
-        <button class="back-btn" data-back="boba">
-          <i class="fas fa-arrow-left"></i>
-          Back to Boba & Drinks
-        </button>
-        <h2 class="category-title">🍓 Natural Smoothies - ₡2.300</h2>
-        
-        <div class="flavor-selection show">
-          <h4 class="flavor-title">Choose your Natural Smoothie flavor:</h4>
-          <div class="flavor-options">
-            <div class="flavor-option" data-flavor="mango" data-price="2300">Mango</div>
-            <div class="flavor-option" data-flavor="strawberry" data-price="2300">Strawberry</div>
-            <div class="flavor-option" data-flavor="banana-cacao" data-price="2300">Banana Cacao</div>
-            <div class="flavor-option" data-flavor="blueberry-banana" data-price="2300">Blueberry Banana</div>
-            <div class="flavor-option" data-flavor="strawberry-banana" data-price="2300">Strawberry Banana</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Frappes Subcategory -->
-      <div class="category-view" id="frappesView">
-        <button class="back-btn" data-back="boba">
-          <i class="fas fa-arrow-left"></i>
-          Back to Boba & Drinks
-        </button>
-        <h2 class="category-title">🥤 Frappes in Milk - ₡2.800</h2>
-        
-        <div class="flavor-selection show">
-          <h4 class="flavor-title">Choose your Frappe flavor:</h4>
-          <div class="flavor-options">
-            <div class="flavor-option" data-flavor="matcha" data-price="2800">Matcha</div>
-            <div class="flavor-option" data-flavor="taro" data-price="2800">Taro</div>
-            <div class="flavor-option" data-flavor="thai-tea" data-price="2800">Thai Tea</div>
-            <div class="flavor-option" data-flavor="mocha" data-price="2800">Mocha</div>
-            <div class="flavor-option" data-flavor="chocolate" data-price="2800">Chocolate</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Extras Subcategory -->
-      <div class="category-view" id="extrasView">
-        <button class="back-btn" data-back="boba">
-          <i class="fas fa-arrow-left"></i>
-          Back to Boba & Drinks
-        </button>
-        <h2 class="category-title">✨ Extras & Add-ons</h2>
-        
-        <div class="menu-section">
-          <div class="menu-items">
-            <div class="menu-item" data-item="tapioca" data-price="300">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Tapioca Pearls</div>
-              </div>
-              <div class="menu-item-price">+₡300</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-            <div class="menu-item" data-item="popping-pearls" data-price="500">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Popping Pearls</div>
-              </div>
-              <div class="menu-item-price">+₡500</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-            <div class="menu-item" data-item="vegan-milk" data-price="300">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Vegan Coconut Milk</div>
-                <div style="font-size: 0.8rem; color: #666;">Add or substitute</div>
-              </div>
-              <div class="menu-item-price">+₡300</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="category-view" id="othersView">
-        <button class="back-btn" data-back="category">
-          <i class="fas fa-arrow-left"></i>
-          Back to Categories
-        </button>
-        <h2 class="category-title">☕ Others</h2>
-        
-        <div class="menu-section">
-          <h3>Coffee Specialties</h3>
-          <div class="menu-items">
-            <div class="menu-item" data-item="brown-sugar-latte" data-price="2500">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Brown Sugar Latte</div>
-              </div>
-              <div class="menu-item-price">₡2.500</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-            <div class="menu-item" data-item="vietnamese-coffee" data-price="2300">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Vietnamese Coffee</div>
-              </div>
-              <div class="menu-item-price">₡2.300</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Social Media & Locations -->
-      <div class="category-view" id="infoView" style="display: none;">
-        <button class="back-btn" data-back="category">
-          <i class="fas fa-arrow-left"></i>
-          Back to Categories
-        </button>
-        
-        <section>
-          <h2>📣 Follow Us!</h2>
-          <div class="buttons">
-            <a href="https://www.instagram.com/holaboba.cr" target="_blank">
-              <i class="fab fa-instagram"></i> Instagram
-            </a>
-            <a href="https://www.tiktok.com/@holabobacostarica" target="_blank">
-              <i class="fab fa-tiktok"></i> TikTok
-            </a>
-          </div>
-        </section>
-
-        <section>
-          <h2>📍 Our Locations</h2>
-          <div class="buttons">
-            <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank">
-              <i class="fas fa-map-marker-alt"></i> Puerto Viejo
-            </a>
-            <a href="https://maps.app.goo.gl/Q38DmC2MvvCztayK7" target="_blank">
-              <i class="fas fa-map-marker-alt"></i> Cocles
-            </a>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-
-  <!-- Order Summary -->
-  <div class="order-summary" id="orderSummary">
-    <div class="order-summary-content">
-      <div class="order-details">
-        <div class="order-item" id="orderItem">No item selected</div>
-        <div class="order-flavor" id="orderFlavor"></div>
-      </div>
-      <div class="order-price" id="orderPrice">₡0</div>
-      <div class="order-actions">
-        <button class="clear-btn" id="clearOrder">Clear</button>
-        <button class="order-btn" id="placeOrder">Order Now</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // NFC/Code Detection System (keeping original detection code)
-    class AccessDetection {
-      constructor() {
-        this.detectionMethods = [];
-        this.result = null;
-        this.confidence = 0;
-        this.init();
-      }
-
-      init() {
-        this.detectAccessMethod();
-        this.showDetectionResult();
-      }
-
-      detectAccessMethod() {
-        const detectionFactors = {
-          hasReferrer: this.checkReferrer(),
-          userAgent: this.analyzeUserAgent(),
-          navigationTiming: this.checkNavigationTiming(),
-          touchCapability: this.checkTouchCapability(),
-          urlParameters: this.checkURLParameters(),
-          documentReadyState: this.checkDocumentState(),
-          focusEvents: this.checkFocusEvents()
-        };
-
-        this.calculateResult(detectionFactors);
-      }
-
-      checkReferrer() {
-        const referrer = document.referrer;
-        if (!referrer || referrer === '') {
-          this.detectionMethods.push('No referrer (could be NFC, manual typing, or bookmark)');
-          return { isNFC: null, confidence: 0.3 };
-        } else {
-          this.detectionMethods.push(`Referrer found: ${referrer} (likely from another website)`);
-          return { isNFC: false, confidence: 0.6 };
-        }
-      }
-
-      analyzeUserAgent() {
-        const ua = navigator.userAgent;
-        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-        
-        if (isMobile) {
-          this.detectionMethods.push('Mobile device detected (supports NFC)');
-          return { isNFC: null, confidence: 0.3 };
-        } else {
-          this.detectionMethods.push('Desktop device detected (likely programmatic)');
-          return { isNFC: false, confidence: 0.6 };
-        }
-      }
-
-      checkNavigationTiming() {
-        if (performance && performance.navigation) {
-          const navType = performance.navigation.type;
-          
-          if (navType === 0) {
-            this.detectionMethods.push('Direct navigation (could be manual typing, NFC, or bookmark)');
-            return { isNFC: null, confidence: 0.2 };
-          } else if (navType === 1) {
-            this.detectionMethods.push('Page reload (manual action)');
-            return { isNFC: false, confidence: 0.7 };
-          } else if (navType === 2) {
-            this.detectionMethods.push('Back/forward navigation (manual browser action)');
-            return { isNFC: false, confidence: 0.8 };
-          }
-        }
-        return { isNFC: null, confidence: 0 };
-      }
-
-      checkTouchCapability() {
-        const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        if (hasTouch) {
-          this.detectionMethods.push('Touch capability detected');
-          return { isNFC: null, confidence: 0.2 };
-        }
-        return { isNFC: false, confidence: 0.3 };
-      }
-
-      checkURLParameters() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const hasNFCParam = urlParams.has('nfc') || urlParams.has('source');
-        
-        if (hasNFCParam) {
-          this.detectionMethods.push('NFC parameter detected in URL');
-          return { isNFC: true, confidence: 0.9 };
-        }
-        
-        if (urlParams.toString() === '') {
-          this.detectionMethods.push('No URL parameters (could indicate NFC)');
-          return { isNFC: true, confidence: 0.4 };
-        }
-        
-        return { isNFC: null, confidence: 0 };
-      }
-
-      checkDocumentState() {
-        const loadTime = performance.now();
-        if (loadTime < 100) {
-          this.detectionMethods.push('Very fast load time (possible programmatic)');
-          return { isNFC: false, confidence: 0.4 };
-        }
-        return { isNFC: null, confidence: 0 };
-      }
-
-      checkFocusEvents() {
-        let focusDetected = false;
-        
-        window.addEventListener('focus', () => {
-          focusDetected = true;
-        });
-        
-        setTimeout(() => {
-          if (!focusDetected && document.hasFocus()) {
-            this.detectionMethods.push('No focus event but document focused (NFC likely)');
-            return { isNFC: true, confidence: 0.6 };
-          }
-        }, 1000);
-        
-        return { isNFC: null, confidence: 0 };
-      }
-
-      calculateResult(factors) {
-        let nfcScore = 0;
-        let codeScore = 0;
-        let manualScore = 0;
-        let totalConfidence = 0;
-
-        Object.values(factors).forEach(factor => {
-          if (factor.isNFC === true) {
-            nfcScore += factor.confidence;
-          } else if (factor.isNFC === false) {
-            codeScore += factor.confidence;
-          }
-          totalConfidence += factor.confidence;
-        });
-
-        const isDirectTyping = this.checkDirectTyping();
-        if (isDirectTyping.isManual) {
-          manualScore = isDirectTyping.confidence;
-          totalConfidence += manualScore;
-        }
-
-        if (totalConfidence > 0) {
-          nfcScore = nfcScore / totalConfidence;
-          codeScore = codeScore / totalConfidence;
-          manualScore = manualScore / totalConfidence;
-        }
-
-        if (manualScore > Math.max(nfcScore, codeScore)) {
-          this.result = 'MANUAL';
-          this.confidence = Math.round(manualScore * 100);
-        } else if (nfcScore > codeScore) {
-          this.result = 'NFC';
-          this.confidence = Math.round(nfcScore * 100);
-        } else if (codeScore > nfcScore) {
-          this.result = 'CODE';
-          this.confidence = Math.round(codeScore * 100);
-        } else {
-          this.result = 'UNKNOWN';
-          this.confidence = 50;
-        }
-
-        console.log('🔍 Access Detection Results:');
-        console.log('Detection Methods:', this.detectionMethods);
-        console.log('Final Result:', this.result);
-        console.log('Confidence:', this.confidence + '%');
-      }
-
-      checkDirectTyping() {
-        const indicators = [];
-        let confidence = 0;
-
-        if (!document.referrer && 
-            performance.navigation && 
-            performance.navigation.type === 0 &&
-            !/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-          indicators.push('Desktop with no referrer and direct navigation');
-          confidence += 0.7;
-        }
-
-        if (window.location.search === '' && window.location.hash === '') {
-          indicators.push('Clean URL with no parameters');
-          confidence += 0.6;
-        }
-
-        if (!/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-          indicators.push('Desktop device (users more likely to type URLs)');
-          confidence += 0.4;
-        }
-
-        if (document.activeElement === document.body || document.activeElement === null) {
-          indicators.push('No specific element focused');
-          confidence += 0.3;
-        }
-
-        const url = window.location.href;
-        const isSimpleUrl = url.split('/').length <= 4 && !url.includes('?') && !url.includes('#');
-        if (isSimpleUrl) {
-          indicators.push('Simple, memorable URL structure');
-          confidence += 0.4;
-        }
-
-        if (indicators.length >= 3) {
-          confidence *= 1.2;
-        }
-
-        if (indicators.length > 0) {
-          this.detectionMethods.push(`Manual typing indicators: ${indicators.join(', ')}`);
-          return { isManual: true, confidence: Math.min(confidence, 1.0) };
-        }
-
-        return { isManual: false, confidence: 0 };
-      }
-
-      showDetectionResult() {
-        const banner = document.getElementById('detectionBanner');
-        const text = document.getElementById('detectionText');
-        const mainContent = document.getElementById('mainContent');
-        const orderModal = document.getElementById('orderModal');
-
-        let message = '';
-        let icon = '';
-
-        switch (this.result) {
-          case 'NFC':
-            icon = '📱';
-            message = `${icon} Opened via NFC Tag (${this.confidence}% confidence)`;
-            break;
-          case 'CODE':
-            icon = '💻';
-            message = `${icon} Opened via Code/Browser (${this.confidence}% confidence)`;
-            break;
-          case 'MANUAL':
-            icon = '⌨️';
-            message = `${icon} URL typed manually (${this.confidence}% confidence)`;
-            break;
-          default:
-            icon = '❓';
-            message = `${icon} Access method unknown (${this.confidence}% confidence)`;
-        }
-
-        text.textContent = message;
-        
-        setTimeout(() => {
-          banner.classList.add('show');
-          mainContent.classList.add('with-banner');
-        }, 500);
-
-        if (this.result === 'MANUAL') {
-          setTimeout(() => {
-            orderModal.classList.add('show');
-          }, 2000);
-        }
-
-        const bannerTimeout = this.result === 'MANUAL' ? 8000 : 5500;
-        setTimeout(() => {
-          banner.classList.remove('show');
-          mainContent.classList.remove('with-banner');
-        }, bannerTimeout);
-
-        this.handleDetectionResult();
-      }
-
-      handleDetectionResult() {
-        const data = {
-          method: this.result,
-          confidence: this.confidence,
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent,
-          referrer: document.referrer,
-          url: window.location.href
-        };
-
-        if (this.result === 'NFC') {
-          console.log('👋 Welcome NFC user!');
-        } else if (this.result === 'CODE') {
-          console.log('🤖 Programmatic access detected');
-        } else if (this.result === 'MANUAL') {
-          console.log('⌨️ Manual URL typing detected - showing order options');
-        }
-      }
-    }
-
-    // Menu System
-    class MenuSystem {
-      constructor() {
-        this.currentOrder = {
-          item: null,
-          flavor: null,
-          price: 0,
-          extras: []
-        };
-        this.init();
-      }
-
-      init() {
-        this.setupEventListeners();
-      }
-
-      setupEventListeners() {
-        // Category buttons
-        document.querySelectorAll('.category-btn').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            const category = e.currentTarget.dataset.category;
-            const subcategory = e.currentTarget.dataset.subcategory;
-            
-            if (subcategory) {
-              this.showSubcategory(subcategory);
-            } else if (category) {
-              this.showCategory(category);
-            }
-          });
-        });
-
-        // Back buttons
-        document.querySelectorAll('.back-btn').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            const backTo = e.currentTarget.dataset.back;
-            if (backTo === 'category') {
-              this.showCategorySelection();
-            } else if (backTo === 'boba') {
-              this.showCategory('boba');
-            }
-          });
-        });
-
-        // Menu items
-        document.querySelectorAll('.menu-item').forEach(item => {
-          item.addEventListener('click', (e) => {
-            this.selectMenuItem(e.currentTarget);
-          });
-        });
-
-        // Flavor options
-        document.querySelectorAll('.flavor-option').forEach(option => {
-          option.addEventListener('click', (e) => {
-            this.selectFlavor(e.currentTarget);
-          });
-        });
-
-        // Order actions
-        document.getElementById('clearOrder').addEventListener('click', () => {
-          this.clearOrder();
-        });
-
-        document.getElementById('placeOrder').addEventListener('click', () => {
-          this.placeOrder();
-        });
-      }
-
-      showCategory(category) {
-        // Hide category selection
-        document.getElementById('categorySelection').style.display = 'none';
-        
-        // Hide all category views
-        document.querySelectorAll('.category-view').forEach(view => {
-          view.style.display = 'none';
-        });
-
-        // Show selected category
-        const viewId = category + 'View';
-        const view = document.getElementById(viewId);
-        if (view) {
-          view.style.display = 'block';
-        }
-      }
-
-      showSubcategory(subcategory) {
-        // Hide all category views
-        document.querySelectorAll('.category-view').forEach(view => {
-          view.style.display = 'none';
-        });
-
-        // Show selected subcategory
-        const viewId = subcategory + 'View';
-        const view = document.getElementById(viewId);
-        if (view) {
-          view.style.display = 'block';
-        }
-      }
-
-      showCategorySelection() {
-        // Hide all category views
-        document.querySelectorAll('.category-view').forEach(view => {
-          view.style.display = 'none';
-        });
-        
-        // Show category selection
-        document.getElementById('categorySelection').style.display = 'block';
-        
-        // Hide order summary
-        document.getElementById('orderSummary').classList.remove('show');
-        
-        // Clear current order
-        this.clearOrder();
-      }
-
-      selectMenuItem(itemElement) {
-        // Remove selection from all items in current view
-        const currentView = itemElement.closest('.category-view');
-        currentView.querySelectorAll('.menu-item').forEach(item => {
-          item.classList.remove('selected');
-        });
-
-        // Select current item
-        itemElement.classList.add('selected');
-
-        // Get item data
-        const itemName = itemElement.querySelector('.menu-item-name').textContent;
-        const itemPrice = parseInt(itemElement.dataset.price);
-        const hasflavors = itemElement.dataset.hasFlavors === 'true';
-
-        // Update order
-        this.currentOrder.item = itemName;
-        this.currentOrder.price = itemPrice;
-        this.currentOrder.flavor = null;
-
-        // Show/hide flavor selection
-        if (hasflavors) {
-          const flavorSelections = currentView.querySelectorAll('.flavor-selection');
-          flavorSelections.forEach(selection => selection.classList.remove('show'));
-          
-          // Find the corresponding flavor selection
-          const itemType = itemElement.dataset.item;
-          let flavorSectionId = '';
-          
-          switch(itemType) {
-            case 'green-tea-refresher':
-              flavorSectionId = 'greenTeaFlavors';
-              break;
-            case 'milk-tea':
-              flavorSectionId = 'milkTeaFlavors';
-              break;
-            case 'smoothie':
-              flavorSectionId = 'smoothieFlavors';
-              break;
-            case 'frappe':
-              flavorSectionId = 'frappeFlavors';
-              break;
-            case 'bubble-waffle':
-              flavorSectionId = 'icecreamFlavors';
-              break;
-          }
-          
-          if (flavorSectionId) {
-            const flavorSection = document.getElementById(flavorSectionId);
-            if (flavorSection) {
-              flavorSection.classList.add('show');
-              // Clear previous flavor selections
-              flavorSection.querySelectorAll('.flavor-option').forEach(option => {
-                option.classList.remove('selected');
-              });
-            }
-          }
-        } else {
-          // Update order summary immediately for items without flavors
-          this.updateOrderSummary();
-        }
-      }
-
-      selectFlavor(flavorElement) {
-        // Remove selection from all flavors in current section
-        const flavorSection = flavorElement.closest('.flavor-selection');
-        flavorSection.querySelectorAll('.flavor-option').forEach(option => {
-          option.classList.remove('selected');
-        });
-
-        // Select current flavor
-        flavorElement.classList.add('selected');
-
-        // Get flavor data
-        const flavorName = flavorElement.textContent;
-        const flavorPrice = parseInt(flavorElement.dataset.price);
-        
-        // Determine item type based on current view
-        let itemType = 'Drink';
-        const currentView = document.querySelector('.category-view[style*="block"]');
-        if (currentView) {
-          const viewId = currentView.id;
-          switch(viewId) {
-            case 'greenTeaView':
-              itemType = 'Green Tea Refresher';
-              break;
-            case 'milkTeaView':
-              itemType = 'Milk Tea';
-              break;
-            case 'smoothiesView':
-              itemType = 'Natural Smoothie';
-              break;
-            case 'frappesView':
-              itemType = 'Frappe in Milk';
-              break;
-            case 'icecreamView':
-              itemType = 'Bubble Waffle';
-              break;
-          }
-        }
-
-        // Update order
-        this.currentOrder.item = itemType;
-        this.currentOrder.flavor = flavorName;
-        this.currentOrder.price = flavorPrice;
-
-        // Update order summary
-        this.updateOrderSummary();
-      }
-
-      updateOrderSummary() {
-        if (!this.currentOrder.item && !this.currentOrder.flavor) return;
-
-        const orderSummary = document.getElementById('orderSummary');
-        const orderItem = document.getElementById('orderItem');
-        const orderFlavor = document.getElementById('orderFlavor');
-        const orderPrice = document.getElementById('orderPrice');
-
-        // For flavor-based selections (drinks)
-        if (this.currentOrder.flavor && this.currentOrder.item) {
-          orderItem.textContent = this.currentOrder.item;
-          orderFlavor.textContent = `Flavor: ${this.currentOrder.flavor}`;
-          orderFlavor.style.display = 'block';
-        } 
-        // For regular menu items
-        else if (this.currentOrder.item) {
-          orderItem.textContent = this.currentOrder.item;
-          if (this.currentOrder.flavor) {
-            orderFlavor.textContent = `Flavor: ${this.currentOrder.flavor}`;
-            orderFlavor.style.display = 'block';
-          } else {
-            orderFlavor.style.display = 'none';
-          }
-        }
-
-        orderPrice.textContent = `₡${this.currentOrder.price.toLocaleString()}`;
-        orderSummary.classList.add('show');
-      }
-
-      clearOrder() {
-        this.currentOrder = {
-          item: null,
-          flavor: null,
-          price: 0,
-          extras: []
-        };
-
-        // Remove all selections
-        document.querySelectorAll('.menu-item').forEach(item => {
-          item.classList.remove('selected');
-        });
-
-        document.querySelectorAll('.flavor-option').forEach(option => {
-          option.classList.remove('selected');
-        });
-
-        document.querySelectorAll('.flavor-selection').forEach(selection => {
-          selection.classList.remove('show');
-        });
-
-        // Hide order summary
-        document.getElementById('orderSummary').classList.remove('show');
-      }
-
-      placeOrder() {
-        if (!this.currentOrder.item && !this.currentOrder.flavor) {
-          alert('Please select an item first!');
-          return;
-        }
-
-        // Create order summary
-        let orderText = `🛍️ Your Order:\n\n`;
-        
-        if (this.currentOrder.item && this.currentOrder.flavor) {
-          orderText += `${this.currentOrder.item}\nFlavor: ${this.currentOrder.flavor}`;
-        } else if (this.currentOrder.item) {
-          orderText += `${this.currentOrder.item}`;
-        }
-        
-        orderText += `\nPrice: ₡${this.currentOrder.price.toLocaleString()}`;
-        orderText += `\n\n📍 Visit us at:\n• Puerto Viejo\n• Cocles\n\nThank you for choosing Hola Boba! 🧋`;
-
-        alert(orderText);
-        
-        // Clear order after placing
-        this.clearOrder();
-      }
-    }
-
-    // Initialize everything when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize detection system
-      const detection = new AccessDetection();
-
-      // Initialize menu system
-      const menuSystem = new MenuSystem();
-
-      // Order modal functionality
-      const orderModal = document.getElementById('orderModal');
-      const closeModal = document.getElementById('closeModal');
-      const pickupOption = document.getElementById('pickupOption');
-      const deliveryOption = document.getElementById('deliveryOption');
-
-      // Close modal handlers
-      closeModal.addEventListener('click', () => {
-        orderModal.classList.remove('show');
-      });
-
-      orderModal.addEventListener('click', (e) => {
-        if (e.target === orderModal) {
-          orderModal.classList.remove('show');
-        }
-      });
-
-      // Order option handlers
-      pickupOption.addEventListener('click', () => {
-        console.log('🏪 Pickup order selected');
-        alert('🏪 Great! Visit us at one of our locations:\n\n📍 Puerto Viejo\n📍 Cocles\n\nCheck our locations section below for directions!');
-        orderModal.classList.remove('show');
-      });
-
-      deliveryOption.addEventListener('click', () => {
-        console.log('🚚 Delivery order selected');
-        alert('🚚 Delivery coming soon!\n\nFor now, please visit us at one of our locations for pickup. We\'re working on delivery options!');
-        orderModal.classList.remove('show');
-      });
-
-      // Close modal with Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && orderModal.classList.contains('show')) {
-          orderModal.classList.remove('show');
-        }
-      });
-
-      // Original slideshow code
-      const slideshow = document.querySelector('.slideshow-container');
-      const slides = document.querySelectorAll('.slide');
-      const dotsContainer = document.querySelector('.pagination-dots');
-      const prevButton = document.querySelector('.prev-button');
-      const nextButton = document.querySelector('.next-button');
-      
-      let currentSlide = 0;
-      let startX = 0;
-      let currentX = 0;
-      let isDragging = false;
-
-      // Create pagination dots
-      slides.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-      });
-
-      function updateDots() {
-        document.querySelectorAll('.dot').forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentSlide);
-        });
-      }
-
-      function goToSlide(index) {
-        currentSlide = index;
-        slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
-        updateDots();
-      }
-
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        goToSlide(currentSlide);
-      }
-
-      function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        goToSlide(currentSlide);
-      }
-
-      // Touch and mouse events
-      slideshow.addEventListener('mousedown', startDragging);
-      slideshow.addEventListener('touchstart', startDragging);
-      window.addEventListener('mousemove', drag);
-      window.addEventListener('touchmove', drag);
-      window.addEventListener('mouseup', stopDragging);
-      window.addEventListener('touchend', stopDragging);
-
-      function startDragging(e) {
-        isDragging = true;
-        startX = e.type === 'mousedown' ? e.pageX : e.touches[0].pageX;
-        currentX = -currentSlide * 100;
-      }
-
-      function drag(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.type === 'mousemove' ? e.pageX : e.touches[0].pageX;
-        const walk = (x - startX) / slideshow.offsetWidth * 100;
-        slideshow.style.transform = `translateX(${currentX + walk}%)`;
-      }
-
-      function stopDragging(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        const x = e.type === 'mouseup' ? e.pageX : e.changedTouches[0].pageX;
-        const walk = (x - startX) / slideshow.offsetWidth * 100;
-        
-        if (Math.abs(walk) > 20) {
-          if (walk > 0) prevSlide();
-          else nextSlide();
-        } else {
-          goToSlide(currentSlide);
-        }
-      }
-
-      // Button controls
-      prevButton.addEventListener('click', prevSlide);
-      nextButton.addEventListener('click', nextSlide);
-
-      // Auto-advance slides
-      setInterval(nextSlide, 5000);
-    });
-  </script>
-</body>
-</html>
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: #00B0B9; margin-bottom: 1rem;">🥛 Milk Tea (₡2.500)</h3>
+          <div class="boba-flavor-grid">
+            <div class="boba-flavor" data-flavor="original-black" data-price="2500" data-type="Milk Tea">Original Black Tea</div>
+            <div class="boba-flavor" data-flavor="vanilla" data-price="2500" data-type="Milk Tea">Vanilla</div>
+            <div class="boba-flavor" data-flavor="caramel" data-price="2500" data-type="Milk Tea">Caramel</div>
+            <div class="boba-flavor" data-flavor="matcha" data-price="2500" data-type="Milk Tea">Matcha
