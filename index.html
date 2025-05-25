@@ -1494,81 +1494,112 @@
         }
       });
 
-      // Slideshow functionality
-      const slideshow = document.querySelector('.slideshow-container');
-      const slides = document.querySelectorAll('.slide');
-      const dotsContainer = document.querySelector('.pagination-dots');
-      const prevButton = document.querySelector('.prev-button');
-      const nextButton = document.querySelector('.next-button');
+      // TikTok-Style Slideshow
+      const slideshowContainer = document.querySelector('.slideshow-container');
+      const allSlides = document.querySelectorAll('.slide');
+      const paginationDots = document.querySelector('.pagination-dots');
+      const prevArrow = document.querySelector('.prev-button');
+      const nextArrow = document.querySelector('.next-button');
       
-      let currentSlide = 0;
-      let startX = 0;
-      let isDragging = false;
+      let activeSlide = 0;
+      let autoSlideTimer = null;
+      
+      console.log('🎬 Setting up slideshow with', allSlides.length, 'slides');
 
-      // Create pagination dots
-      slides.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
+      // Build dots
+      paginationDots.innerHTML = '';
+      allSlides.forEach((slide, i) => {
+        const dotElement = document.createElement('div');
+        dotElement.className = 'dot';
+        if (i === 0) dotElement.classList.add('active');
+        dotElement.onclick = () => jumpToSlide(i);
+        paginationDots.appendChild(dotElement);
       });
 
-      function updateDots() {
-        document.querySelectorAll('.dot').forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentSlide);
+      function refreshDots() {
+        document.querySelectorAll('.dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === activeSlide);
         });
       }
 
-      function goToSlide(index) {
-        currentSlide = index;
-        slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
-        updateDots();
+      function jumpToSlide(slideNumber) {
+        activeSlide = slideNumber;
+        slideshowContainer.style.transform = `translateX(-${activeSlide * 100}%)`;
+        refreshDots();
       }
 
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        goToSlide(currentSlide);
+      function moveToNext() {
+        activeSlide = (activeSlide + 1) % allSlides.length;
+        jumpToSlide(activeSlide);
       }
 
-      function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        goToSlide(currentSlide);
+      function moveToPrev() {
+        activeSlide = (activeSlide - 1 + allSlides.length) % allSlides.length;
+        jumpToSlide(activeSlide);
       }
 
-      // Touch and mouse events for swiping
-      slideshow.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].pageX;
-        isDragging = true;
+      function beginAutoSlide() {
+        clearAutoSlide();
+        autoSlideTimer = setInterval(moveToNext, 3500);
+      }
+
+      function clearAutoSlide() {
+        if (autoSlideTimer) {
+          clearInterval(autoSlideTimer);
+          autoSlideTimer = null;
+        }
+      }
+
+      // Touch gestures
+      let swipeStartX = 0;
+      let swipeEndX = 0;
+
+      slideshowContainer.addEventListener('touchstart', (e) => {
+        swipeStartX = e.touches[0].clientX;
+        clearAutoSlide();
       });
 
-      slideshow.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
+      slideshowContainer.addEventListener('touchend', (e) => {
+        swipeEndX = e.changedTouches[0].clientX;
+        handleSwipeGesture();
+        setTimeout(beginAutoSlide, 1500);
       });
 
-      slideshow.addEventListener('touchend', (e) => {
-        if (!isDragging) return;
-        isDragging = false;
+      function handleSwipeGesture() {
+        const swipeDiff = swipeStartX - swipeEndX;
+        const minSwipeDistance = 60;
         
-        const endX = e.changedTouches[0].pageX;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > 50) { // Minimum swipe distance
-          if (diff > 0) {
-            nextSlide(); // Swipe left = next
+        if (Math.abs(swipeDiff) > minSwipeDistance) {
+          if (swipeDiff > 0) {
+            moveToNext(); // Swipe left
           } else {
-            prevSlide(); // Swipe right = previous
+            moveToPrev(); // Swipe right
           }
         }
+      }
+
+      // Arrow buttons
+      nextArrow.addEventListener('click', () => {
+        moveToNext();
+        clearAutoSlide();
+        setTimeout(beginAutoSlide, 2000);
       });
 
-      // Button controls
-      prevButton.addEventListener('click', prevSlide);
-      nextButton.addEventListener('click', nextSlide);
+      prevArrow.addEventListener('click', () => {
+        moveToPrev();
+        clearAutoSlide();
+        setTimeout(beginAutoSlide, 2000);
+      });
 
-      // Auto-advance slides every 5 seconds
-      setInterval(nextSlide, 5000);
+      // Pause on hover
+      slideshowContainer.addEventListener('mouseenter', clearAutoSlide);
+      slideshowContainer.addEventListener('mouseleave', beginAutoSlide);
+
+      // Start the show
+      jumpToSlide(0);
+      beginAutoSlide();
+      
+      console.log('✅ TikTok slideshow is running!');
     });
   </script>
 </body>
