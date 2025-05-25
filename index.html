@@ -25,7 +25,6 @@
       position: relative;
     }
 
-    /* BACKGROUND SLIDESHOW */
     .slideshow {
       position: fixed;
       top: 0;
@@ -33,33 +32,7 @@
       z-index: -1;
       width: 100%;
       height: 100%;
-      overflow: hidden;
-    }
-    .slideshow img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      animation: fadeImages 24s infinite;
-      opacity: 0;
-    }
-    .slideshow img:nth-child(1) {
-      animation-delay: 0s;
-    }
-    .slideshow img:nth-child(2) {
-      animation-delay: 6s;
-    }
-    .slideshow img:nth-child(3) {
-      animation-delay: 12s;
-    }
-    .slideshow img:nth-child(4) {
-      animation-delay: 18s;
-    }
-
-    @keyframes fadeImages {
-      0%, 20% { opacity: 0; }
-      25%, 45% { opacity: 1; }
-      50%, 100% { opacity: 0; }
+      background-color: #f5f5f5;
     }
 
     .menu {
@@ -165,13 +138,7 @@
   </style>
 </head>
 <body>
-  <!-- SLIDESHOW BACKGROUND -->
-  <div class="slideshow">
-    <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Background 1" />
-    <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Background 2" />
-    <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Background 3" />
-    <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Background 4" />
-  </div>
+  <div class="slideshow"></div>
 
   <div class="menu">
     <div class="logo-container">
@@ -180,7 +147,7 @@
     <h1>Hola Boba Menu</h1>
 
     <section>
-      <h2>🍵 Green Tea Refreshers – 2.000</h2>
+      <h2>🍵 Green Tea Refreshers – ₡2.000</h2>
       <ul>
         <li>Strawberry Lemonade</li>
         <li>Passionfruit</li>
@@ -191,7 +158,7 @@
     </section>
 
     <section>
-      <h2>🧋 Milk Tea – 2.500</h2>
+      <h2>🧋 Milk Tea – ₡2.500</h2>
       <ul>
         <li>Original Black Tea</li>
         <li>Vanilla</li>
@@ -205,7 +172,7 @@
     </section>
 
     <section>
-      <h2>🍓 Natural Smoothies – 2.300</h2>
+      <h2>🍓 Natural Smoothies – ₡2.300</h2>
       <ul>
         <li>Mango</li>
         <li>Strawberry</li>
@@ -216,7 +183,7 @@
     </section>
 
     <section>
-      <h2>🥤 Frappes in Milk – 2.800</h2>
+      <h2>🥤 Frappes in Milk – ₡2.800</h2>
       <ul>
         <li>Matcha</li>
         <li>Taro</li>
@@ -229,16 +196,16 @@
     <section>
       <h2>☕ Otros</h2>
       <ul>
-        <li>Brown Sugar Latte – 2.500</li>
-        <li>Vietnamese Coffee – 2.300</li>
+        <li>Brown Sugar Latte – ₡2.500</li>
+        <li>Vietnamese Coffee – ₡2.300</li>
       </ul>
     </section>
 
     <section>
-      <h2>🧇 Bubble Waffles – 2.000</h2>
+      <h2>🧇 Bubble Waffles – ₡2.000</h2>
       <ul>
-        <li>Add Ice Cream: +500</li>
-        <li>Add Strawberries: +200</li>
+        <li>Add Ice Cream: +₡500</li>
+        <li>Add Strawberries: +₡200</li>
       </ul>
     </section>
 
@@ -246,10 +213,10 @@
       <h2>✨ Extras</h2>
       <ul>
         <li>Vegan Option (Homemade Coconut Milk)</li>
-        <li>Add: +300</li>
-        <li>Change or Substitute: +0</li>
-        <li>Tapioca: +300</li>
-        <li>Popping Pearls: +500</li>
+        <li>Add: +₡300</li>
+        <li>Change or Substitute: +₡0</li>
+        <li>Tapioca: +₡300</li>
+        <li>Popping Pearls: +₡500</li>
       </ul>
     </section>
 
