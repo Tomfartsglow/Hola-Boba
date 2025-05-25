@@ -1,178 +1,248 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hola Boba Menu</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-<style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #F5F5F5;
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 2rem 1rem;
-  }
-  .menu {
-    background: #fff;
-    max-width: 800px;
-    width: 100%;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    z-index: 1;
-  }
-  .logo-container {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  .logo-container img {
-    max-width: 150px;
-    opacity: 0.85;
-  }
-  h1 {
-    text-align: center;
-    color: #F8C300;
-    font-weight: 700;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-  }
-  section {
-    margin-bottom: 2rem;
-  }
-  section h2 {
-    color: #00B0B9;
-    border-bottom: 2px solid #F8C300;
-    padding-bottom: 0.3rem;
-    margin-bottom: 1rem;
-  }
-  ul {
-    list-style: none;
-  }
-  li {
-    padding: 0.4rem 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: space-between;
-    font-weight: 500;
-  }
-  .price {
-    font-weight: 700;
-    color: #000;
-  }
-  .price::before {
-    content: "₡ ";
-    margin-right: 0.2rem;
-  }
-  .buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .buttons a {
-    background-color: #F8C300;
-    color: #000;
-    padding: 0.6rem 1.2rem;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: background-color 0.3s;
-  }
-  .buttons a:hover {
-    background-color: #e6b800;
-  }
-  @media (max-width: 600px) {
-    .menu {
-      padding: 1rem;
-      margin: 0 1.5rem;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hola Boba Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    section h2 {
-      font-size: 1.2rem;
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      height: 100%;
+      background-color: #F5F5F5;
+      color: #333;
+      overflow-x: hidden;
     }
-    .buttons a {
+
+    body {
+      position: relative;
+    }
+
+    .slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
       width: 100%;
-      justify-content: center;
+      height: 100%;
+      background-color: #f5f5f5;
     }
-  }
-</style>
+
+    .menu {
+      background-color: #FFFFFF;
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 800px;
+      margin: 3rem auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      backdrop-filter: blur(6px);
+      color: #333;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo-container img {
+      max-width: 150px;
+      opacity: 0.85;
+    }
+
+    h1 {
+      color: #F8C300;
+      margin-bottom: 0;
+      font-weight: 700;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      color: #00B0B9;
+      border-bottom: 2px solid #F8C300;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      color: #333;
+    }
+
+    li {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .buttons a {
+      background-color: #F8C300;
+      color: #000;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .buttons a:hover {
+      background-color: #e6b800;
+    }
+
+    @media (max-width: 600px) {
+      .menu {
+        padding: 1rem;
+        margin: 1.5rem;
+      }
+      section h2 {
+        font-size: 1.2rem;
+      }
+      .buttons a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="slideshow"></div>
 
-<div class="menu" role="main">
-  <div class="logo-container">
-    <img src="logo.jpeg" alt="Hola Boba Logo" />
+  <div class="menu">
+    <div class="logo-container">
+      <img src="logo.jpeg" alt="Hola Boba Logo" />
+    </div>
+    <h1>Hola Boba Menu</h1>
+
+    <section>
+      <h2>🍵 Green Tea Refreshers – ₡2.000</h2>
+      <ul>
+        <li>Strawberry Lemonade</li>
+        <li>Passionfruit</li>
+        <li>Lemonade</li>
+        <li>Strawberry Orange</li>
+        <li>Raspberry</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧋 Milk Tea – ₡2.500</h2>
+      <ul>
+        <li>Original Black Tea</li>
+        <li>Vanilla</li>
+        <li>Caramel</li>
+        <li>Matcha</li>
+        <li>Taro</li>
+        <li>Oolong</li>
+        <li>Thai Tea</li>
+        <li>Jasmine Green Tea</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🍓 Natural Smoothies – ₡2.300</h2>
+      <ul>
+        <li>Mango</li>
+        <li>Strawberry</li>
+        <li>Banana Cacao</li>
+        <li>Blueberry Banana</li>
+        <li>Strawberry Banana</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🥤 Frappes in Milk – ₡2.800</h2>
+      <ul>
+        <li>Matcha</li>
+        <li>Taro</li>
+        <li>Thai Tea</li>
+        <li>Mocha</li>
+        <li>Chocolate</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>☕ Otros</h2>
+      <ul>
+        <li>Brown Sugar Latte – ₡2.500</li>
+        <li>Vietnamese Coffee – ₡2.300</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧇 Bubble Waffles – ₡2.000</h2>
+      <ul>
+        <li>Add Ice Cream: +₡500</li>
+        <li>Add Strawberries: +₡200</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>✨ Extras</h2>
+      <ul>
+        <li>Vegan Option (Homemade Coconut Milk)</li>
+        <li>Add: +₡300</li>
+        <li>Change or Substitute: +₡0</li>
+        <li>Tapioca: +₡300</li>
+        <li>Popping Pearls: +₡500</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📣 Follow Us!</h2>
+      <div class="buttons">
+        <a href="https://www.instagram.com/holaboba.cr" target="_blank">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="https://www.tiktok.com/@holabobacostarica" target="_blank">
+          <i class="fab fa-tiktok"></i> TikTok
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>📍 Our Locations</h2>
+      <div class="buttons">
+        <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank">
+          <i class="fas fa-map-marker-alt"></i> Puerto Viejo
+        </a>
+        <a href="https://maps.app.goo.gl/Q38DmC2MvvCztayK7" target="_blank">
+          <i class="fas fa-map-marker-alt"></i> Cocles
+        </a>
+      </div>
+    </section>
   </div>
-  <h1>Hola Boba Menu</h1>
-
-  <section>
-    <h2>Boba</h2>
-    <ul>
-      <li>Honeydew <span class="price">1500</span></li>
-      <li>Taro <span class="price">1500</span></li>
-      <li>Matcha <span class="price">1500</span></li>
-      <li>Thai <span class="price">1500</span></li>
-      <li>Strawberry <span class="price">1500</span></li>
-      <li>Peach <span class="price">1500</span></li>
-      <li>Passion Fruit <span class="price">1500</span></li>
-      <li>Lychee <span class="price">1500</span></li>
-      <li>Blueberry <span class="price">1500</span></li>
-      <li>Kiwi <span class="price">1500</span></li>
-      <li>Watermelon <span class="price">1500</span></li>
-      <li>Green Apple <span class="price">1500</span></li>
-      <li>Mango <span class="price">1500</span></li>
-      <li>Others <span class="price">1500</span></li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Toppings</h2>
-    <ul>
-      <li>Tapioca <span class="price">500</span></li>
-      <li>Rainbow Jelly <span class="price">500</span></li>
-      <li>Lychee Jelly <span class="price">500</span></li>
-      <li>Popping Boba <span class="price">700</span></li>
-      <li>Pudding <span class="price">600</span></li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Snacks</h2>
-    <ul>
-      <li>Spring Rolls <span class="price">1500</span></li>
-      <li>Fried Wontons <span class="price">1500</span></li>
-      <li>Fried Dumplings <span class="price">1500</span></li>
-      <li>Others <span class="price">1500</span></li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Combo</h2>
-    <ul>
-      <li>Boba + Snack <span class="price">2000</span></li>
-      <li>Boba + Snack + Topping <span class="price">2500</span></li>
-    </ul>
-  </section>
-
-  <div class="buttons" role="region" aria-label="Contact and social media links">
-    <a href="https://wa.me/50685418130" target="_blank" rel="noopener noreferrer">
-      <i class="fa-brands fa-whatsapp"></i> Whatsapp
-    </a>
-    <a href="https://www.instagram.com/holaboba_/" target="_blank" rel="noopener noreferrer">
-      <i class="fa-brands fa-instagram"></i> Instagram
-    </a>
-  </div>
-</div>
-
 </body>
 </html>
-
