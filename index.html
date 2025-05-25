@@ -19,82 +19,80 @@
       color: #333;
       overflow-x: hidden;
     }
+
     body {
       position: relative;
-      padding: 2rem 1rem; /* give some padding so galleries don’t touch edges */
+      background: none;
+      padding: 2rem 0;
     }
 
     /* GALLERY CONTAINERS */
     .gallery-container {
-      position: relative;
       width: 100%;
-      height: 7rem;
       overflow: hidden;
-      background-color: #f0f0f0; /* subtle contrast */
+      height: 6.5rem;
+      margin: 1rem auto;
       border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      margin: 1rem 0;
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
       z-index: 1;
     }
-    /* bottom gallery with subtle top border to separate from menu */
-    .gallery-container.bottom {
-      border-top: 1.5px solid white;
-      margin-top: 1rem;
+    /* MOBILE HEIGHT */
+    @media (max-width: 600px) {
+      .gallery-container {
+        height: 4.8rem;
+      }
     }
 
-    /* TRACK OF IMAGES */
+    /* GALLERY TRACK - flex row of images moving */
     .gallery-track {
       display: flex;
-      width: calc(200% + 32px); /* double plus spacing */
-      animation: scrollLeft 30s linear infinite;
+      width: max-content;
+      animation: scrollLeft 36s linear infinite;
     }
 
+    /* duplicated gallery-track for bottom with reverse scroll */
+    .gallery-track.reverse {
+      animation-direction: reverse;
+    }
+
+    /* Gallery images style */
     .gallery-track img {
-      height: 100%;
       width: auto;
-      object-fit: cover;
-      border-left: 1px solid white;
-      border-right: 1px solid white;
+      height: 100%;
+      margin-right: 1rem;
       border-radius: 8px;
       flex-shrink: 0;
-      margin: 0 4px;
       user-select: none;
       pointer-events: none;
     }
-    /* Remove border and margin on first and last image for clean edges */
-    .gallery-track img:first-child {
-      border-left: none;
-      margin-left: 0;
-    }
-    .gallery-track img:last-child {
-      border-right: none;
-      margin-right: 0;
-    }
 
+    /* SCROLL ANIMATION */
     @keyframes scrollLeft {
       0% {
         transform: translateX(0);
       }
       100% {
-        /* Scroll exactly half the width minus margin spacing for seamless loop */
-        transform: translateX(calc(-50% - 16px));
+        transform: translateX(calc(-50%));
       }
     }
 
-    /* MENU STYLES */
+    /* MAIN MENU */
     .menu {
       background-color: #FFFFFF;
       padding: 2rem;
       border-radius: 20px;
       max-width: 800px;
-      margin: 0 auto; /* centered */
+      margin: 1rem auto;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       backdrop-filter: blur(6px);
       color: #333;
-      animation: fadeInUp 1.2s ease-out;
       position: relative;
-      z-index: 2; /* above galleries */
+      z-index: 2;
+      animation: fadeInUp 1.2s ease-out;
     }
+
     @keyframes fadeInUp {
       from {
         transform: translateY(30px);
@@ -110,6 +108,7 @@
       text-align: center;
       margin-bottom: 2rem;
     }
+
     .logo-container img {
       max-width: 150px;
       opacity: 0.85;
@@ -146,17 +145,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-weight: 500;
     }
 
-    /* Currency colon styling - fixed next to numbers */
+    /* COLONES currency before the number */
     .price {
-      font-weight: bold;
-      color: #333;
+      font-weight: 700;
+      color: #000;
     }
     .price::before {
-      content: '₡ ';
-      font-weight: normal;
-      margin-right: 0.15rem;
+      content: "₡ ";
+      margin-right: 0.2rem;
     }
 
     .buttons {
@@ -183,11 +182,10 @@
       background-color: #e6b800;
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       .menu {
         padding: 1rem;
-        margin: 0.5rem;
+        margin: 1.5rem;
       }
       section h2 {
         font-size: 1.2rem;
@@ -196,25 +194,19 @@
         width: 100%;
         justify-content: center;
       }
-      .gallery-container {
-        height: 5.5rem;
-        border-radius: 10px;
-      }
-      .gallery-track img {
-        border-radius: 6px;
-      }
     }
   </style>
 </head>
 <body>
+
   <!-- TOP GALLERY -->
-  <div class="gallery-container top">
-    <div class="gallery-track">
+  <div class="gallery-container">
+    <div class="gallery-track" aria-label="Gallery scrolling images top">
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3" />
       <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4" />
-      <!-- Repeat for seamless scroll -->
+      <!-- Repeat for infinite effect -->
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1 repeat" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2 repeat" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3 repeat" />
@@ -222,14 +214,15 @@
     </div>
   </div>
 
-  <div class="menu">
+  <!-- MAIN MENU -->
+  <div class="menu" role="main">
     <div class="logo-container">
       <img src="logo.jpeg" alt="Hola Boba Logo" />
     </div>
     <h1>Hola Boba Menu</h1>
 
     <section>
-      <h2>🍵 Green Tea Refreshers – <span class="price">2.000</span></h2>
+      <h2>🍵 Green Tea Refreshers – <span class="price">2,000</span></h2>
       <ul>
         <li>Strawberry Lemonade</li>
         <li>Passionfruit</li>
@@ -240,7 +233,7 @@
     </section>
 
     <section>
-      <h2>🧋 Milk Tea – <span class="price">2.500</span></h2>
+      <h2>🧋 Milk Tea – <span class="price">2,500</span></h2>
       <ul>
         <li>Original Black Tea</li>
         <li>Vanilla</li>
@@ -254,7 +247,7 @@
     </section>
 
     <section>
-      <h2>🍓 Natural Smoothies – <span class="price">2.300</span></h2>
+      <h2>🍓 Natural Smoothies – <span class="price">2,300</span></h2>
       <ul>
         <li>Mango</li>
         <li>Strawberry</li>
@@ -265,7 +258,7 @@
     </section>
 
     <section>
-      <h2>🥤 Frappes in Milk – <span class="price">2.800</span></h2>
+      <h2>🥤 Frappes in Milk – <span class="price">2,800</span></h2>
       <ul>
         <li>Matcha</li>
         <li>Taro</li>
@@ -278,13 +271,13 @@
     <section>
       <h2>☕ Others</h2>
       <ul>
-        <li>Brown Sugar Latte – <span class="price">2.500</span></li>
-        <li>Vietnamese Coffee – <span class="price">2.300</span></li>
+        <li>Brown Sugar Latte – <span class="price">2,500</span></li>
+        <li>Vietnamese Coffee – <span class="price">2,300</span></li>
       </ul>
     </section>
 
     <section>
-      <h2>🧇 Bubble Waffles – <span class="price">2.000</span></h2>
+      <h2>🧇 Bubble Waffles – <span class="price">2,000</span></h2>
       <ul>
         <li>Add Ice Cream: +<span class="price">500</span></li>
         <li>Add Strawberries: +<span class="price">200</span></li>
@@ -305,10 +298,10 @@
     <section>
       <h2>📣 Follow Us!</h2>
       <div class="buttons">
-        <a href="https://www.instagram.com/holaboba.cr" target="_blank">
+        <a href="https://www.instagram.com/holaboba.cr" target="_blank" rel="noopener">
           <i class="fab fa-instagram"></i> Instagram
         </a>
-        <a href="https://www.tiktok.com/@holabobacostarica" target="_blank">
+        <a href="https://www.tiktok.com/@holabobacostarica" target="_blank" rel="noopener">
           <i class="fab fa-tiktok"></i> TikTok
         </a>
       </div>
@@ -317,10 +310,10 @@
     <section>
       <h2>📍 Our Locations</h2>
       <div class="buttons">
-        <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank">
+        <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank" rel="noopener">
           <i class="fas fa-map-marker-alt"></i> Puerto Viejo
         </a>
-        <a href="https://maps.app.goo.gl/Q38DmC2MvvCztayK7" target="_blank">
+        <a href="https://maps.app.goo.gl/Q38DmC2MvvCztayK7" target="_blank" rel="noopener">
           <i class="fas fa-map-marker-alt"></i> Cocles
         </a>
       </div>
@@ -328,18 +321,19 @@
   </div>
 
   <!-- BOTTOM GALLERY -->
-  <div class="gallery-container bottom">
-    <div class="gallery-track">
+  <div class="gallery-container">
+    <div class="gallery-track reverse" aria-label="Gallery scrolling images bottom">
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3" />
       <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4" />
-      <!-- Repeat for seamless scroll -->
+      <!-- Repeat for infinite effect -->
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1 repeat" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2 repeat" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3 repeat" />
       <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4 repeat" />
     </div>
   </div>
+
 </body>
 </html>
