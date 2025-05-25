@@ -45,6 +45,108 @@
       transform: translateY(0);
     }
 
+    /* Order Options Modal */
+    .order-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .order-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .order-modal-content {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .order-modal.show .order-modal-content {
+      transform: scale(1);
+    }
+
+    .order-modal h3 {
+      color: #00B0B9;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .order-modal p {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .order-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .order-option {
+      background: linear-gradient(45deg, #F8C300, #e6b800);
+      color: #000;
+      padding: 1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .order-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(248, 195, 0, 0.4);
+    }
+
+    .order-option.delivery {
+      background: linear-gradient(45deg, #00B0B9, #008a91);
+      color: white;
+    }
+
+    .order-option.delivery:hover {
+      box-shadow: 0 5px 15px rgba(0, 176, 185, 0.4);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #999;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-modal:hover {
+      color: #333;
+    }
+
     .main-content {
       margin-top: 0;
       transition: margin-top 0.3s ease;
@@ -240,6 +342,25 @@
     <span id="detectionText">🔍 Detecting access method...</span>
   </div>
 
+  <!-- Order Options Modal -->
+  <div class="order-modal" id="orderModal">
+    <div class="order-modal-content">
+      <button class="close-modal" id="closeModal">&times;</button>
+      <h3>🛍️ How would you like to order?</h3>
+      <p>Choose your preferred option to get your Hola Boba favorites!</p>
+      <div class="order-options">
+        <button class="order-option pickup" id="pickupOption">
+          <i class="fas fa-store"></i>
+          Order for Pickup
+        </button>
+        <button class="order-option delivery" id="deliveryOption">
+          <i class="fas fa-motorcycle"></i>
+          Order for Delivery
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="main-content" id="mainContent">
     <div class="menu">
       <div class="slideshow">
@@ -403,11 +524,11 @@
       checkReferrer() {
         const referrer = document.referrer;
         if (!referrer || referrer === '') {
-          this.detectionMethods.push('No referrer (likely NFC/direct access)');
-          return { isNFC: true, confidence: 0.7 };
+          this.detectionMethods.push('No referrer (could be NFC, manual typing, or bookmark)');
+          return { isNFC: null, confidence: 0.3 }; // Reduced confidence, not definitive
         } else {
-          this.detectionMethods.push(`Referrer found: ${referrer} (likely code/browser)`);
-          return { isNFC: false, confidence: 0.8 };
+          this.detectionMethods.push(`Referrer found: ${referrer} (likely from another website)`);
+          return { isNFC: false, confidence: 0.6 };
         }
       }
 
@@ -429,11 +550,14 @@
           const navType = performance.navigation.type;
           
           if (navType === 0) { // TYPE_NAVIGATE
-            this.detectionMethods.push('Direct navigation (could be NFC)');
-            return { isNFC: true, confidence: 0.5 };
+            this.detectionMethods.push('Direct navigation (could be manual typing, NFC, or bookmark)');
+            return { isNFC: null, confidence: 0.2 }; // Very low confidence, not definitive
           } else if (navType === 1) { // TYPE_RELOAD
-            this.detectionMethods.push('Page reload (likely manual)');
-            return { isNFC: false, confidence: 0.6 };
+            this.detectionMethods.push('Page reload (manual action)');
+            return { isNFC: false, confidence: 0.7 };
+          } else if (navType === 2) { // TYPE_BACK_FORWARD
+            this.detectionMethods.push('Back/forward navigation (manual browser action)');
+            return { isNFC: false, confidence: 0.8 };
           }
         }
         return { isNFC: null, confidence: 0 };
@@ -494,6 +618,7 @@
       calculateResult(factors) {
         let nfcScore = 0;
         let codeScore = 0;
+        let manualScore = 0;
         let totalConfidence = 0;
 
         Object.values(factors).forEach(factor => {
@@ -505,14 +630,25 @@
           totalConfidence += factor.confidence;
         });
 
+        // Check for manual URL typing indicators
+        const isDirectTyping = this.checkDirectTyping();
+        if (isDirectTyping.isManual) {
+          manualScore = isDirectTyping.confidence;
+          totalConfidence += manualScore;
+        }
+
         // Normalize scores
         if (totalConfidence > 0) {
           nfcScore = nfcScore / totalConfidence;
           codeScore = codeScore / totalConfidence;
+          manualScore = manualScore / totalConfidence;
         }
 
         // Determine result
-        if (nfcScore > codeScore) {
+        if (manualScore > Math.max(nfcScore, codeScore)) {
+          this.result = 'MANUAL';
+          this.confidence = Math.round(manualScore * 100);
+        } else if (nfcScore > codeScore) {
           this.result = 'NFC';
           this.confidence = Math.round(nfcScore * 100);
         } else if (codeScore > nfcScore) {
@@ -528,14 +664,68 @@
         console.log('Detection Methods:', this.detectionMethods);
         console.log('NFC Score:', nfcScore);
         console.log('Code Score:', codeScore);
+        console.log('Manual Score:', manualScore);
         console.log('Final Result:', this.result);
         console.log('Confidence:', this.confidence + '%');
+      }
+
+      checkDirectTyping() {
+        const indicators = [];
+        let confidence = 0;
+
+        // Strong indicator: No referrer + direct navigation + desktop
+        if (!document.referrer && 
+            performance.navigation && 
+            performance.navigation.type === 0 &&
+            !/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          indicators.push('Desktop with no referrer and direct navigation');
+          confidence += 0.7;
+        }
+
+        // Strong indicator: Clean URL (no search params or hash)
+        if (window.location.search === '' && window.location.hash === '') {
+          indicators.push('Clean URL with no parameters');
+          confidence += 0.6;
+        }
+
+        // Medium indicator: Not a mobile device
+        if (!/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          indicators.push('Desktop device (users more likely to type URLs)');
+          confidence += 0.4;
+        }
+
+        // Weak indicator: Document body focused (typical after typing URL)
+        if (document.activeElement === document.body || document.activeElement === null) {
+          indicators.push('No specific element focused');
+          confidence += 0.3;
+        }
+
+        // Check for URL structure that suggests manual typing (simple, memorable URLs)
+        const url = window.location.href;
+        const isSimpleUrl = url.split('/').length <= 4 && !url.includes('?') && !url.includes('#');
+        if (isSimpleUrl) {
+          indicators.push('Simple, memorable URL structure');
+          confidence += 0.4;
+        }
+
+        // Boost confidence if multiple indicators present
+        if (indicators.length >= 3) {
+          confidence *= 1.2; // 20% boost for multiple indicators
+        }
+
+        if (indicators.length > 0) {
+          this.detectionMethods.push(`Manual typing indicators: ${indicators.join(', ')}`);
+          return { isManual: true, confidence: Math.min(confidence, 1.0) };
+        }
+
+        return { isManual: false, confidence: 0 };
       }
 
       showDetectionResult() {
         const banner = document.getElementById('detectionBanner');
         const text = document.getElementById('detectionText');
         const mainContent = document.getElementById('mainContent');
+        const orderModal = document.getElementById('orderModal');
 
         let message = '';
         let icon = '';
@@ -548,6 +738,10 @@
           case 'CODE':
             icon = '💻';
             message = `${icon} Opened via Code/Browser (${this.confidence}% confidence)`;
+            break;
+          case 'MANUAL':
+            icon = '⌨️';
+            message = `${icon} URL typed manually (${this.confidence}% confidence)`;
             break;
           default:
             icon = '❓';
@@ -562,11 +756,19 @@
           mainContent.classList.add('with-banner');
         }, 500);
 
-        // Hide banner after 5 seconds
+        // If manual typing detected, show order options modal
+        if (this.result === 'MANUAL') {
+          setTimeout(() => {
+            orderModal.classList.add('show');
+          }, 2000); // Show modal after banner
+        }
+
+        // Hide banner after 5 seconds (unless manual typing)
+        const bannerTimeout = this.result === 'MANUAL' ? 8000 : 5500;
         setTimeout(() => {
           banner.classList.remove('show');
           mainContent.classList.remove('with-banner');
-        }, 5500);
+        }, bannerTimeout);
 
         // Send analytics or perform specific actions based on detection
         this.handleDetectionResult();
@@ -593,6 +795,9 @@
         } else if (this.result === 'CODE') {
           // Special handling for programmatic access
           console.log('🤖 Programmatic access detected');
+        } else if (this.result === 'MANUAL') {
+          // Special handling for manual URL typing
+          console.log('⌨️ Manual URL typing detected - showing order options');
         }
       }
 
@@ -614,7 +819,54 @@
     // Original slideshow functionality
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize detection system
-      new AccessDetection();
+      const detection = new AccessDetection();
+
+      // Order modal functionality
+      const orderModal = document.getElementById('orderModal');
+      const closeModal = document.getElementById('closeModal');
+      const pickupOption = document.getElementById('pickupOption');
+      const deliveryOption = document.getElementById('deliveryOption');
+
+      // Close modal handlers
+      closeModal.addEventListener('click', () => {
+        orderModal.classList.remove('show');
+      });
+
+      orderModal.addEventListener('click', (e) => {
+        if (e.target === orderModal) {
+          orderModal.classList.remove('show');
+        }
+      });
+
+      // Order option handlers
+      pickupOption.addEventListener('click', () => {
+        console.log('🏪 Pickup order selected');
+        alert('🏪 Great! Visit us at one of our locations:\n\n📍 Puerto Viejo\n📍 Cocles\n\nCheck our locations section below for directions!');
+        orderModal.classList.remove('show');
+        
+        // Scroll to locations section
+        document.querySelector('section:last-child').scrollIntoView({ 
+          behavior: 'smooth' 
+        });
+      });
+
+      deliveryOption.addEventListener('click', () => {
+        console.log('🚚 Delivery order selected');
+        alert('🚚 Delivery coming soon!\n\nFor now, please visit us at one of our locations for pickup. We\'re working on delivery options!');
+        orderModal.classList.remove('show');
+        
+        // Scroll to locations section
+        document.querySelector('section:last-child').scrollIntoView({ 
+          behavior: 'smooth' 
+        });
+      });
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && orderModal.classList.contains('show')) {
+          orderModal.classList.remove('show');
+        }
+      });
 
       // Original slideshow code
       const slideshow = document.querySelector('.slideshow-container');
