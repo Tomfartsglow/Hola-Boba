@@ -686,6 +686,18 @@
       box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
     }
 
+    /* No Extras Disclaimer */
+    .no-extras-disclaimer {
+      text-align: center;
+      margin-top: 0.5rem;
+      color: #666;
+      font-style: italic;
+    }
+
+    .no-extras-disclaimer small {
+      font-size: 0.85rem;
+    }
+
     @media (max-width: 600px) {
       .menu {
         padding: 1rem;
@@ -972,13 +984,6 @@
         <h2 class="screen-title">✨ Add Boba Extras</h2>
         
         <div class="extras-grid">
-          <div class="extra-option none" data-extra="none" data-price="0">
-            <i class="fas fa-times"></i>
-            <div class="extra-info">
-              <div class="extra-name">None</div>
-              <div style="font-size: 0.85rem; color: #666;">No extras</div>
-            </div>
-          </div>
           <div class="extra-option" data-extra="tapioca" data-price="300">
             <i class="fas fa-circle"></i>
             <div class="extra-info">
@@ -1002,10 +1007,13 @@
           </div>
         </div>
 
-        <button class="next-btn" onclick="menuSystem.finishOrder()">
-          Finish Order
+        <button class="next-btn" onclick="menuSystem.finishOrder()" id="bobaFinishBtn">
+          <span id="bobaFinishText">Finish Order</span>
           <i class="fas fa-check"></i>
         </button>
+        <div class="no-extras-disclaimer" id="bobaDisclaimer" style="display: none;">
+          <small>You can finish your order without any extras</small>
+        </div>
       </div>
 
       <!-- Others Screen -->
@@ -1072,13 +1080,6 @@
         <h2 class="screen-title">✨ Add Waffle Extras</h2>
         
         <div class="extras-grid">
-          <div class="extra-option none" data-extra="none" data-price="0">
-            <i class="fas fa-times"></i>
-            <div class="extra-info">
-              <div class="extra-name">None</div>
-              <div style="font-size: 0.85rem; color: #666;">No extras</div>
-            </div>
-          </div>
           <div class="extra-option" data-extra="ice-cream" data-price="500">
             <i class="fas fa-ice-cream"></i>
             <div class="extra-info">
@@ -1095,10 +1096,13 @@
           </div>
         </div>
 
-        <button class="next-btn" onclick="menuSystem.finishOrder()">
-          Finish Order
+        <button class="next-btn" onclick="menuSystem.finishOrder()" id="waffleFinishBtn">
+          <span id="waffleFinishText">Finish Order</span>
           <i class="fas fa-check"></i>
         </button>
+        <div class="no-extras-disclaimer" id="waffleDisclaimer" style="display: none;">
+          <small>You can finish your order without any extras</small>
+        </div>
       </div>
     </div>
   </div>
