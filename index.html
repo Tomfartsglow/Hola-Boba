@@ -13,7 +13,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     html, body {
       font-family: 'Montserrat', sans-serif;
       height: 100%;
@@ -26,7 +25,7 @@
       position: relative;
     }
 
-    /* SLIDESHOW BACKGROUND */
+    /* BACKGROUND SLIDESHOW */
     .slideshow {
       position: fixed;
       top: 0;
@@ -36,7 +35,6 @@
       height: 100%;
       overflow: hidden;
     }
-
     .slideshow img {
       position: absolute;
       width: 100%;
@@ -45,19 +43,15 @@
       animation: fadeImages 18s infinite;
       opacity: 0;
     }
-
     .slideshow img:nth-child(1) {
       animation-delay: 0s;
     }
-
     .slideshow img:nth-child(2) {
       animation-delay: 6s;
     }
-
     .slideshow img:nth-child(3) {
       animation-delay: 12s;
     }
-
     @keyframes fadeImages {
       0%, 20% { opacity: 0; }
       30%, 60% { opacity: 1; }
@@ -65,7 +59,7 @@
     }
 
     .menu {
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: #FFFFFF;
       padding: 2rem;
       border-radius: 20px;
       max-width: 800px;
@@ -167,6 +161,7 @@
   </style>
 </head>
 <body>
+  <!-- SLIDESHOW BACKGROUND -->
   <div class="slideshow">
     <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Background 1" />
     <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Background 2" />
@@ -178,7 +173,104 @@
       <img src="logo.jpeg" alt="Hola Boba Logo" />
     </div>
     <h1>Hola Boba Menu</h1>
-    <!-- Menu sections stay the same -->
+
+    <section>
+      <h2>🍵 Green Tea Refreshers – 2.000</h2>
+      <ul>
+        <li>Strawberry Lemonade</li>
+        <li>Passionfruit</li>
+        <li>Lemonade</li>
+        <li>Strawberry Orange</li>
+        <li>Raspberry</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧋 Milk Tea – 2.500</h2>
+      <ul>
+        <li>Original Black Tea</li>
+        <li>Vanilla</li>
+        <li>Caramel</li>
+        <li>Matcha</li>
+        <li>Taro</li>
+        <li>Oolong</li>
+        <li>Thai Tea</li>
+        <li>Jasmine Green Tea</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🍓 Natural Smoothies – 2.300</h2>
+      <ul>
+        <li>Mango</li>
+        <li>Strawberry</li>
+        <li>Banana Cacao</li>
+        <li>Blueberry Banana</li>
+        <li>Strawberry Banana</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🥤 Frappes in Milk – 2.800</h2>
+      <ul>
+        <li>Matcha</li>
+        <li>Taro</li>
+        <li>Thai Tea</li>
+        <li>Mocha</li>
+        <li>Chocolate</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>☕ Otros</h2>
+      <ul>
+        <li>Brown Sugar Latte – 2.500</li>
+        <li>Vietnamese Coffee – 2.300</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧇 Bubble Waffles – 2.000</h2>
+      <ul>
+        <li>Add Ice Cream: +500</li>
+        <li>Add Strawberries: +200</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>✨ Extras</h2>
+      <ul>
+        <li>Vegan Option (Homemade Coconut Milk)</li>
+        <li>Add: +300</li>
+        <li>Change or Substitute: +0</li>
+        <li>Tapioca: +300</li>
+        <li>Popping Pearls: +500</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📣 Follow Us!</h2>
+      <div class="buttons">
+        <a href="https://www.instagram.com/holaboba.cr" target="_blank">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="https://www.tiktok.com/@holabobacostarica" target="_blank">
+          <i class="fab fa-tiktok"></i> TikTok
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>📍 Our Locations</h2>
+      <div class="buttons">
+        <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank">
+          <i class="fas fa-map-marker-alt"></i> Puerto Viejo
+        </a>
+        <a href="https://maps.app.goo.gl/Q38DmC2MvvCztayK7" target="_blank">
+          <i class="fas fa-map-marker-alt"></i> Cocles
+        </a>
+      </div>
+    </section>
   </div>
 </body>
 </html>
