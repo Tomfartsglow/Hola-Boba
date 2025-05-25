@@ -795,7 +795,7 @@
             <div>Chocolate</div>
           </div>
           <div class="flavor-option" data-flavor="mix">
-            <i class="fas fa-ice-cream" style="font-size: 2rem; margin-bottom: 0.5rem; color: #FF69B4;"></i>
+            <i class="fas fa-ice-cream" style="font-size: 2rem; margin-bottom: 0.5rem; color: #F5E6D3;"></i>
             <div>Mix</div>
           </div>
         </div>
@@ -1475,86 +1475,84 @@
       const prevButton = document.querySelector('.prev-button');
       const nextButton = document.querySelector('.next-button');
       
-      if (slideshow && slides.length > 0) {
-        let currentSlide = 0;
-        let startX = 0;
-        let currentX = 0;
-        let isDragging = false;
+      let currentSlide = 0;
+      let startX = 0;
+      let currentX = 0;
+      let isDragging = false;
 
-        // Create pagination dots
-        slides.forEach((_, index) => {
-          const dot = document.createElement('div');
-          dot.classList.add('dot');
-          if (index === 0) dot.classList.add('active');
-          dot.addEventListener('click', () => goToSlide(index));
-          dotsContainer.appendChild(dot);
+      // Create pagination dots
+      slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+      });
+
+      function updateDots() {
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentSlide);
         });
-
-        function updateDots() {
-          document.querySelectorAll('.dot').forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-          });
-        }
-
-        function goToSlide(index) {
-          currentSlide = index;
-          slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
-          updateDots();
-        }
-
-        function nextSlide() {
-          currentSlide = (currentSlide + 1) % slides.length;
-          goToSlide(currentSlide);
-        }
-
-        function prevSlide() {
-          currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-          goToSlide(currentSlide);
-        }
-
-        // Touch and mouse events
-        slideshow.addEventListener('mousedown', startDragging);
-        slideshow.addEventListener('touchstart', startDragging);
-        window.addEventListener('mousemove', drag);
-        window.addEventListener('touchmove', drag);
-        window.addEventListener('mouseup', stopDragging);
-        window.addEventListener('touchend', stopDragging);
-
-        function startDragging(e) {
-          isDragging = true;
-          startX = e.type === 'mousedown' ? e.pageX : e.touches[0].pageX;
-          currentX = -currentSlide * 100;
-        }
-
-        function drag(e) {
-          if (!isDragging) return;
-          e.preventDefault();
-          const x = e.type === 'mousemove' ? e.pageX : e.touches[0].pageX;
-          const walk = (x - startX) / slideshow.offsetWidth * 100;
-          slideshow.style.transform = `translateX(${currentX + walk}%)`;
-        }
-
-        function stopDragging(e) {
-          if (!isDragging) return;
-          isDragging = false;
-          const x = e.type === 'mouseup' ? e.pageX : e.changedTouches[0].pageX;
-          const walk = (x - startX) / slideshow.offsetWidth * 100;
-          
-          if (Math.abs(walk) > 20) {
-            if (walk > 0) prevSlide();
-            else nextSlide();
-          } else {
-            goToSlide(currentSlide);
-          }
-        }
-
-        // Button controls
-        if (prevButton) prevButton.addEventListener('click', prevSlide);
-        if (nextButton) nextButton.addEventListener('click', nextSlide);
-
-        // Auto-advance slides
-        setInterval(nextSlide, 5000);
       }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
+        updateDots();
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        goToSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        goToSlide(currentSlide);
+      }
+
+      // Touch and mouse events
+      slideshow.addEventListener('mousedown', startDragging);
+      slideshow.addEventListener('touchstart', startDragging);
+      window.addEventListener('mousemove', drag);
+      window.addEventListener('touchmove', drag);
+      window.addEventListener('mouseup', stopDragging);
+      window.addEventListener('touchend', stopDragging);
+
+      function startDragging(e) {
+        isDragging = true;
+        startX = e.type === 'mousedown' ? e.pageX : e.touches[0].pageX;
+        currentX = -currentSlide * 100;
+      }
+
+      function drag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.type === 'mousemove' ? e.pageX : e.touches[0].pageX;
+        const walk = (x - startX) / slideshow.offsetWidth * 100;
+        slideshow.style.transform = `translateX(${currentX + walk}%)`;
+      }
+
+      function stopDragging(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        const x = e.type === 'mouseup' ? e.pageX : e.changedTouches[0].pageX;
+        const walk = (x - startX) / slideshow.offsetWidth * 100;
+        
+        if (Math.abs(walk) > 20) {
+          if (walk > 0) prevSlide();
+          else nextSlide();
+        } else {
+          goToSlide(currentSlide);
+        }
+      }
+
+      // Button controls
+      prevButton.addEventListener('click', prevSlide);
+      nextButton.addEventListener('click', nextSlide);
+
+      // Auto-advance slides every 4 seconds
+      setInterval(nextSlide, 4000);
     });
   </script>
 </body>
