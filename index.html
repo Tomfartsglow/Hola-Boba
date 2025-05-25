@@ -42,37 +42,42 @@
       max-width: 800px;
       width: 100%;
       backdrop-filter: blur(6px);
+      animation: fadeInUp 1.2s ease-out;
     }
 
-    /* Fade-in from top for header */
-    h1 {
-      text-align: center;
-      color: #fdd835;
-      margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(-30px);
-      transition: opacity 1s ease, transform 1s ease;
+    /* Logo styling */
+    .logo {
+      display: block;
+      margin: 0 auto 1.5rem auto;
+      max-width: 180px;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
     }
-    h1.fade-in {
+    .logo:hover {
       opacity: 1;
-      transform: translateY(0);
     }
 
-    /* Fade-in for sections and icons */
-    .fade-section,
-    .buttons i {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .fade-in {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     section {
       margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     section h2 {
@@ -92,6 +97,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
+    /* Buttons with black background, yellow/gold text and icons */
     .buttons {
       display: flex;
       justify-content: center;
@@ -100,20 +106,30 @@
     }
 
     .buttons a {
-      background-color: #fdd835;
-      color: black;
+      background-color: #000000; /* black */
+      color: #fdd835; /* yellow/gold */
+      font-weight: 700;
       padding: 0.6rem 1.2rem;
       border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      transition: background-color 0.3s;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .buttons a i {
+      color: #fdd835;
+      font-size: 1.3rem;
     }
 
     .buttons a:hover {
-      background-color: #fff176;
+      background-color: #fdd835;
+      color: #000000;
+    }
+
+    .buttons a:hover i {
+      color: #000000;
     }
 
     @media (max-width: 600px) {
@@ -135,9 +151,10 @@
 <body>
   <div class="overlay">
     <div class="menu">
-      <h1 id="page-header">Hola Boba Menu</h1>
+      <img src="logo.jpeg" alt="Hola Boba Logo" class="logo" />
+      <h1 style="text-align:center; color:#fdd835; margin-bottom:2rem;">Hola Boba Menu</h1>
 
-      <section class="fade-section">
+      <section>
         <h2>🍵 Green Tea Refreshers – 2.000</h2>
         <ul>
           <li>Strawberry Lemonade</li>
@@ -148,7 +165,7 @@
         </ul>
       </section>
 
-      <section class="fade-section">
+      <section>
         <h2>🧋 Milk Tea – 2.500</h2>
         <ul>
           <li>Original Black Tea</li>
@@ -162,7 +179,7 @@
         </ul>
       </section>
 
-      <section class="fade-section">
+      <section>
         <h2>🍓 Natural Smoothies – 2.300</h2>
         <ul>
           <li>Mango</li>
@@ -173,7 +190,7 @@
         </ul>
       </section>
 
-      <section class="fade-section">
+      <section>
         <h2>🥤 Frappes in Milk – 2.800</h2>
         <ul>
           <li>Matcha</li>
@@ -184,7 +201,7 @@
         </ul>
       </section>
 
-      <section class="fade-section">
+      <section>
         <h2>☕ Otros</h2>
         <ul>
           <li>Brown Sugar Latte – 2.500</li>
@@ -192,7 +209,7 @@
         </ul>
       </section>
 
-      <section class="fade-section">
+      <section>
         <h2>🧇 Bubble Waffles – 2.000</h2>
         <ul>
           <li>Add Ice Cream: +500</li>
@@ -200,7 +217,7 @@
         </ul>
       </section>
 
-      <section class="fade-section">
+      <section>
         <h2>✨ Extras</h2>
         <ul>
           <li>Vegan Option (Homemade Coconut Milk)</li>
@@ -211,19 +228,19 @@
         </ul>
       </section>
 
-      <section class="fade-section">
+      <section>
         <h2>📣 Follow Us!</h2>
         <div class="buttons">
-          <a href="https://www.instagram.com/holaboba.cr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+          <a href="https://www.instagram.com/holaboba.cr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="instagram">
             <i class="fab fa-instagram"></i> Instagram
           </a>
-          <a href="https://www.tiktok.com/@holabobacostarica?is_from_webapp=1&sender_device=pc" target="_blank">
+          <a href="https://www.tiktok.com/@holabobacostarica?is_from_webapp=1&sender_device=pc" target="_blank" class="tiktok">
             <i class="fab fa-tiktok"></i> TikTok
           </a>
         </div>
       </section>
 
-      <section class="fade-section">
+      <section>
         <h2>📍 Our Locations</h2>
         <div class="buttons">
           <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank">
@@ -238,34 +255,23 @@
   </div>
 
   <script>
-    // Fade in header immediately with slight delay for smoothness
-    window.addEventListener('DOMContentLoaded', () => {
-      const header = document.getElementById('page-header');
-      header.classList.add('fade-in');
-    });
-
-    // Scroll-triggered fade-in for sections and icons
-    const faders = document.querySelectorAll('.fade-section');
-    const icons = document.querySelectorAll('.buttons i');
-
+    // Fade in sections as you scroll down
+    const sections = document.querySelectorAll('section');
     const options = {
-      threshold: 0.1
+      threshold: 0.15
     };
 
-    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('fade-in');
-        observer.unobserve(entry.target);
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
       });
     }, options);
 
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
-    });
-
-    icons.forEach(icon => {
-      appearOnScroll.observe(icon);
+    sections.forEach(section => {
+      observer.observe(section);
     });
   </script>
 </body>
