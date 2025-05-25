@@ -158,9 +158,9 @@
 
     .slideshow {
       position: relative;
-      height: 300px;
+      height: 250px;
       overflow: hidden;
-      margin-bottom: 2rem;
+      margin-top: 2rem;
       border-radius: 20px;
     }
 
@@ -579,28 +579,27 @@
     /* Order Summary */
     .order-summary {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
+      top: 20px;
       right: 20px;
       background: white;
-      padding: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
-      transform: translateY(100%);
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      transform: translateX(100%);
       transition: transform 0.3s ease;
       z-index: 1000;
+      max-width: 300px;
+      width: auto;
     }
 
     .order-summary.show {
-      transform: translateY(0);
+      transform: translateX(0);
     }
 
     .order-summary-content {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
+      flex-direction: column;
+      gap: 0.8rem;
     }
 
     .order-details {
@@ -611,39 +610,45 @@
       font-weight: bold;
       color: #333;
       margin-bottom: 0.3rem;
+      font-size: 0.95rem;
     }
 
     .order-flavor {
       color: #666;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       margin-bottom: 0.3rem;
     }
 
     .order-extras {
       color: #28a745;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
     }
 
     .order-price {
       color: #F8C300;
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
     }
 
     .order-actions {
       display: flex;
-      gap: 1rem;
+      gap: 0.5rem;
+      justify-content: center;
     }
 
     .clear-btn {
       background: #dc3545;
       color: white;
       border: none;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
       transition: background 0.3s ease;
+      font-size: 0.85rem;
     }
 
     .clear-btn:hover {
@@ -654,16 +659,17 @@
       background: linear-gradient(145deg, #28a745, #218838);
       color: white;
       border: none;
-      padding: 0.6rem 1.5rem;
-      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
       transition: all 0.3s ease;
+      font-size: 0.85rem;
     }
 
     .order-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
     }
 
     @media (max-width: 600px) {
@@ -720,30 +726,6 @@
 
   <div class="main-content" id="mainContent">
     <div class="menu">
-      <div class="slideshow">
-        <div class="slideshow-container">
-          <div class="slide">
-            <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Hola Boba 1">
-          </div>
-          <div class="slide">
-            <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Hola Boba 2">
-          </div>
-          <div class="slide">
-            <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Hola Boba 3">
-          </div>
-          <div class="slide">
-            <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Hola Boba 4">
-          </div>
-        </div>
-        <div class="pagination-dots"></div>
-        <button class="nav-button prev-button">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="nav-button next-button">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
-
       <div class="logo-container">
         <img src="logo.jpeg" alt="Hola Boba Logo" />
       </div>
@@ -766,6 +748,31 @@
             <i class="fas fa-ellipsis-h"></i>
             <span>Others</span>
             <small>Coffee & Waffles</small>
+          </button>
+        </div>
+
+        <!-- Gallery under main categories -->
+        <div class="slideshow">
+          <div class="slideshow-container">
+            <div class="slide">
+              <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Hola Boba 1">
+            </div>
+            <div class="slide">
+              <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Hola Boba 2">
+            </div>
+            <div class="slide">
+              <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Hola Boba 3">
+            </div>
+            <div class="slide">
+              <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Hola Boba 4">
+            </div>
+          </div>
+          <div class="pagination-dots"></div>
+          <button class="nav-button prev-button">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="nav-button next-button">
+            <i class="fas fa-chevron-right"></i>
           </button>
         </div>
       </div>
@@ -1421,8 +1428,133 @@
       // Initialize menu system
       menuSystem = new MenuSystem();
 
-      // Rest of initialization code for slideshow, detection, etc.
-      // (keeping original slideshow and detection code...)
+      // Initialize detection system and order modal functionality
+      const detection = new AccessDetection();
+
+      // Order modal functionality
+      const orderModal = document.getElementById('orderModal');
+      const closeModal = document.getElementById('closeModal');
+      const pickupOption = document.getElementById('pickupOption');
+      const deliveryOption = document.getElementById('deliveryOption');
+
+      // Close modal handlers
+      closeModal.addEventListener('click', () => {
+        orderModal.classList.remove('show');
+      });
+
+      orderModal.addEventListener('click', (e) => {
+        if (e.target === orderModal) {
+          orderModal.classList.remove('show');
+        }
+      });
+
+      // Order option handlers
+      pickupOption.addEventListener('click', () => {
+        console.log('🏪 Pickup order selected');
+        alert('🏪 Great! Visit us at one of our locations:\n\n📍 Puerto Viejo\n📍 Cocles\n\nCheck our locations section below for directions!');
+        orderModal.classList.remove('show');
+      });
+
+      deliveryOption.addEventListener('click', () => {
+        console.log('🚚 Delivery order selected');
+        alert('🚚 Delivery coming soon!\n\nFor now, please visit us at one of our locations for pickup. We\'re working on delivery options!');
+        orderModal.classList.remove('show');
+      });
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && orderModal.classList.contains('show')) {
+          orderModal.classList.remove('show');
+        }
+      });
+
+      // Slideshow functionality
+      const slideshow = document.querySelector('.slideshow-container');
+      const slides = document.querySelectorAll('.slide');
+      const dotsContainer = document.querySelector('.pagination-dots');
+      const prevButton = document.querySelector('.prev-button');
+      const nextButton = document.querySelector('.next-button');
+      
+      if (slideshow && slides.length > 0) {
+        let currentSlide = 0;
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        // Create pagination dots
+        slides.forEach((_, index) => {
+          const dot = document.createElement('div');
+          dot.classList.add('dot');
+          if (index === 0) dot.classList.add('active');
+          dot.addEventListener('click', () => goToSlide(index));
+          dotsContainer.appendChild(dot);
+        });
+
+        function updateDots() {
+          document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+          });
+        }
+
+        function goToSlide(index) {
+          currentSlide = index;
+          slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
+          updateDots();
+        }
+
+        function nextSlide() {
+          currentSlide = (currentSlide + 1) % slides.length;
+          goToSlide(currentSlide);
+        }
+
+        function prevSlide() {
+          currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+          goToSlide(currentSlide);
+        }
+
+        // Touch and mouse events
+        slideshow.addEventListener('mousedown', startDragging);
+        slideshow.addEventListener('touchstart', startDragging);
+        window.addEventListener('mousemove', drag);
+        window.addEventListener('touchmove', drag);
+        window.addEventListener('mouseup', stopDragging);
+        window.addEventListener('touchend', stopDragging);
+
+        function startDragging(e) {
+          isDragging = true;
+          startX = e.type === 'mousedown' ? e.pageX : e.touches[0].pageX;
+          currentX = -currentSlide * 100;
+        }
+
+        function drag(e) {
+          if (!isDragging) return;
+          e.preventDefault();
+          const x = e.type === 'mousemove' ? e.pageX : e.touches[0].pageX;
+          const walk = (x - startX) / slideshow.offsetWidth * 100;
+          slideshow.style.transform = `translateX(${currentX + walk}%)`;
+        }
+
+        function stopDragging(e) {
+          if (!isDragging) return;
+          isDragging = false;
+          const x = e.type === 'mouseup' ? e.pageX : e.changedTouches[0].pageX;
+          const walk = (x - startX) / slideshow.offsetWidth * 100;
+          
+          if (Math.abs(walk) > 20) {
+            if (walk > 0) prevSlide();
+            else nextSlide();
+          } else {
+            goToSlide(currentSlide);
+          }
+        }
+
+        // Button controls
+        if (prevButton) prevButton.addEventListener('click', prevSlide);
+        if (nextButton) nextButton.addEventListener('click', nextSlide);
+
+        // Auto-advance slides
+        setInterval(nextSlide, 5000);
+      }
     });
   </script>
 </body>
