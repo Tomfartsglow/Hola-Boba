@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hola Boba Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -12,7 +15,7 @@
     }
 
     html, body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       height: 100%;
       color: white;
     }
@@ -23,7 +26,7 @@
     }
 
     .overlay {
-      background: linear-gradient(to bottom right, rgba(0,0,0,0.8), rgba(0,0,0,0.5));
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.85), rgba(0,0,0,0.6));
       padding: 2rem;
       min-height: 100vh;
       display: flex;
@@ -38,19 +41,36 @@
       border-radius: 20px;
       max-width: 800px;
       width: 100%;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(6px);
+      animation: fadeInUp 1.2s ease-out;
     }
 
-    h1, h2 {
-      text-align: center;
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    section {
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    section h2 {
       color: #fdd835;
+      border-bottom: 1px solid #fdd835;
+      padding-bottom: 0.3rem;
       margin-bottom: 1rem;
     }
 
     ul {
       list-style: none;
       padding-left: 0;
-      margin-bottom: 2rem;
     }
 
     li {
@@ -58,22 +78,28 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .links {
-      text-align: center;
-      margin-top: 2rem;
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    .links a {
-      display: inline-block;
-      margin: 0.5rem 1rem;
+    .buttons a {
+      background-color: #fdd835;
+      color: black;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
       text-decoration: none;
-      color: #fdd835;
-      font-size: 1.1rem;
-      transition: color 0.3s;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s;
     }
 
-    .links a:hover {
-      color: #ffffff;
+    .buttons a:hover {
+      background-color: #fff176;
     }
 
     @media (max-width: 600px) {
@@ -81,12 +107,13 @@
         padding: 1rem;
       }
 
-      h1 {
-        font-size: 1.5rem;
+      section h2 {
+        font-size: 1.2rem;
       }
 
-      h2 {
-        font-size: 1.2rem;
+      .buttons a {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
@@ -94,74 +121,105 @@
 <body>
   <div class="overlay">
     <div class="menu">
-      <h1>Hola Boba Menu</h1>
+      <h1 style="text-align:center; color:#fdd835; margin-bottom:2rem;">Hola Boba Menu</h1>
 
-      <h2>🍵 Green Tea Refreshers – 2.000</h2>
-      <ul>
-        <li>Strawberry Lemonade</li>
-        <li>Passionfruit</li>
-        <li>Lemonade</li>
-        <li>Strawberry Orange</li>
-        <li>Raspberry</li>
-      </ul>
+      <section>
+        <h2>🍵 Green Tea Refreshers – 2.000</h2>
+        <ul>
+          <li>Strawberry Lemonade</li>
+          <li>Passionfruit</li>
+          <li>Lemonade</li>
+          <li>Strawberry Orange</li>
+          <li>Raspberry</li>
+        </ul>
+      </section>
 
-      <h2>🧋 Milk Tea – 2.500</h2>
-      <ul>
-        <li>Original Black Tea</li>
-        <li>Vanilla</li>
-        <li>Caramel</li>
-        <li>Matcha</li>
-        <li>Taro</li>
-        <li>Oolong</li>
-        <li>Thai Tea</li>
-        <li>Jasmine Green Tea</li>
-      </ul>
+      <section>
+        <h2>🧋 Milk Tea – 2.500</h2>
+        <ul>
+          <li>Original Black Tea</li>
+          <li>Vanilla</li>
+          <li>Caramel</li>
+          <li>Matcha</li>
+          <li>Taro</li>
+          <li>Oolong</li>
+          <li>Thai Tea</li>
+          <li>Jasmine Green Tea</li>
+        </ul>
+      </section>
 
-      <h2>🍓 Natural Smoothies – 2.300</h2>
-      <ul>
-        <li>Mango</li>
-        <li>Strawberry</li>
-        <li>Banana Cacao</li>
-        <li>Blueberry Banana</li>
-        <li>Strawberry Banana</li>
-      </ul>
+      <section>
+        <h2>🍓 Natural Smoothies – 2.300</h2>
+        <ul>
+          <li>Mango</li>
+          <li>Strawberry</li>
+          <li>Banana Cacao</li>
+          <li>Blueberry Banana</li>
+          <li>Strawberry Banana</li>
+        </ul>
+      </section>
 
-      <h2>🥤 Frappes in Milk – 2.800</h2>
-      <ul>
-        <li>Matcha</li>
-        <li>Taro</li>
-        <li>Thai Tea</li>
-        <li>Mocha</li>
-        <li>Chocolate</li>
-      </ul>
+      <section>
+        <h2>🥤 Frappes in Milk – 2.800</h2>
+        <ul>
+          <li>Matcha</li>
+          <li>Taro</li>
+          <li>Thai Tea</li>
+          <li>Mocha</li>
+          <li>Chocolate</li>
+        </ul>
+      </section>
 
-      <h2>☕ Otros</h2>
-      <ul>
-        <li>Brown Sugar Latte – 2.500</li>
-        <li>Vietnamese Coffee – 2.300</li>
-      </ul>
+      <section>
+        <h2>☕ Otros</h2>
+        <ul>
+          <li>Brown Sugar Latte – 2.500</li>
+          <li>Vietnamese Coffee – 2.300</li>
+        </ul>
+      </section>
 
-      <h2>🧇 Bubble Waffles – 2.000</h2>
-      <ul>
-        <li>Add Ice Cream: +500</li>
-        <li>Add Strawberries: +200</li>
-      </ul>
+      <section>
+        <h2>🧇 Bubble Waffles – 2.000</h2>
+        <ul>
+          <li>Add Ice Cream: +500</li>
+          <li>Add Strawberries: +200</li>
+        </ul>
+      </section>
 
-      <h2>✨ Extras</h2>
-      <ul>
-        <li>Vegan Option (Homemade Coconut Milk)</li>
-        <li>Add: +300</li>
-        <li>Change or Substitute: +0</li>
-        <li>Tapioca: +300</li>
-        <li>Popping Pearls: +500</li>
-      </ul>
+      <section>
+        <h2>✨ Extras</h2>
+        <ul>
+          <li>Vegan Option (Homemade Coconut Milk)</li>
+          <li>Add: +300</li>
+          <li>Change or Substitute: +0</li>
+          <li>Tapioca: +300</li>
+          <li>Popping Pearls: +500</li>
+        </ul>
+      </section>
 
-      <div class="links">
-        <a href="https://www.instagram.com/holaboba.cr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">📸 Instagram</a>
-        <a href="https://www.tiktok.com/@holabobacostarica?is_from_webapp=1&sender_device=pc" target="_blank">🎵 TikTok</a>
-        <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank">📍 Puerto Viejo</a>
-        <a href="https://maps.app.goo.gl/Q38DmC2MvvCztayK7" target="_blank">📍 Cocles</a>
-      </div>
+      <section>
+        <h2>📣 Follow Us!</h2>
+        <div class="buttons">
+          <a href="https://www.instagram.com/holaboba.cr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+          <a href="https://www.tiktok.com/@holabobacostarica?is_from_webapp=1&sender_device=pc" target="_blank">
+            <i class="fab fa-tiktok"></i> TikTok
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <h2>📍 Our Locations</h2>
+        <div class="buttons">
+          <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank">
+            <i class="fas fa-map-marker-alt"></i> Puerto Viejo
+          </a>
+          <a href="https://maps.app.goo.gl/Q38DmC2MvvCztayK7" target="_blank">
+            <i class="fas fa-map-marker-alt"></i> Cocles
+          </a>
+        </div>
+      </section>
     </div>
   </div>
 </body>
