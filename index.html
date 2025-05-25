@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hola Boba Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
@@ -19,8 +20,47 @@
       color: #333;
       overflow-x: hidden;
     }
+
     body {
       position: relative;
+    }
+
+    /* Gallery styling above menu */
+    .gallery-container {
+      max-width: 800px;
+      margin: 2rem auto 1rem auto;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      background: #fff;
+    }
+
+    .gallery-track {
+      display: flex;
+      width: calc(250px * 8);
+      animation: scroll-left 20s linear infinite;
+    }
+
+    .gallery-track img {
+      width: 250px;
+      height: 150px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border-right: 4px solid white; /* White border between images */
+    }
+
+    /* Remove border on last image to avoid double border effect */
+    .gallery-track img:last-child {
+      border-right: none;
+    }
+
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     .menu {
@@ -34,6 +74,7 @@
       color: #333;
       animation: fadeInUp 1.2s ease-out;
     }
+
     @keyframes fadeInUp {
       from {
         transform: translateY(30px);
@@ -44,14 +85,17 @@
         opacity: 1;
       }
     }
+
     .logo-container {
       text-align: center;
       margin-bottom: 2rem;
     }
+
     .logo-container img {
       max-width: 150px;
       opacity: 0.85;
     }
+
     h1 {
       color: #F8C300;
       margin-bottom: 0;
@@ -59,30 +103,47 @@
       font-size: 2.5rem;
       text-align: center;
     }
+
     section {
       margin-bottom: 2rem;
     }
+
     section h2 {
       color: #00B0B9;
       border-bottom: 2px solid #F8C300;
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
     }
+
     ul {
       list-style: none;
       padding-left: 0;
       color: #333;
     }
+
     li {
       padding: 0.4rem 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      position: relative;
+      padding-left: 1.5em;
     }
+
+    /* Currency colones symbol behind numbers */
+    li::before {
+      content: "₡";
+      position: absolute;
+      left: 0.3em;
+      color: #F8C300;
+      font-weight: 700;
+    }
+
     .buttons {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 1rem;
     }
+
     .buttons a {
       background-color: #F8C300;
       color: #000;
@@ -95,16 +156,11 @@
       gap: 0.5rem;
       transition: background-color 0.3s;
     }
+
     .buttons a:hover {
       background-color: #e6b800;
     }
-    /* Currency colones symbol behind prices */
-    li::after {
-      content: " ₡";
-      font-weight: 700;
-      margin-left: 0.3rem;
-    }
-    /* Responsive */
+
     @media (max-width: 600px) {
       .menu {
         padding: 1rem;
@@ -117,39 +173,30 @@
         width: 100%;
         justify-content: center;
       }
-    }
-
-    /* SCROLLING IMAGE GALLERY */
-    .gallery-container {
-      max-width: 800px;
-      margin: 2rem auto 4rem auto;
-      overflow: hidden;
-      border-radius: 15px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      background: #fff;
-    }
-    .gallery-track {
-      display: flex;
-      width: calc(250px * 8); /* 4 images * 2 for infinite scroll */
-      animation: scroll-left 20s linear infinite;
-    }
-    .gallery-track img {
-      width: 250px;
-      height: 150px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-    @keyframes scroll-left {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-250px * 4));
+      .gallery-track img {
+        width: 150px;
+        height: 90px;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- Gallery scrolling above menu -->
+  <div class="gallery-container">
+    <div class="gallery-track">
+      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
+      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
+      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
+      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery Image 4" />
+      <!-- Repeat images for seamless scroll -->
+      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
+      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
+      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
+      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery Image 4" />
+    </div>
+  </div>
+
   <div class="menu">
     <div class="logo-container">
       <img src="logo.jpeg" alt="Hola Boba Logo" />
@@ -253,21 +300,6 @@
         </a>
       </div>
     </section>
-  </div>
-
-  <!-- Infinite scrolling gallery -->
-  <div class="gallery-container" aria-label="Image gallery">
-    <div class="gallery-track">
-      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
-      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
-      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
-      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery Image 4" />
-      <!-- Repeat images for seamless loop -->
-      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1 Duplicate" />
-      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2 Duplicate" />
-      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3 Duplicate" />
-      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery Image 4 Duplicate" />
-    </div>
   </div>
 </body>
 </html>
