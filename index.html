@@ -990,13 +990,86 @@
         <div class="boba-categories">
           <button class="boba-category" data-category="coffee">
             <h3>☕ Coffee</h3>
-            <p>Brown Sugar Latte, Vietnamese Coffee</p>
           </button>
           <button class="boba-category" data-category="waffles">
             <h3>🧇 Waffles</h3>
-            <p>Bubble Waffles with toppings</p>
           </button>
         </div>
+      </div>
+
+      <!-- Coffee Screen -->
+      <div class="screen" id="coffeeScreen">
+        <button class="back-btn" onclick="menuSystem.goToScreen('others')">
+          <i class="fas fa-arrow-left"></i>
+          Back to Others
+        </button>
+        <h2 class="screen-title">☕ Choose Your Coffee</h2>
+        
+        <div class="boba-flavor-grid">
+          <div class="boba-flavor" data-flavor="brown-sugar-latte" data-price="2500" data-type="Coffee">Brown Sugar Latte</div>
+          <div class="boba-flavor" data-flavor="vietnamese-coffee" data-price="2300" data-type="Coffee">Vietnamese Coffee</div>
+        </div>
+
+        <button class="next-btn" id="coffeeNextBtn" disabled onclick="menuSystem.finishOrder()">
+          Finish Order
+          <i class="fas fa-check"></i>
+        </button>
+      </div>
+
+      <!-- Waffles Screen -->
+      <div class="screen" id="wafflesScreen">
+        <button class="back-btn" onclick="menuSystem.goToScreen('others')">
+          <i class="fas fa-arrow-left"></i>
+          Back to Others
+        </button>
+        <h2 class="screen-title">🧇 Choose Your Waffle</h2>
+        
+        <div class="boba-flavor-grid">
+          <div class="boba-flavor" data-flavor="bubble-waffle" data-price="2000" data-type="Bubble Waffle">Bubble Waffle</div>
+        </div>
+
+        <button class="next-btn" id="waffleNextBtn" disabled onclick="menuSystem.goToScreen('waffleExtras')">
+          Next: Add Extras
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Waffle Extras Screen -->
+      <div class="screen" id="waffleExtrasScreen">
+        <button class="back-btn" onclick="menuSystem.goToScreen('waffles')">
+          <i class="fas fa-arrow-left"></i>
+          Back to Waffles
+        </button>
+        <h2 class="screen-title">✨ Add Waffle Extras</h2>
+        
+        <div class="extras-grid">
+          <div class="extra-option none" data-extra="none" data-price="0">
+            <i class="fas fa-times"></i>
+            <div class="extra-info">
+              <div class="extra-name">None</div>
+              <div style="font-size: 0.85rem; color: #666;">No extras</div>
+            </div>
+          </div>
+          <div class="extra-option" data-extra="ice-cream" data-price="500">
+            <i class="fas fa-ice-cream"></i>
+            <div class="extra-info">
+              <div class="extra-name">Add Ice Cream</div>
+              <div class="extra-price">+₡500</div>
+            </div>
+          </div>
+          <div class="extra-option" data-extra="strawberries" data-price="200">
+            <i class="fas fa-strawberry"></i>
+            <div class="extra-info">
+              <div class="extra-name">Add Strawberries</div>
+              <div class="extra-price">+₡200</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="next-btn" onclick="menuSystem.finishOrder()">
+          Finish Order
+          <i class="fas fa-check"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -1095,7 +1168,16 @@
       }
 
       goToPreviousScreen() {
-        if (this.previousScreen) {
+        // Handle specific back navigation for extras screens
+        if (this.currentScreen === 'bobaExtras') {
+          if (this.currentOrder.subcategory === 'boba-drinks') {
+            this.goToScreen('bobaDrinks');
+          } else if (this.currentOrder.subcategory === 'smoothies') {
+            this.goToScreen('smoothies');
+          }
+        } else if (this.currentScreen === 'waffleExtras') {
+          this.goToScreen('waffles');
+        } else if (this.previousScreen) {
           this.goToScreen(this.previousScreen);
         }
       }
@@ -1112,6 +1194,22 @@
             break;
           case 'others':
             this.goToScreen('others');
+            break;
+          case 'boba-drinks':
+            this.currentOrder.subcategory = 'boba-drinks';
+            this.goToScreen('bobaDrinks');
+            break;
+          case 'smoothies':
+            this.currentOrder.subcategory = 'smoothies';
+            this.goToScreen('smoothies');
+            break;
+          case 'coffee':
+            this.currentOrder.subcategory = 'coffee';
+            this.goToScreen('coffee');
+            break;
+          case 'waffles':
+            this.currentOrder.subcategory = 'waffles';
+            this.goToScreen('waffles');
             break;
         }
       }
@@ -1137,8 +1235,11 @@
       }
 
       selectBobaFlavor(flavorElement) {
-        // Remove previous selections
-        document.querySelectorAll('.boba-flavor').forEach(opt => {
+        // Get current screen to determine which flavors to clear
+        const currentScreen = document.querySelector('.screen.active');
+        
+        // Remove previous selections in current screen only
+        currentScreen.querySelectorAll('.boba-flavor').forEach(opt => {
           opt.classList.remove('selected');
         });
 
@@ -1153,9 +1254,16 @@
         this.currentOrder.type = type;
         this.currentOrder.price = price;
 
-        // Enable appropriate next button
-        document.getElementById('bobaDrinksNextBtn').disabled = false;
-        document.getElementById('smoothieNextBtn').disabled = false;
+        // Enable appropriate next button based on current screen
+        if (currentScreen.id === 'bobaDrinksScreen') {
+          document.getElementById('bobaDrinksNextBtn').disabled = false;
+        } else if (currentScreen.id === 'smoothiesScreen') {
+          document.getElementById('smoothieNextBtn').disabled = false;
+        } else if (currentScreen.id === 'coffeeScreen') {
+          document.getElementById('coffeeNextBtn').disabled = false;
+        } else if (currentScreen.id === 'wafflesScreen') {
+          document.getElementById('waffleNextBtn').disabled = false;
+        }
 
         this.updateOrderSummary();
       }
@@ -1263,8 +1371,15 @@
 
         // Disable next buttons
         document.getElementById('icecreamNextBtn').disabled = true;
-        document.getElementById('bobaDrinksNextBtn').disabled = true;
-        document.getElementById('smoothieNextBtn').disabled = true;
+        const bobaDrinksBtn = document.getElementById('bobaDrinksNextBtn');
+        const smoothieBtn = document.getElementById('smoothieNextBtn');
+        const coffeeBtn = document.getElementById('coffeeNextBtn');
+        const waffleBtn = document.getElementById('waffleNextBtn');
+        
+        if (bobaDrinksBtn) bobaDrinksBtn.disabled = true;
+        if (smoothieBtn) smoothieBtn.disabled = true;
+        if (coffeeBtn) coffeeBtn.disabled = true;
+        if (waffleBtn) waffleBtn.disabled = true;
 
         // Hide order summary
         document.getElementById('orderSummary').classList.remove('show');
