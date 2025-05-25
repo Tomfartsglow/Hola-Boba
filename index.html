@@ -16,92 +16,121 @@
     html, body {
       font-family: 'Montserrat', sans-serif;
       height: 100%;
-      background-color: #F5F5F5; /* light creamy background */
-      color: #333333; /* dark but soft text */
+      background-color: #F5F5F5;
+      color: #333;
+      overflow-x: hidden;
     }
+
     body {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      padding: 2rem 1rem;
-      background: url('Screenshot_20250524_210511_Instagram[1].jpg') no-repeat center center fixed;
-      background-size: cover;
+      position: relative;
     }
-    .overlay {
-      background: linear-gradient(to bottom right, rgba(0,0,0,0.85), rgba(0,0,0,0.6));
-      padding: 2rem;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      overflow-y: auto;
+
+    /* BACKGROUND SLIDESHOW */
+    .slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
       width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: fadeImages 18s infinite;
+      opacity: 0;
+    }
+    .slideshow img:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .slideshow img:nth-child(2) {
+      animation-delay: 6s;
+    }
+    .slideshow img:nth-child(3) {
+      animation-delay: 12s;
+    }
+    @keyframes fadeImages {
+      0%, 20% { opacity: 0; }
+      30%, 60% { opacity: 1; }
+      70%, 100% { opacity: 0; }
+    }
+
     .menu {
-      background-color: #FFFFFF; /* white background for text readability */
+      background-color: #FFFFFF;
       padding: 2rem;
       border-radius: 20px;
       max-width: 800px;
-      width: 100%;
+      margin: 3rem auto;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       backdrop-filter: blur(6px);
+      color: #333;
       animation: fadeInUp 1.2s ease-out;
-      color: #333333;
     }
+
     @keyframes fadeInUp {
-      0% {
+      from {
         transform: translateY(30px);
         opacity: 0;
       }
-      100% {
+      to {
         transform: translateY(0);
         opacity: 1;
       }
     }
+
     .logo-container {
       text-align: center;
       margin-bottom: 2rem;
     }
+
     .logo-container img {
       max-width: 150px;
-      opacity: 0.85; /* subtle fade */
-      filter: brightness(0) invert(1); /* make the logo white if it's black, invert colors */
+      opacity: 0.85;
     }
+
     h1 {
-      color: #F8C300; /* yellow brand color */
+      color: #F8C300;
       margin-bottom: 0;
       font-weight: 700;
       font-size: 2.5rem;
+      text-align: center;
     }
+
     section {
       margin-bottom: 2rem;
-      animation: fadeInUp 1s ease forwards;
     }
+
     section h2 {
-      color: #00B0B9; /* blue brand color */
-      border-bottom: 2px solid #F8C300; /* yellow underline */
+      color: #00B0B9;
+      border-bottom: 2px solid #F8C300;
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
     }
+
     ul {
       list-style: none;
       padding-left: 0;
-      color: #333333; /* readable dark text */
+      color: #333;
     }
+
     li {
       padding: 0.4rem 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
+
     .buttons {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 1rem;
     }
+
     .buttons a {
-      background-color: #F8C300; /* yellow */
-      color: #000000; /* black text */
+      background-color: #F8C300;
+      color: #000;
       padding: 0.6rem 1.2rem;
       border-radius: 10px;
       text-decoration: none;
@@ -111,12 +140,15 @@
       gap: 0.5rem;
       transition: background-color 0.3s;
     }
+
     .buttons a:hover {
-      background-color: #e6b800; /* slightly darker yellow on hover */
+      background-color: #e6b800;
     }
+
     @media (max-width: 600px) {
       .menu {
         padding: 1rem;
+        margin: 1.5rem;
       }
       section h2 {
         font-size: 1.2rem;
@@ -129,111 +161,116 @@
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <div class="menu">
-      <div class="logo-container">
-        <img src="logo.jpeg" alt="Hola Boba Logo" />
-      </div>
-      <h1>Hola Boba Menu</h1>
+  <!-- SLIDESHOW BACKGROUND -->
+  <div class="slideshow">
+    <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Background 1" />
+    <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Background 2" />
+    <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Background 3" />
+  </div>
 
-      <section>
-        <h2>🍵 Green Tea Refreshers – 2.000</h2>
-        <ul>
-          <li>Strawberry Lemonade</li>
-          <li>Passionfruit</li>
-          <li>Lemonade</li>
-          <li>Strawberry Orange</li>
-          <li>Raspberry</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>🧋 Milk Tea – 2.500</h2>
-        <ul>
-          <li>Original Black Tea</li>
-          <li>Vanilla</li>
-          <li>Caramel</li>
-          <li>Matcha</li>
-          <li>Taro</li>
-          <li>Oolong</li>
-          <li>Thai Tea</li>
-          <li>Jasmine Green Tea</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>🍓 Natural Smoothies – 2.300</h2>
-        <ul>
-          <li>Mango</li>
-          <li>Strawberry</li>
-          <li>Banana Cacao</li>
-          <li>Blueberry Banana</li>
-          <li>Strawberry Banana</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>🥤 Frappes in Milk – 2.800</h2>
-        <ul>
-          <li>Matcha</li>
-          <li>Taro</li>
-          <li>Thai Tea</li>
-          <li>Mocha</li>
-          <li>Chocolate</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>☕ Otros</h2>
-        <ul>
-          <li>Brown Sugar Latte – 2.500</li>
-          <li>Vietnamese Coffee – 2.300</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>🧇 Bubble Waffles – 2.000</h2>
-        <ul>
-          <li>Add Ice Cream: +500</li>
-          <li>Add Strawberries: +200</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>✨ Extras</h2>
-        <ul>
-          <li>Vegan Option (Homemade Coconut Milk)</li>
-          <li>Add: +300</li>
-          <li>Change or Substitute: +0</li>
-          <li>Tapioca: +300</li>
-          <li>Popping Pearls: +500</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>📣 Follow Us!</h2>
-        <div class="buttons">
-          <a href="https://www.instagram.com/holaboba.cr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-            <i class="fab fa-instagram"></i> Instagram
-          </a>
-          <a href="https://www.tiktok.com/@holabobacostarica?is_from_webapp=1&sender_device=pc" target="_blank">
-            <i class="fab fa-tiktok"></i> TikTok
-          </a>
-        </div>
-      </section>
-
-      <section>
-        <h2>📍 Our Locations</h2>
-        <div class="buttons">
-          <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank">
-            <i class="fas fa-map-marker-alt"></i> Puerto Viejo
-          </a>
-          <a href="https://maps.app.goo.gl/Q38DmC2MvvCztayK7" target="_blank">
-            <i class="fas fa-map-marker-alt"></i> Cocles
-          </a>
-        </div>
-      </section>
+  <div class="menu">
+    <div class="logo-container">
+      <img src="logo.jpeg" alt="Hola Boba Logo" />
     </div>
+    <h1>Hola Boba Menu</h1>
+
+    <section>
+      <h2>🍵 Green Tea Refreshers – 2.000</h2>
+      <ul>
+        <li>Strawberry Lemonade</li>
+        <li>Passionfruit</li>
+        <li>Lemonade</li>
+        <li>Strawberry Orange</li>
+        <li>Raspberry</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧋 Milk Tea – 2.500</h2>
+      <ul>
+        <li>Original Black Tea</li>
+        <li>Vanilla</li>
+        <li>Caramel</li>
+        <li>Matcha</li>
+        <li>Taro</li>
+        <li>Oolong</li>
+        <li>Thai Tea</li>
+        <li>Jasmine Green Tea</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🍓 Natural Smoothies – 2.300</h2>
+      <ul>
+        <li>Mango</li>
+        <li>Strawberry</li>
+        <li>Banana Cacao</li>
+        <li>Blueberry Banana</li>
+        <li>Strawberry Banana</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🥤 Frappes in Milk – 2.800</h2>
+      <ul>
+        <li>Matcha</li>
+        <li>Taro</li>
+        <li>Thai Tea</li>
+        <li>Mocha</li>
+        <li>Chocolate</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>☕ Otros</h2>
+      <ul>
+        <li>Brown Sugar Latte – 2.500</li>
+        <li>Vietnamese Coffee – 2.300</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧇 Bubble Waffles – 2.000</h2>
+      <ul>
+        <li>Add Ice Cream: +500</li>
+        <li>Add Strawberries: +200</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>✨ Extras</h2>
+      <ul>
+        <li>Vegan Option (Homemade Coconut Milk)</li>
+        <li>Add: +300</li>
+        <li>Change or Substitute: +0</li>
+        <li>Tapioca: +300</li>
+        <li>Popping Pearls: +500</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📣 Follow Us!</h2>
+      <div class="buttons">
+        <a href="https://www.instagram.com/holaboba.cr" target="_blank">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="https://www.tiktok.com/@holabobacostarica" target="_blank">
+          <i class="fab fa-tiktok"></i> TikTok
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>📍 Our Locations</h2>
+      <div class="buttons">
+        <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank">
+          <i class="fas fa-map-marker-alt"></i> Puerto Viejo
+        </a>
+        <a href="https://maps.app.goo.gl/Q38DmC2MvvCztayK7" target="_blank">
+          <i class="fas fa-map-marker-alt"></i> Cocles
+        </a>
+      </div>
+    </section>
   </div>
 </body>
 </html>
