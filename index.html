@@ -270,56 +270,303 @@
 
     h1 {
       color: #F8C300;
-      margin-bottom: 0;
+      margin-bottom: 2rem;
       font-weight: 700;
       font-size: 2.5rem;
       text-align: center;
     }
 
-    section {
+    /* Category Selection */
+    .category-selection {
+      display: block;
+    }
+
+    .category-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
       margin-bottom: 2rem;
     }
 
-    section h2 {
+    .category-btn {
+      background: linear-gradient(145deg, #F8C300, #e6b800);
+      color: #000;
+      border: none;
+      padding: 2rem 1rem;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 15px rgba(248, 195, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .category-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 25px rgba(248, 195, 0, 0.4);
+    }
+
+    .category-btn i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .category-btn.boba {
+      background: linear-gradient(145deg, #00B0B9, #008a91);
+      color: white;
+      box-shadow: 0 8px 15px rgba(0, 176, 185, 0.3);
+    }
+
+    .category-btn.boba:hover {
+      box-shadow: 0 15px 25px rgba(0, 176, 185, 0.4);
+    }
+
+    .category-btn.others {
+      background: linear-gradient(145deg, #8e44ad, #732d91);
+      color: white;
+      box-shadow: 0 8px 15px rgba(142, 68, 173, 0.3);
+    }
+
+    .category-btn.others:hover {
+      box-shadow: 0 15px 25px rgba(142, 68, 173, 0.4);
+    }
+
+    /* Category View */
+    .category-view {
+      display: none;
+    }
+
+    .back-btn {
+      background: linear-gradient(145deg, #6c757d, #5a6268);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+    }
+
+    .category-title {
       color: #00B0B9;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .menu-section {
+      margin-bottom: 2rem;
+    }
+
+    .menu-section h3 {
+      color: #F8C300;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
       border-bottom: 2px solid #F8C300;
-      padding-bottom: 0.3rem;
+    }
+
+    .menu-items {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .menu-item {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 12px;
+      border-left: 4px solid #00B0B9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .menu-item:hover {
+      background: #e9ecef;
+      transform: translateX(5px);
+    }
+
+    .menu-item.selected {
+      background: linear-gradient(145deg, #00B0B9, #008a91);
+      color: white;
+      border-left-color: #F8C300;
+    }
+
+    .menu-item-info {
+      flex-grow: 1;
+    }
+
+    .menu-item-name {
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+    }
+
+    .menu-item-price {
+      color: #F8C300;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .menu-item.selected .menu-item-price {
+      color: #F8C300;
+    }
+
+    .selection-icon {
+      font-size: 1.2rem;
+      color: #28a745;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-item.selected .selection-icon {
+      opacity: 1;
+      color: #F8C300;
+    }
+
+    /* Flavor Selection */
+    .flavor-selection {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+      border-radius: 15px;
+      display: none;
+    }
+
+    .flavor-selection.show {
+      display: block;
+    }
+
+    .flavor-title {
+      color: #00B0B9;
+      font-size: 1.2rem;
       margin-bottom: 1rem;
     }
 
-    ul {
-      list-style: none;
-      padding-left: 0;
-      color: #333;
+    .flavor-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.8rem;
     }
 
-    li {
-      padding: 0.4rem 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    .flavor-option {
+      background: white;
+      border: 2px solid #e9ecef;
+      padding: 0.8rem;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
     }
 
-    .buttons {
+    .flavor-option:hover {
+      border-color: #F8C300;
+      background: #fff8e1;
+    }
+
+    .flavor-option.selected {
+      background: linear-gradient(145deg, #F8C300, #e6b800);
+      border-color: #F8C300;
+      color: #000;
+      font-weight: bold;
+    }
+
+    /* Order Summary */
+    .order-summary {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .order-summary.show {
+      transform: translateY(0);
+    }
+
+    .order-summary-content {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
     }
 
-    .buttons a {
-      background-color: #F8C300;
-      color: #000;
-      padding: 0.6rem 1.2rem;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: background-color 0.3s;
+    .order-details {
+      flex-grow: 1;
     }
 
-    .buttons a:hover {
-      background-color: #e6b800;
+    .order-item {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .order-flavor {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .order-price {
+      color: #F8C300;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .order-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .clear-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .clear-btn:hover {
+      background: #c82333;
+    }
+
+    .order-btn {
+      background: linear-gradient(145deg, #28a745, #218838);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .order-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
     }
 
     @media (max-width: 600px) {
@@ -327,10 +574,23 @@
         padding: 1rem;
         margin: 1.5rem;
       }
-      section h2 {
-        font-size: 1.2rem;
+      
+      .category-buttons {
+        grid-template-columns: 1fr;
+        gap: 1rem;
       }
-      .buttons a {
+      
+      .category-btn {
+        padding: 1.5rem 1rem;
+        font-size: 1.1rem;
+      }
+      
+      .order-summary-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .order-actions {
         width: 100%;
         justify-content: center;
       }
@@ -392,568 +652,226 @@
       </div>
       <h1>Hola Boba Menu</h1>
 
-      <section>
-        <h2>🍵 Green Tea Refreshers – ₡2.000</h2>
-        <ul>
-          <li>Strawberry Lemonade</li>
-          <li>Passionfruit</li>
-          <li>Lemonade</li>
-          <li>Strawberry Orange</li>
-          <li>Raspberry</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>🧋 Milk Tea – ₡2.500</h2>
-        <ul>
-          <li>Original Black Tea</li>
-          <li>Vanilla</li>
-          <li>Caramel</li>
-          <li>Matcha</li>
-          <li>Taro</li>
-          <li>Oolong</li>
-          <li>Thai Tea</li>
-          <li>Jasmine Green Tea</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>🍓 Natural Smoothies – ₡2.300</h2>
-        <ul>
-          <li>Mango</li>
-          <li>Strawberry</li>
-          <li>Banana Cacao</li>
-          <li>Blueberry Banana</li>
-          <li>Strawberry Banana</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>🥤 Frappes in Milk – ₡2.800</h2>
-        <ul>
-          <li>Matcha</li>
-          <li>Taro</li>
-          <li>Thai Tea</li>
-          <li>Mocha</li>
-          <li>Chocolate</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>☕ Others</h2>
-        <ul>
-          <li>Brown Sugar Latte – ₡2.500</li>
-          <li>Vietnamese Coffee – ₡2.300</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>🧇 Bubble Waffles – ₡2.000</h2>
-        <ul>
-          <li>Add Ice Cream: +₡500</li>
-          <li>Add Strawberries: +₡200</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>✨ Extras</h2>
-        <ul>
-          <li>Vegan Option (Homemade Coconut Milk)</li>
-          <li>Add: +₡300</li>
-          <li>Change or Substitute: Free</li>
-          <li>Tapioca: +₡300</li>
-          <li>Popping Pearls: +₡500</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>📣 Follow Us!</h2>
-        <div class="buttons">
-          <a href="https://www.instagram.com/holaboba.cr" target="_blank">
-            <i class="fab fa-instagram"></i> Instagram
-          </a>
-          <a href="https://www.tiktok.com/@holabobacostarica" target="_blank">
-            <i class="fab fa-tiktok"></i> TikTok
-          </a>
+      <!-- Category Selection -->
+      <div class="category-selection" id="categorySelection">
+        <div class="category-buttons">
+          <button class="category-btn icecream" data-category="icecream">
+            <i class="fas fa-ice-cream"></i>
+            <span>Ice Cream</span>
+            <small>Bubble Waffles & Treats</small>
+          </button>
+          <button class="category-btn boba" data-category="boba">
+            <i class="fas fa-glass-water"></i>
+            <span>Boba & Drinks</span>
+            <small>Teas, Smoothies & Frappes</small>
+          </button>
+          <button class="category-btn others" data-category="others">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>Others</span>
+            <small>Coffee & Extras</small>
+          </button>
         </div>
-      </section>
+      </div>
 
-      <section>
-        <h2>📍 Our Locations</h2>
-        <div class="buttons">
-          <a href="https://maps.app.goo.gl/Ffj3mfjYMpLmars69" target="_blank">
-            <i class="fas fa-map-marker-alt"></i> Puerto Viejo
-          </a>
-          <a href="https://maps.app.goo.gl/Q38DmC2MvvCztayK7" target="_blank">
-            <i class="fas fa-map-marker-alt"></i> Cocles
-          </a>
+      <!-- Category Views -->
+      <div class="category-view" id="icecreamView">
+        <button class="back-btn" data-back="category">
+          <i class="fas fa-arrow-left"></i>
+          Back to Categories
+        </button>
+        <h2 class="category-title">🍦 Ice Cream & Treats</h2>
+        
+        <div class="menu-section">
+          <h3>Bubble Waffles</h3>
+          <div class="menu-items">
+            <div class="menu-item" data-item="bubble-waffle" data-price="2000" data-has-flavors="true">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Bubble Waffle</div>
+              </div>
+              <div class="menu-item-price">₡2.000</div>
+              <div class="selection-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
-    </div>
-  </div>
 
-  <script>
-    // NFC/Code Detection System
-    class AccessDetection {
-      constructor() {
-        this.detectionMethods = [];
-        this.result = null;
-        this.confidence = 0;
-        this.init();
-      }
+        <div class="menu-section">
+          <h3>Add-ons</h3>
+          <div class="menu-items">
+            <div class="menu-item" data-item="ice-cream-addon" data-price="500">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Add Ice Cream</div>
+              </div>
+              <div class="menu-item-price">+₡500</div>
+              <div class="selection-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+            <div class="menu-item" data-item="strawberries-addon" data-price="200">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Add Strawberries</div>
+              </div>
+              <div class="menu-item-price">+₡200</div>
+              <div class="selection-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      init() {
-        this.detectAccessMethod();
-        this.showDetectionResult();
-      }
+        <div class="flavor-selection" id="icecreamFlavors">
+          <h4 class="flavor-title">Choose your waffle flavor:</h4>
+          <div class="flavor-options">
+            <div class="flavor-option" data-flavor="original">Original</div>
+            <div class="flavor-option" data-flavor="chocolate">Chocolate</div>
+            <div class="flavor-option" data-flavor="vanilla">Vanilla</div>
+          </div>
+        </div>
+      </div>
 
-      detectAccessMethod() {
-        const detectionFactors = {
-          hasReferrer: this.checkReferrer(),
-          userAgent: this.analyzeUserAgent(),
-          navigationTiming: this.checkNavigationTiming(),
-          touchCapability: this.checkTouchCapability(),
-          urlParameters: this.checkURLParameters(),
-          documentReadyState: this.checkDocumentState(),
-          focusEvents: this.checkFocusEvents()
-        };
-
-        this.calculateResult(detectionFactors);
-      }
-
-      checkReferrer() {
-        const referrer = document.referrer;
-        if (!referrer || referrer === '') {
-          this.detectionMethods.push('No referrer (could be NFC, manual typing, or bookmark)');
-          return { isNFC: null, confidence: 0.3 }; // Reduced confidence, not definitive
-        } else {
-          this.detectionMethods.push(`Referrer found: ${referrer} (likely from another website)`);
-          return { isNFC: false, confidence: 0.6 };
-        }
-      }
-
-      analyzeUserAgent() {
-        const ua = navigator.userAgent;
-        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+      <div class="category-view" id="bobaView">
+        <button class="back-btn" data-back="category">
+          <i class="fas fa-arrow-left"></i>
+          Back to Categories
+        </button>
+        <h2 class="category-title">🧋 Boba & Drinks</h2>
         
-        if (isMobile) {
-          this.detectionMethods.push('Mobile device detected (supports NFC)');
-          return { isNFC: null, confidence: 0.3 };
-        } else {
-          this.detectionMethods.push('Desktop device detected (likely programmatic)');
-          return { isNFC: false, confidence: 0.6 };
-        }
-      }
+        <div class="menu-section">
+          <h3>Green Tea Refreshers</h3>
+          <div class="menu-items">
+            <div class="menu-item" data-item="green-tea-refresher" data-price="2000" data-has-flavors="true">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Green Tea Refresher</div>
+              </div>
+              <div class="menu-item-price">₡2.000</div>
+              <div class="selection-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+          </div>
+          <div class="flavor-selection" id="greenTeaFlavors">
+            <h4 class="flavor-title">Choose your flavor:</h4>
+            <div class="flavor-options">
+              <div class="flavor-option" data-flavor="strawberry-lemonade">Strawberry Lemonade</div>
+              <div class="flavor-option" data-flavor="passionfruit">Passionfruit</div>
+              <div class="flavor-option" data-flavor="lemonade">Lemonade</div>
+              <div class="flavor-option" data-flavor="strawberry-orange">Strawberry Orange</div>
+              <div class="flavor-option" data-flavor="raspberry">Raspberry</div>
+            </div>
+          </div>
+        </div>
 
-      checkNavigationTiming() {
-        if (performance && performance.navigation) {
-          const navType = performance.navigation.type;
-          
-          if (navType === 0) { // TYPE_NAVIGATE
-            this.detectionMethods.push('Direct navigation (could be manual typing, NFC, or bookmark)');
-            return { isNFC: null, confidence: 0.2 }; // Very low confidence, not definitive
-          } else if (navType === 1) { // TYPE_RELOAD
-            this.detectionMethods.push('Page reload (manual action)');
-            return { isNFC: false, confidence: 0.7 };
-          } else if (navType === 2) { // TYPE_BACK_FORWARD
-            this.detectionMethods.push('Back/forward navigation (manual browser action)');
-            return { isNFC: false, confidence: 0.8 };
-          }
-        }
-        return { isNFC: null, confidence: 0 };
-      }
+        <div class="menu-section">
+          <h3>Milk Tea</h3>
+          <div class="menu-items">
+            <div class="menu-item" data-item="milk-tea" data-price="2500" data-has-flavors="true">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Milk Tea</div>
+              </div>
+              <div class="menu-item-price">₡2.500</div>
+              <div class="selection-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+          </div>
+          <div class="flavor-selection" id="milkTeaFlavors">
+            <h4 class="flavor-title">Choose your flavor:</h4>
+            <div class="flavor-options">
+              <div class="flavor-option" data-flavor="original-black">Original Black Tea</div>
+              <div class="flavor-option" data-flavor="vanilla">Vanilla</div>
+              <div class="flavor-option" data-flavor="caramel">Caramel</div>
+              <div class="flavor-option" data-flavor="matcha">Matcha</div>
+              <div class="flavor-option" data-flavor="taro">Taro</div>
+              <div class="flavor-option" data-flavor="oolong">Oolong</div>
+              <div class="flavor-option" data-flavor="thai-tea">Thai Tea</div>
+              <div class="flavor-option" data-flavor="jasmine-green">Jasmine Green Tea</div>
+            </div>
+          </div>
+        </div>
 
-      checkTouchCapability() {
-        const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        if (hasTouch) {
-          this.detectionMethods.push('Touch capability detected');
-          return { isNFC: null, confidence: 0.2 };
-        }
-        return { isNFC: false, confidence: 0.3 };
-      }
+        <div class="menu-section">
+          <h3>Natural Smoothies</h3>
+          <div class="menu-items">
+            <div class="menu-item" data-item="smoothie" data-price="2300" data-has-flavors="true">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Natural Smoothie</div>
+              </div>
+              <div class="menu-item-price">₡2.300</div>
+              <div class="selection-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+          </div>
+          <div class="flavor-selection" id="smoothieFlavors">
+            <h4 class="flavor-title">Choose your flavor:</h4>
+            <div class="flavor-options">
+              <div class="flavor-option" data-flavor="mango">Mango</div>
+              <div class="flavor-option" data-flavor="strawberry">Strawberry</div>
+              <div class="flavor-option" data-flavor="banana-cacao">Banana Cacao</div>
+              <div class="flavor-option" data-flavor="blueberry-banana">Blueberry Banana</div>
+              <div class="flavor-option" data-flavor="strawberry-banana">Strawberry Banana</div>
+            </div>
+          </div>
+        </div>
 
-      checkURLParameters() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const hasNFCParam = urlParams.has('nfc') || urlParams.has('source');
-        
-        if (hasNFCParam) {
-          this.detectionMethods.push('NFC parameter detected in URL');
-          return { isNFC: true, confidence: 0.9 };
-        }
-        
-        if (urlParams.toString() === '') {
-          this.detectionMethods.push('No URL parameters (could indicate NFC)');
-          return { isNFC: true, confidence: 0.4 };
-        }
-        
-        return { isNFC: null, confidence: 0 };
-      }
+        <div class="menu-section">
+          <h3>Frappes in Milk</h3>
+          <div class="menu-items">
+            <div class="menu-item" data-item="frappe" data-price="2800" data-has-flavors="true">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Frappe in Milk</div>
+              </div>
+              <div class="menu-item-price">₡2.800</div>
+              <div class="selection-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+          </div>
+          <div class="flavor-selection" id="frappeFlavors">
+            <h4 class="flavor-title">Choose your flavor:</h4>
+            <div class="flavor-options">
+              <div class="flavor-option" data-flavor="matcha">Matcha</div>
+              <div class="flavor-option" data-flavor="taro">Taro</div>
+              <div class="flavor-option" data-flavor="thai-tea">Thai Tea</div>
+              <div class="flavor-option" data-flavor="mocha">Mocha</div>
+              <div class="flavor-option" data-flavor="chocolate">Chocolate</div>
+            </div>
+          </div>
+        </div>
 
-      checkDocumentState() {
-        const loadTime = performance.now();
-        if (loadTime < 100) {
-          this.detectionMethods.push('Very fast load time (possible programmatic)');
-          return { isNFC: false, confidence: 0.4 };
-        }
-        return { isNFC: null, confidence: 0 };
-      }
+        <div class="menu-section">
+          <h3>Extras</h3>
+          <div class="menu-items">
+            <div class="menu-item" data-item="tapioca" data-price="300">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tapioca Pearls</div>
+              </div>
+              <div class="menu-item-price">+₡300</div>
+              <div class="selection-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+            <div class="menu-item" data-item="popping-pearls" data-price="500">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Popping Pearls</div>
+              </div>
+              <div class="menu-item-price">+₡500</div>
+              <div class="selection-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+            <div class="menu-item" data-item="vegan-milk" data-price="300">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Vegan Coconut Milk</div>
+              </div>
+              <div class="menu-item-price">+₡300</div>
+              <div class="selection-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      checkFocusEvents() {
-        let focusDetected = false;
-        
-        window.addEventListener('focus', () => {
-          focusDetected = true;
-        });
-        
-        setTimeout(() => {
-          if (!focusDetected && document.hasFocus()) {
-            this.detectionMethods.push('No focus event but document focused (NFC likely)');
-            return { isNFC: true, confidence: 0.6 };
-          }
-        }, 1000);
-        
-        return { isNFC: null, confidence: 0 };
-      }
-
-      calculateResult(factors) {
-        let nfcScore = 0;
-        let codeScore = 0;
-        let manualScore = 0;
-        let totalConfidence = 0;
-
-        Object.values(factors).forEach(factor => {
-          if (factor.isNFC === true) {
-            nfcScore += factor.confidence;
-          } else if (factor.isNFC === false) {
-            codeScore += factor.confidence;
-          }
-          totalConfidence += factor.confidence;
-        });
-
-        // Check for manual URL typing indicators
-        const isDirectTyping = this.checkDirectTyping();
-        if (isDirectTyping.isManual) {
-          manualScore = isDirectTyping.confidence;
-          totalConfidence += manualScore;
-        }
-
-        // Normalize scores
-        if (totalConfidence > 0) {
-          nfcScore = nfcScore / totalConfidence;
-          codeScore = codeScore / totalConfidence;
-          manualScore = manualScore / totalConfidence;
-        }
-
-        // Determine result
-        if (manualScore > Math.max(nfcScore, codeScore)) {
-          this.result = 'MANUAL';
-          this.confidence = Math.round(manualScore * 100);
-        } else if (nfcScore > codeScore) {
-          this.result = 'NFC';
-          this.confidence = Math.round(nfcScore * 100);
-        } else if (codeScore > nfcScore) {
-          this.result = 'CODE';
-          this.confidence = Math.round(codeScore * 100);
-        } else {
-          this.result = 'UNKNOWN';
-          this.confidence = 50;
-        }
-
-        // Log detection details for debugging
-        console.log('🔍 Access Detection Results:');
-        console.log('Detection Methods:', this.detectionMethods);
-        console.log('NFC Score:', nfcScore);
-        console.log('Code Score:', codeScore);
-        console.log('Manual Score:', manualScore);
-        console.log('Final Result:', this.result);
-        console.log('Confidence:', this.confidence + '%');
-      }
-
-      checkDirectTyping() {
-        const indicators = [];
-        let confidence = 0;
-
-        // Strong indicator: No referrer + direct navigation + desktop
-        if (!document.referrer && 
-            performance.navigation && 
-            performance.navigation.type === 0 &&
-            !/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-          indicators.push('Desktop with no referrer and direct navigation');
-          confidence += 0.7;
-        }
-
-        // Strong indicator: Clean URL (no search params or hash)
-        if (window.location.search === '' && window.location.hash === '') {
-          indicators.push('Clean URL with no parameters');
-          confidence += 0.6;
-        }
-
-        // Medium indicator: Not a mobile device
-        if (!/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-          indicators.push('Desktop device (users more likely to type URLs)');
-          confidence += 0.4;
-        }
-
-        // Weak indicator: Document body focused (typical after typing URL)
-        if (document.activeElement === document.body || document.activeElement === null) {
-          indicators.push('No specific element focused');
-          confidence += 0.3;
-        }
-
-        // Check for URL structure that suggests manual typing (simple, memorable URLs)
-        const url = window.location.href;
-        const isSimpleUrl = url.split('/').length <= 4 && !url.includes('?') && !url.includes('#');
-        if (isSimpleUrl) {
-          indicators.push('Simple, memorable URL structure');
-          confidence += 0.4;
-        }
-
-        // Boost confidence if multiple indicators present
-        if (indicators.length >= 3) {
-          confidence *= 1.2; // 20% boost for multiple indicators
-        }
-
-        if (indicators.length > 0) {
-          this.detectionMethods.push(`Manual typing indicators: ${indicators.join(', ')}`);
-          return { isManual: true, confidence: Math.min(confidence, 1.0) };
-        }
-
-        return { isManual: false, confidence: 0 };
-      }
-
-      showDetectionResult() {
-        const banner = document.getElementById('detectionBanner');
-        const text = document.getElementById('detectionText');
-        const mainContent = document.getElementById('mainContent');
-        const orderModal = document.getElementById('orderModal');
-
-        let message = '';
-        let icon = '';
-
-        switch (this.result) {
-          case 'NFC':
-            icon = '📱';
-            message = `${icon} Opened via NFC Tag (${this.confidence}% confidence)`;
-            break;
-          case 'CODE':
-            icon = '💻';
-            message = `${icon} Opened via Code/Browser (${this.confidence}% confidence)`;
-            break;
-          case 'MANUAL':
-            icon = '⌨️';
-            message = `${icon} URL typed manually (${this.confidence}% confidence)`;
-            break;
-          default:
-            icon = '❓';
-            message = `${icon} Access method unknown (${this.confidence}% confidence)`;
-        }
-
-        text.textContent = message;
-        
-        // Show banner
-        setTimeout(() => {
-          banner.classList.add('show');
-          mainContent.classList.add('with-banner');
-        }, 500);
-
-        // If manual typing detected, show order options modal
-        if (this.result === 'MANUAL') {
-          setTimeout(() => {
-            orderModal.classList.add('show');
-          }, 2000); // Show modal after banner
-        }
-
-        // Hide banner after 5 seconds (unless manual typing)
-        const bannerTimeout = this.result === 'MANUAL' ? 8000 : 5500;
-        setTimeout(() => {
-          banner.classList.remove('show');
-          mainContent.classList.remove('with-banner');
-        }, bannerTimeout);
-
-        // Send analytics or perform specific actions based on detection
-        this.handleDetectionResult();
-      }
-
-      handleDetectionResult() {
-        // You can add specific logic here based on the detection result
-        const data = {
-          method: this.result,
-          confidence: this.confidence,
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent,
-          referrer: document.referrer,
-          url: window.location.href
-        };
-
-        // Example: Send to analytics
-        // this.sendAnalytics(data);
-
-        // Example: Show different content based on access method
-        if (this.result === 'NFC') {
-          // Special handling for NFC users
-          console.log('👋 Welcome NFC user!');
-        } else if (this.result === 'CODE') {
-          // Special handling for programmatic access
-          console.log('🤖 Programmatic access detected');
-        } else if (this.result === 'MANUAL') {
-          // Special handling for manual URL typing
-          console.log('⌨️ Manual URL typing detected - showing order options');
-        }
-      }
-
-      // Optional: Send analytics data
-      sendAnalytics(data) {
-        // Replace with your analytics endpoint
-        /*
-        fetch('/api/analytics/access', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        }).catch(console.error);
-        */
-      }
-    }
-
-    // Original slideshow functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize detection system
-      const detection = new AccessDetection();
-
-      // Order modal functionality
-      const orderModal = document.getElementById('orderModal');
-      const closeModal = document.getElementById('closeModal');
-      const pickupOption = document.getElementById('pickupOption');
-      const deliveryOption = document.getElementById('deliveryOption');
-
-      // Close modal handlers
-      closeModal.addEventListener('click', () => {
-        orderModal.classList.remove('show');
-      });
-
-      orderModal.addEventListener('click', (e) => {
-        if (e.target === orderModal) {
-          orderModal.classList.remove('show');
-        }
-      });
-
-      // Order option handlers
-      pickupOption.addEventListener('click', () => {
-        console.log('🏪 Pickup order selected');
-        alert('🏪 Great! Visit us at one of our locations:\n\n📍 Puerto Viejo\n📍 Cocles\n\nCheck our locations section below for directions!');
-        orderModal.classList.remove('show');
-        
-        // Scroll to locations section
-        document.querySelector('section:last-child').scrollIntoView({ 
-          behavior: 'smooth' 
-        });
-      });
-
-      deliveryOption.addEventListener('click', () => {
-        console.log('🚚 Delivery order selected');
-        alert('🚚 Delivery coming soon!\n\nFor now, please visit us at one of our locations for pickup. We\'re working on delivery options!');
-        orderModal.classList.remove('show');
-        
-        // Scroll to locations section
-        document.querySelector('section:last-child').scrollIntoView({ 
-          behavior: 'smooth' 
-        });
-      });
-
-      // Close modal with Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && orderModal.classList.contains('show')) {
-          orderModal.classList.remove('show');
-        }
-      });
-
-      // Original slideshow code
-      const slideshow = document.querySelector('.slideshow-container');
-      const slides = document.querySelectorAll('.slide');
-      const dotsContainer = document.querySelector('.pagination-dots');
-      const prevButton = document.querySelector('.prev-button');
-      const nextButton = document.querySelector('.next-button');
-      
-      let currentSlide = 0;
-      let startX = 0;
-      let currentX = 0;
-      let isDragging = false;
-
-      // Create pagination dots
-      slides.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-      });
-
-      function updateDots() {
-        document.querySelectorAll('.dot').forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentSlide);
-        });
-      }
-
-      function goToSlide(index) {
-        currentSlide = index;
-        slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
-        updateDots();
-      }
-
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        goToSlide(currentSlide);
-      }
-
-      function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        goToSlide(currentSlide);
-      }
-
-      // Touch and mouse events
-      slideshow.addEventListener('mousedown', startDragging);
-      slideshow.addEventListener('touchstart', startDragging);
-      window.addEventListener('mousemove', drag);
-      window.addEventListener('touchmove', drag);
-      window.addEventListener('mouseup', stopDragging);
-      window.addEventListener('touchend', stopDragging);
-
-      function startDragging(e) {
-        isDragging = true;
-        startX = e.type === 'mousedown' ? e.pageX : e.touches[0].pageX;
-        currentX = -currentSlide * 100;
-      }
-
-      function drag(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.type === 'mousemove' ? e.pageX : e.touches[0].pageX;
-        const walk = (x - startX) / slideshow.offsetWidth * 100;
-        slideshow.style.transform = `translateX(${currentX + walk}%)`;
-      }
-
-      function stopDragging(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        const x = e.type === 'mouseup' ? e.pageX : e.changedTouches[0].pageX;
-        const walk = (x - startX) / slideshow.offsetWidth * 100;
-        
-        if (Math.abs(walk) > 20) {
-          if (walk > 0) prevSlide();
-          else nextSlide();
-        } else {
-          goToSlide(currentSlide);
-        }
-      }
-
-      // Button controls
-      prevButton.addEventListener('click', prevSlide);
-      nextButton.addEventListener('click', nextSlide);
-
-      // Auto-advance slides
-      setInterval(nextSlide, 5000);
-    });
-  </script>
-</body>
-</html>
+      <div class="category-view" id="others
