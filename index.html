@@ -1,30 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hola Boba Menu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     html, body {
       font-family: 'Montserrat', sans-serif;
       height: 100%;
-      color: white;
+      background-color: #F5F5F5; /* light creamy background */
+      color: #333333; /* dark but soft text */
     }
-
     body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 2rem 1rem;
       background: url('Screenshot_20250524_210511_Instagram[1].jpg') no-repeat center center fixed;
       background-size: cover;
     }
-
     .overlay {
       background: linear-gradient(to bottom right, rgba(0,0,0,0.85), rgba(0,0,0,0.6));
       padding: 2rem;
@@ -33,30 +36,19 @@
       justify-content: center;
       align-items: flex-start;
       overflow-y: auto;
+      width: 100%;
     }
-
     .menu {
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: #FFFFFF; /* white background for text readability */
       padding: 2rem;
       border-radius: 20px;
       max-width: 800px;
       width: 100%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       backdrop-filter: blur(6px);
       animation: fadeInUp 1.2s ease-out;
+      color: #333333;
     }
-
-    /* Logo styling */
-    .logo {
-      display: block;
-      margin: 0 auto 1.5rem auto;
-      max-width: 180px;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
-    }
-    .logo:hover {
-      opacity: 1;
-    }
-
     @keyframes fadeInUp {
       0% {
         transform: translateY(30px);
@@ -67,80 +59,68 @@
         opacity: 1;
       }
     }
-
+    .logo-container {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .logo-container img {
+      max-width: 150px;
+      opacity: 0.85; /* subtle fade */
+      filter: brightness(0) invert(1); /* make the logo white if it's black, invert colors */
+    }
+    h1 {
+      color: #F8C300; /* yellow brand color */
+      margin-bottom: 0;
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
     section {
       margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      animation: fadeInUp 1s ease forwards;
     }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     section h2 {
-      color: #fdd835;
-      border-bottom: 1px solid #fdd835;
+      color: #00B0B9; /* blue brand color */
+      border-bottom: 2px solid #F8C300; /* yellow underline */
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
     }
-
     ul {
       list-style: none;
       padding-left: 0;
+      color: #333333; /* readable dark text */
     }
-
     li {
       padding: 0.4rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
-
-    /* Buttons with black background, yellow/gold text and icons */
     .buttons {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 1rem;
     }
-
     .buttons a {
-      background-color: #000000; /* black */
-      color: #fdd835; /* yellow/gold */
-      font-weight: 700;
+      background-color: #F8C300; /* yellow */
+      color: #000000; /* black text */
       padding: 0.6rem 1.2rem;
       border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color 0.3s;
     }
-
-    .buttons a i {
-      color: #fdd835;
-      font-size: 1.3rem;
-    }
-
     .buttons a:hover {
-      background-color: #fdd835;
-      color: #000000;
+      background-color: #e6b800; /* slightly darker yellow on hover */
     }
-
-    .buttons a:hover i {
-      color: #000000;
-    }
-
     @media (max-width: 600px) {
       .menu {
         padding: 1rem;
       }
-
       section h2 {
         font-size: 1.2rem;
       }
-
       .buttons a {
         width: 100%;
         justify-content: center;
@@ -151,8 +131,10 @@
 <body>
   <div class="overlay">
     <div class="menu">
-      <img src="logo.jpeg" alt="Hola Boba Logo" class="logo" />
-      <h1 style="text-align:center; color:#fdd835; margin-bottom:2rem;">Hola Boba Menu</h1>
+      <div class="logo-container">
+        <img src="logo.jpeg" alt="Hola Boba Logo" />
+      </div>
+      <h1>Hola Boba Menu</h1>
 
       <section>
         <h2>🍵 Green Tea Refreshers – 2.000</h2>
@@ -231,10 +213,10 @@
       <section>
         <h2>📣 Follow Us!</h2>
         <div class="buttons">
-          <a href="https://www.instagram.com/holaboba.cr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="instagram">
+          <a href="https://www.instagram.com/holaboba.cr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
             <i class="fab fa-instagram"></i> Instagram
           </a>
-          <a href="https://www.tiktok.com/@holabobacostarica?is_from_webapp=1&sender_device=pc" target="_blank" class="tiktok">
+          <a href="https://www.tiktok.com/@holabobacostarica?is_from_webapp=1&sender_device=pc" target="_blank">
             <i class="fab fa-tiktok"></i> TikTok
           </a>
         </div>
@@ -253,26 +235,5 @@
       </section>
     </div>
   </div>
-
-  <script>
-    // Fade in sections as you scroll down
-    const sections = document.querySelectorAll('section');
-    const options = {
-      threshold: 0.15
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, options);
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-  </script>
 </body>
 </html>
