@@ -2,153 +2,70 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hola Boba Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
-    html, body {
+    body {
       font-family: 'Montserrat', sans-serif;
-      height: 100%;
       background-color: #F5F5F5;
       color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2rem 1rem 6rem; /* bottom padding for gallery */
       overflow-x: hidden;
     }
-
-    body {
-      position: relative;
-      background: none;
-      padding: 2rem 0;
-    }
-
-    /* GALLERY CONTAINERS */
-    .gallery-container {
-      width: 100%;
-      overflow: hidden;
-      height: 6.5rem;
-      margin: 1rem auto;
-      border-radius: 12px;
-      background-color: #fff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 1;
-    }
-    /* MOBILE HEIGHT */
-    @media (max-width: 600px) {
-      .gallery-container {
-        height: 4.8rem;
-      }
-    }
-
-    /* GALLERY TRACK - flex row of images moving */
-    .gallery-track {
-      display: flex;
-      width: max-content;
-      animation: scrollLeft 36s linear infinite;
-    }
-
-    /* duplicated gallery-track for bottom with reverse scroll */
-    .gallery-track.reverse {
-      animation-direction: reverse;
-    }
-
-    /* Gallery images style */
-    .gallery-track img {
-      width: auto;
-      height: 100%;
-      margin-right: 1rem;
-      border-radius: 8px;
-      flex-shrink: 0;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    /* SCROLL ANIMATION */
-    @keyframes scrollLeft {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-50%));
-      }
-    }
-
-    /* MAIN MENU */
     .menu {
-      background-color: #FFFFFF;
-      padding: 2rem;
-      border-radius: 20px;
+      background: #fff;
       max-width: 800px;
-      margin: 1rem auto;
+      width: 100%;
+      border-radius: 20px;
+      padding: 2rem;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      backdrop-filter: blur(6px);
-      color: #333;
       position: relative;
       z-index: 2;
-      animation: fadeInUp 1.2s ease-out;
     }
-
-    @keyframes fadeInUp {
-      from {
-        transform: translateY(30px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
     .logo-container {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
-
     .logo-container img {
       max-width: 150px;
       opacity: 0.85;
     }
-
     h1 {
+      text-align: center;
       color: #F8C300;
-      margin-bottom: 0;
       font-weight: 700;
       font-size: 2.5rem;
-      text-align: center;
+      margin-bottom: 2rem;
     }
-
     section {
       margin-bottom: 2rem;
     }
-
     section h2 {
       color: #00B0B9;
       border-bottom: 2px solid #F8C300;
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
     }
-
     ul {
       list-style: none;
-      padding-left: 0;
-      color: #333;
     }
-
     li {
       padding: 0.4rem 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
-      align-items: center;
       font-weight: 500;
     }
-
-    /* COLONES currency before the number */
     .price {
       font-weight: 700;
       color: #000;
@@ -157,14 +74,12 @@
       content: "₡ ";
       margin-right: 0.2rem;
     }
-
     .buttons {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 1rem;
     }
-
     .buttons a {
       background-color: #F8C300;
       color: #000;
@@ -177,15 +92,13 @@
       gap: 0.5rem;
       transition: background-color 0.3s;
     }
-
     .buttons a:hover {
       background-color: #e6b800;
     }
-
     @media (max-width: 600px) {
       .menu {
         padding: 1rem;
-        margin: 1.5rem;
+        margin: 0 1.5rem;
       }
       section h2 {
         font-size: 1.2rem;
@@ -195,26 +108,76 @@
         justify-content: center;
       }
     }
+
+    /* ======= SLIDESHOW STYLES ======= */
+    .gallery-wrapper {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.5rem 0 1rem;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+      z-index: 3;
+      user-select: none;
+    }
+    .gallery-container {
+      overflow: hidden;
+      width: 100%;
+      height: 6.5rem;
+      border-radius: 12px;
+      position: relative;
+    }
+    @media (max-width: 600px) {
+      .gallery-container {
+        height: 4.8rem;
+      }
+    }
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+    .slides img {
+      height: 100%;
+      border-radius: 8px;
+      flex-shrink: 0;
+      width: calc(100% / 4); /* show 4 images at a time on desktop */
+      object-fit: cover;
+      user-select: none;
+      pointer-events: none;
+    }
+    @media (max-width: 600px) {
+      .slides img {
+        width: calc(100% / 3); /* show 3 images on mobile */
+      }
+    }
+    /* DOTS */
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.6rem;
+      gap: 0.5rem;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #ccc;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .dot.active {
+      background-color: #00B0B9;
+    }
   </style>
 </head>
 <body>
 
-  <!-- TOP GALLERY -->
-  <div class="gallery-container">
-    <div class="gallery-track" aria-label="Gallery scrolling images top">
-      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1" />
-      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2" />
-      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3" />
-      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4" />
-      <!-- Repeat for infinite effect -->
-      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1 repeat" />
-      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2 repeat" />
-      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3 repeat" />
-      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4 repeat" />
-    </div>
-  </div>
-
-  <!-- MAIN MENU -->
   <div class="menu" role="main">
     <div class="logo-container">
       <img src="logo.jpeg" alt="Hola Boba Logo" />
@@ -320,20 +283,124 @@
     </section>
   </div>
 
-  <!-- BOTTOM GALLERY -->
-  <div class="gallery-container">
-    <div class="gallery-track reverse" aria-label="Gallery scrolling images bottom">
-      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1" />
-      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2" />
-      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3" />
-      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4" />
-      <!-- Repeat for infinite effect -->
-      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1 repeat" />
-      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2 repeat" />
-      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3 repeat" />
-      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4 repeat" />
+  <!-- BOTTOM GALLERY WITH MANUAL SLIDESHOW -->
+  <div class="gallery-wrapper" aria-label="Image slideshow">
+    <div class="gallery-container">
+      <div class="slides" id="slides">
+        <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1" />
+        <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2" />
+        <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3" />
+        <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4" />
+        <!-- Repeating first image for infinite feel -->
+        <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1 repeat" />
+      </div>
+    </div>
+    <div class="dots" id="dots">
+      <!-- Dots will be generated by JS -->
     </div>
   </div>
+
+  <script>
+    const slides = document.getElementById('slides');
+    const dotsContainer = document.getElementById('dots');
+
+    // Number of logical slides (excluding repeated last)
+    const slideCount = slides.children.length - 1;
+
+    let currentIndex = 0;
+    let isTransitioning = false;
+
+    // Create dots dynamically
+    for (let i = 0; i < slideCount; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.dataset.index = i;
+      dotsContainer.appendChild(dot);
+
+      dot.addEventListener('click', () => {
+        if (isTransitioning || currentIndex === i) return;
+        goToSlide(i);
+      });
+    }
+
+    function updateDots(index) {
+      dotsContainer.querySelectorAll('.dot').forEach(dot => dot.classList.remove('active'));
+      dotsContainer.querySelector(`.dot[data-index="${index}"]`).classList.add('active');
+    }
+
+    function goToSlide(index) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      currentIndex = index;
+      slides.style.transition = 'transform 0.5s ease';
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      updateDots(index);
+    }
+
+    // Handle infinite loop transition when reaching the last (repeated) slide
+    slides.addEventListener('transitionend', () => {
+      if (currentIndex === slideCount) {
+        // Jump instantly back to first slide without transition
+        slides.style.transition = 'none';
+        slides.style.transform = 'translateX(0)';
+        currentIndex = 0;
+        updateDots(currentIndex);
+      }
+      isTransitioning = false;
+    });
+
+    // Initialize width of slides container (each slide 100%)
+    // The slides container has 5 images but last is repeat of first
+    // We use CSS to show 4 at once on desktop, so we must shift 100% per slide accordingly.
+    // But the images have fixed width calc(100% / 4), so translateX uses 100% = width of one slide.
+
+    // To fix correct slide width (for the translateX):
+    // Actually, images width are calc(100% / 4), so the total width of slides is 5 * 25% = 125%.
+    // So to slide by one image, transform should be -25%, not -100%.
+    // Let's fix that.
+
+    // Update: transform step is (100% / number of images visible at once).
+    // We show 4 images at once, so each image is 25% width, so moving by 1 image = 25%.
+
+    // We need to update goToSlide and transitionend code accordingly.
+
+    // Let's fix all this below.
+
+    const visibleSlides = window.innerWidth <= 600 ? 3 : 4;
+    const step = 100 / visibleSlides;
+
+    function goToSlideFixed(index) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      currentIndex = index;
+      slides.style.transition = 'transform 0.5s ease';
+      slides.style.transform = `translateX(-${index * step}%)`;
+      updateDots(index);
+    }
+
+    slides.addEventListener('transitionend', () => {
+      if (currentIndex === slideCount) {
+        slides.style.transition = 'none';
+        slides.style.transform = 'translateX(0)';
+        currentIndex = 0;
+        updateDots(currentIndex);
+      }
+      isTransitioning = false;
+    });
+
+    // Override previous functions with corrected versions
+    goToSlide = goToSlideFixed;
+
+    // Handle window resize to update step and adjust position
+    window.addEventListener('resize', () => {
+      const newVisible = window.innerWidth <= 600 ? 3 : 4;
+      if (newVisible !== visibleSlides) {
+        location.reload(); // simple way to reload and fix layout on resize
+      }
+    });
+
+  </script>
 
 </body>
 </html>
