@@ -2,10 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hola Boba Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
@@ -20,47 +19,8 @@
       color: #333;
       overflow-x: hidden;
     }
-
     body {
       position: relative;
-    }
-
-    /* Gallery styling: no rounded corners */
-    .gallery-container {
-      max-width: 800px;
-      margin: 2rem auto 1rem auto;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      background: #fff;
-      border-radius: 0 !important; /* Remove rounded corners */
-    }
-
-    .gallery-track {
-      display: flex;
-      width: calc(250px * 8);
-      animation: scroll-left 20s linear infinite;
-    }
-
-    .gallery-track img {
-      width: 250px;
-      height: 150px;
-      object-fit: cover;
-      flex-shrink: 0;
-      border-right: 4px solid white; /* White border between images */
-    }
-
-    /* Remove border on last image to avoid double border effect */
-    .gallery-track img:last-child {
-      border-right: none;
-    }
-
-    @keyframes scroll-left {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
     }
 
     .menu {
@@ -68,11 +28,13 @@
       padding: 2rem;
       border-radius: 20px;
       max-width: 800px;
-      margin: 3rem auto;
+      margin: 6rem auto 6rem; /* space top and bottom for galleries */
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       backdrop-filter: blur(6px);
       color: #333;
       animation: fadeInUp 1.2s ease-out;
+      position: relative;
+      z-index: 1;
     }
 
     @keyframes fadeInUp {
@@ -90,7 +52,6 @@
       text-align: center;
       margin-bottom: 2rem;
     }
-
     .logo-container img {
       max-width: 150px;
       opacity: 0.85;
@@ -124,15 +85,14 @@
     li {
       padding: 0.4rem 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      position: relative;
-      padding-left: 1.5em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    /* Currency colones symbol behind numbers */
-    li::before {
+    .price::before {
       content: "₡";
-      position: absolute;
-      left: 0.3em;
+      margin-right: 0.15em;
       color: #F8C300;
       font-weight: 700;
     }
@@ -164,7 +124,7 @@
     @media (max-width: 600px) {
       .menu {
         padding: 1rem;
-        margin: 1.5rem;
+        margin: 6rem 1.5rem; /* keep space top/bottom */
       }
       section h2 {
         font-size: 1.2rem;
@@ -173,23 +133,79 @@
         width: 100%;
         justify-content: center;
       }
-      .gallery-track img {
-        width: 150px;
-        height: 90px;
+    }
+
+    /* GALLERY CONTAINERS */
+    .gallery-container {
+      position: fixed;
+      width: 100%;
+      height: 6rem;
+      overflow: hidden;
+      background-color: #000; /* dark background behind images */
+      top: 0; /* top gallery */
+      left: 0;
+      z-index: 0;
+      border-bottom: 2px solid white;
+    }
+    .gallery-container.bottom {
+      top: auto;
+      bottom: 0; /* bottom gallery */
+      border-top: 2px solid white;
+      border-bottom: none;
+    }
+
+    /* SCROLLING TRACK */
+    .gallery-track {
+      display: flex;
+      width: max-content;
+      height: 100%;
+      animation: scrollLeft 40s linear infinite;
+    }
+
+    .gallery-container.bottom .gallery-track {
+      animation-direction: reverse;
+    }
+
+    /* IMAGES */
+    .gallery-track img {
+      height: 100%;
+      object-fit: cover;
+      border-left: 1px solid white; /* vertical white border between images */
+      border-right: 1px solid white;
+      /* Remove rounded corners */
+      border-radius: 0 !important;
+      flex-shrink: 0;
+    }
+    /* Remove left border on first image to avoid double border on container edges */
+    .gallery-track img:first-child {
+      border-left: none;
+    }
+    /* Remove right border on last image */
+    .gallery-track img:last-child {
+      border-right: none;
+    }
+
+    /* SCROLL ANIMATION */
+    @keyframes scrollLeft {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Gallery -->
-  <div class="gallery-container">
+  <!-- TOP GALLERY -->
+  <div class="gallery-container top">
     <div class="gallery-track">
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
       <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery Image 4" />
-      <!-- Repeat for seamless scroll -->
+      <!-- repeat images to make seamless -->
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
@@ -197,7 +213,6 @@
     </div>
   </div>
 
-  <!-- Menu -->
   <div class="menu">
     <div class="logo-container">
       <img src="logo.jpeg" alt="Hola Boba Logo" />
@@ -205,65 +220,65 @@
     <h1>Hola Boba Menu</h1>
 
     <section>
-      <h2>🍵 Green Tea Refreshers – 2.000</h2>
+      <h2>🍵 Green Tea Refreshers</h2>
       <ul>
-        <li>Strawberry Lemonade</li>
-        <li>Passionfruit</li>
-        <li>Lemonade</li>
-        <li>Strawberry Orange</li>
-        <li>Raspberry</li>
+        <li>Strawberry Lemonade <span class="price">2000</span></li>
+        <li>Passionfruit <span class="price">2000</span></li>
+        <li>Lemonade <span class="price">2000</span></li>
+        <li>Strawberry Orange <span class="price">2000</span></li>
+        <li>Raspberry <span class="price">2000</span></li>
       </ul>
     </section>
 
     <section>
-      <h2>🧋 Milk Tea – 2.500</h2>
+      <h2>🧋 Milk Tea</h2>
       <ul>
-        <li>Original Black Tea</li>
-        <li>Vanilla</li>
-        <li>Caramel</li>
-        <li>Matcha</li>
-        <li>Taro</li>
-        <li>Oolong</li>
-        <li>Thai Tea</li>
-        <li>Jasmine Green Tea</li>
+        <li>Original Black Tea <span class="price">2500</span></li>
+        <li>Vanilla <span class="price">2500</span></li>
+        <li>Caramel <span class="price">2500</span></li>
+        <li>Matcha <span class="price">2500</span></li>
+        <li>Taro <span class="price">2500</span></li>
+        <li>Oolong <span class="price">2500</span></li>
+        <li>Thai Tea <span class="price">2500</span></li>
+        <li>Jasmine Green Tea <span class="price">2500</span></li>
       </ul>
     </section>
 
     <section>
-      <h2>🍓 Natural Smoothies – 2.300</h2>
+      <h2>🍓 Natural Smoothies</h2>
       <ul>
-        <li>Mango</li>
-        <li>Strawberry</li>
-        <li>Banana Cacao</li>
-        <li>Blueberry Banana</li>
-        <li>Strawberry Banana</li>
+        <li>Mango <span class="price">2300</span></li>
+        <li>Strawberry <span class="price">2300</span></li>
+        <li>Banana Cacao <span class="price">2300</span></li>
+        <li>Blueberry Banana <span class="price">2300</span></li>
+        <li>Strawberry Banana <span class="price">2300</span></li>
       </ul>
     </section>
 
     <section>
-      <h2>🥤 Frappes in Milk – 2.800</h2>
+      <h2>🥤 Frappes in Milk</h2>
       <ul>
-        <li>Matcha</li>
-        <li>Taro</li>
-        <li>Thai Tea</li>
-        <li>Mocha</li>
-        <li>Chocolate</li>
+        <li>Matcha <span class="price">2800</span></li>
+        <li>Taro <span class="price">2800</span></li>
+        <li>Thai Tea <span class="price">2800</span></li>
+        <li>Mocha <span class="price">2800</span></li>
+        <li>Chocolate <span class="price">2800</span></li>
       </ul>
     </section>
 
     <section>
       <h2>☕ Others</h2>
       <ul>
-        <li>Brown Sugar Latte – 2.500</li>
-        <li>Vietnamese Coffee – 2.300</li>
+        <li>Brown Sugar Latte <span class="price">2500</span></li>
+        <li>Vietnamese Coffee <span class="price">2300</span></li>
       </ul>
     </section>
 
     <section>
-      <h2>🧇 Bubble Waffles – 2.000</h2>
+      <h2>🧇 Bubble Waffles</h2>
       <ul>
-        <li>Add Ice Cream: +500</li>
-        <li>Add Strawberries: +200</li>
+        <li>Add Ice Cream: +<span class="price">500</span></li>
+        <li>Add Strawberries: +<span class="price">200</span></li>
       </ul>
     </section>
 
@@ -271,10 +286,10 @@
       <h2>✨ Extras</h2>
       <ul>
         <li>Vegan Option (Homemade Coconut Milk)</li>
-        <li>Add: +300</li>
-        <li>Change or Substitute: +0</li>
-        <li>Tapioca: +300</li>
-        <li>Popping Pearls: +500</li>
+        <li>Add: +<span class="price">300</span></li>
+        <li>Change or Substitute: +<span class="price">0</span></li>
+        <li>Tapioca: +<span class="price">300</span></li>
+        <li>Popping Pearls: +<span class="price">500</span></li>
       </ul>
     </section>
 
@@ -303,14 +318,14 @@
     </section>
   </div>
 
-  <!-- Bottom Gallery -->
-  <div class="gallery-container" style="margin-top: 1rem; margin-bottom: 3rem;">
-    <div class="gallery-track" style="animation-direction: normal;">
+  <!-- BOTTOM GALLERY -->
+  <div class="gallery-container bottom">
+    <div class="gallery-track">
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
       <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery Image 4" />
-      <!-- Repeat for seamless scroll -->
+      <!-- repeat images to make seamless -->
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery Image 1" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery Image 2" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery Image 3" />
