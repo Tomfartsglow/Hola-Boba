@@ -56,6 +56,35 @@
       }
     }
 
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInIcons {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      color: #fdd835;
+      margin-bottom: 2rem;
+      animation: fadeInDown 1.2s ease forwards;
+    }
+
     section {
       margin-bottom: 2rem;
       animation: fadeInUp 1s ease forwards;
@@ -102,6 +131,12 @@
       background-color: #fff176;
     }
 
+    .buttons i {
+      opacity: 0;
+      animation: fadeInIcons 1s ease forwards;
+      animation-delay: 1.2s;
+    }
+
     @media (max-width: 600px) {
       .menu {
         padding: 1rem;
@@ -121,7 +156,7 @@
 <body>
   <div class="overlay">
     <div class="menu">
-      <h1 style="text-align:center; color:#fdd835; margin-bottom:2rem;">Hola Boba Menu</h1>
+      <h1>Hola Boba Menu</h1>
 
       <section>
         <h2>🍵 Green Tea Refreshers – 2.000</h2>
