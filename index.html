@@ -884,4 +884,431 @@
             <div class="boba-flavor" data-flavor="original-black" data-price="2500" data-type="Milk Tea">Original Black Tea</div>
             <div class="boba-flavor" data-flavor="vanilla" data-price="2500" data-type="Milk Tea">Vanilla</div>
             <div class="boba-flavor" data-flavor="caramel" data-price="2500" data-type="Milk Tea">Caramel</div>
-            <div class="boba-flavor" data-flavor="matcha" data-price="2500" data-type="Milk Tea">Matcha
+            <div class="boba-flavor" data-flavor="matcha" data-price="2500" data-type="Milk Tea">Matcha</div>
+            <div class="boba-flavor" data-flavor="taro" data-price="2500" data-type="Milk Tea">Taro</div>
+            <div class="boba-flavor" data-flavor="oolong" data-price="2500" data-type="Milk Tea">Oolong</div>
+            <div class="boba-flavor" data-flavor="thai-tea" data-price="2500" data-type="Milk Tea">Thai Tea</div>
+            <div class="boba-flavor" data-flavor="jasmine-green" data-price="2500" data-type="Milk Tea">Jasmine Green Tea</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: #00B0B9; margin-bottom: 1rem;">🥤 Frappes in Milk (₡2.800)</h3>
+          <div class="boba-flavor-grid">
+            <div class="boba-flavor" data-flavor="matcha-frappe" data-price="2800" data-type="Frappe">Matcha</div>
+            <div class="boba-flavor" data-flavor="taro-frappe" data-price="2800" data-type="Frappe">Taro</div>
+            <div class="boba-flavor" data-flavor="thai-tea-frappe" data-price="2800" data-type="Frappe">Thai Tea</div>
+            <div class="boba-flavor" data-flavor="mocha-frappe" data-price="2800" data-type="Frappe">Mocha</div>
+            <div class="boba-flavor" data-flavor="chocolate-frappe" data-price="2800" data-type="Frappe">Chocolate</div>
+          </div>
+        </div>
+
+        <button class="next-btn" id="bobaDrinksNextBtn" disabled onclick="menuSystem.goToScreen('bobaExtras')">
+          Next: Add Extras
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Smoothies Flavors Screen -->
+      <div class="screen" id="smoothiesScreen">
+        <button class="back-btn" onclick="menuSystem.goToScreen('boba')">
+          <i class="fas fa-arrow-left"></i>
+          Back to Categories
+        </button>
+        <h2 class="screen-title">🍓 Choose Your Smoothie Flavor</h2>
+        
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: #00B0B9; margin-bottom: 1rem;">🍓 Natural Smoothies (₡2.300)</h3>
+          <div class="boba-flavor-grid">
+            <div class="boba-flavor" data-flavor="mango" data-price="2300" data-type="Natural Smoothie">Mango</div>
+            <div class="boba-flavor" data-flavor="strawberry" data-price="2300" data-type="Natural Smoothie">Strawberry</div>
+            <div class="boba-flavor" data-flavor="banana-cacao" data-price="2300" data-type="Natural Smoothie">Banana Cacao</div>
+            <div class="boba-flavor" data-flavor="blueberry-banana" data-price="2300" data-type="Natural Smoothie">Blueberry Banana</div>
+            <div class="boba-flavor" data-flavor="strawberry-banana" data-price="2300" data-type="Natural Smoothie">Strawberry Banana</div>
+          </div>
+        </div>
+
+        <button class="next-btn" id="smoothieNextBtn" disabled onclick="menuSystem.goToScreen('bobaExtras')">
+          Next: Add Extras
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Boba Extras Screen -->
+      <div class="screen" id="bobaExtrasScreen">
+        <button class="back-btn" onclick="menuSystem.goToPreviousScreen()">
+          <i class="fas fa-arrow-left"></i>
+          Back to Flavors
+        </button>
+        <h2 class="screen-title">✨ Add Boba Extras</h2>
+        
+        <div class="extras-grid">
+          <div class="extra-option none" data-extra="none" data-price="0">
+            <i class="fas fa-times"></i>
+            <div class="extra-info">
+              <div class="extra-name">None</div>
+              <div style="font-size: 0.85rem; color: #666;">No extras</div>
+            </div>
+          </div>
+          <div class="extra-option" data-extra="tapioca" data-price="300">
+            <i class="fas fa-circle"></i>
+            <div class="extra-info">
+              <div class="extra-name">Tapioca Pearls</div>
+              <div class="extra-price">+₡300</div>
+            </div>
+          </div>
+          <div class="extra-option" data-extra="popping-pearls" data-price="500">
+            <i class="fas fa-star"></i>
+            <div class="extra-info">
+              <div class="extra-name">Popping Pearls</div>
+              <div class="extra-price">+₡500</div>
+            </div>
+          </div>
+          <div class="extra-option" data-extra="vegan-milk" data-price="300">
+            <i class="fas fa-leaf"></i>
+            <div class="extra-info">
+              <div class="extra-name">Vegan Coconut Milk</div>
+              <div class="extra-price">+₡300</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="next-btn" onclick="menuSystem.finishOrder()">
+          Finish Order
+          <i class="fas fa-check"></i>
+        </button>
+      </div>
+
+      <!-- Others Screen -->
+      <div class="screen" id="othersScreen">
+        <button class="back-btn" onclick="menuSystem.goToScreen('main')">
+          <i class="fas fa-arrow-left"></i>
+          Back to Menu
+        </button>
+        <h2 class="screen-title">☕ Others</h2>
+        
+        <div class="boba-categories">
+          <button class="boba-category" data-category="coffee">
+            <h3>☕ Coffee</h3>
+            <p>Brown Sugar Latte, Vietnamese Coffee</p>
+          </button>
+          <button class="boba-category" data-category="waffles">
+            <h3>🧇 Waffles</h3>
+            <p>Bubble Waffles with toppings</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Summary -->
+  <div class="order-summary" id="orderSummary">
+    <div class="order-summary-content">
+      <div class="order-details">
+        <div class="order-item" id="orderItem">No item selected</div>
+        <div class="order-flavor" id="orderFlavor"></div>
+        <div class="order-extras" id="orderExtras"></div>
+      </div>
+      <div class="order-price" id="orderPrice">₡0</div>
+      <div class="order-actions">
+        <button class="clear-btn" id="clearOrder">Clear</button>
+        <button class="order-btn" id="placeOrder">Order Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Menu System
+    class MenuSystem {
+      constructor() {
+        this.currentOrder = {
+          category: null,
+          subcategory: null,
+          flavor: null,
+          type: null,
+          price: 0,
+          extras: []
+        };
+        this.currentScreen = 'main';
+        this.previousScreen = null;
+        this.init();
+      }
+
+      init() {
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        // Main category buttons
+        document.querySelectorAll('[data-category]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const category = e.currentTarget.dataset.category;
+            this.selectCategory(category);
+          });
+        });
+
+        // Ice cream flavors
+        document.querySelectorAll('#icecreamScreen .flavor-option').forEach(option => {
+          option.addEventListener('click', (e) => {
+            this.selectIceCreamFlavor(e.currentTarget);
+          });
+        });
+
+        // Boba flavors
+        document.querySelectorAll('.boba-flavor').forEach(flavor => {
+          flavor.addEventListener('click', (e) => {
+            this.selectBobaFlavor(e.currentTarget);
+          });
+        });
+
+        // Extras
+        document.querySelectorAll('.extra-option').forEach(extra => {
+          extra.addEventListener('click', (e) => {
+            this.selectExtra(e.currentTarget);
+          });
+        });
+
+        // Order actions
+        document.getElementById('clearOrder').addEventListener('click', () => {
+          this.clearOrder();
+        });
+
+        document.getElementById('placeOrder').addEventListener('click', () => {
+          this.placeOrder();
+        });
+      }
+
+      goToScreen(screenName) {
+        this.previousScreen = this.currentScreen;
+        this.currentScreen = screenName;
+        
+        // Hide all screens
+        document.querySelectorAll('.screen').forEach(screen => {
+          screen.classList.remove('active');
+        });
+
+        // Show target screen
+        const targetScreen = document.getElementById(screenName + 'Screen');
+        if (targetScreen) {
+          targetScreen.classList.add('active');
+        }
+      }
+
+      goToPreviousScreen() {
+        if (this.previousScreen) {
+          this.goToScreen(this.previousScreen);
+        }
+      }
+
+      selectCategory(category) {
+        this.currentOrder.category = category;
+        
+        switch(category) {
+          case 'icecream':
+            this.goToScreen('icecream');
+            break;
+          case 'boba':
+            this.goToScreen('boba');
+            break;
+          case 'others':
+            this.goToScreen('others');
+            break;
+        }
+      }
+
+      selectIceCreamFlavor(flavorElement) {
+        // Remove previous selections
+        document.querySelectorAll('#icecreamScreen .flavor-option').forEach(opt => {
+          opt.classList.remove('selected');
+        });
+
+        // Select current flavor
+        flavorElement.classList.add('selected');
+        
+        const flavor = flavorElement.dataset.flavor;
+        this.currentOrder.flavor = flavor;
+        this.currentOrder.type = 'Ice Cream';
+        this.currentOrder.price = 2000; // Base price for ice cream
+
+        // Enable next button
+        document.getElementById('icecreamNextBtn').disabled = false;
+
+        this.updateOrderSummary();
+      }
+
+      selectBobaFlavor(flavorElement) {
+        // Remove previous selections
+        document.querySelectorAll('.boba-flavor').forEach(opt => {
+          opt.classList.remove('selected');
+        });
+
+        // Select current flavor
+        flavorElement.classList.add('selected');
+
+        const flavor = flavorElement.dataset.flavor;
+        const price = parseInt(flavorElement.dataset.price);
+        const type = flavorElement.dataset.type;
+
+        this.currentOrder.flavor = flavor;
+        this.currentOrder.type = type;
+        this.currentOrder.price = price;
+
+        // Enable appropriate next button
+        document.getElementById('bobaDrinksNextBtn').disabled = false;
+        document.getElementById('smoothieNextBtn').disabled = false;
+
+        this.updateOrderSummary();
+      }
+
+      selectExtra(extraElement) {
+        const extraName = extraElement.dataset.extra;
+        const extraPrice = parseInt(extraElement.dataset.price);
+
+        if (extraName === 'none') {
+          // Clear all extras and select none
+          document.querySelectorAll('.extra-option').forEach(opt => {
+            opt.classList.remove('selected');
+          });
+          extraElement.classList.add('selected');
+          this.currentOrder.extras = [];
+        } else {
+          // Toggle extra selection
+          const isSelected = extraElement.classList.contains('selected');
+          
+          if (isSelected) {
+            // Deselect
+            extraElement.classList.remove('selected');
+            this.currentOrder.extras = this.currentOrder.extras.filter(extra => extra.name !== extraName);
+          } else {
+            // Select
+            extraElement.classList.add('selected');
+            
+            // Remove "none" if selected
+            document.querySelector('.extra-option.none').classList.remove('selected');
+            
+            // Add extra if not already present
+            if (!this.currentOrder.extras.find(extra => extra.name === extraName)) {
+              this.currentOrder.extras.push({
+                name: extraName,
+                displayName: extraElement.querySelector('.extra-name').textContent,
+                price: extraPrice
+              });
+            }
+          }
+        }
+
+        this.updateOrderSummary();
+      }
+
+      updateOrderSummary() {
+        const orderSummary = document.getElementById('orderSummary');
+        const orderItem = document.getElementById('orderItem');
+        const orderFlavor = document.getElementById('orderFlavor');
+        const orderExtras = document.getElementById('orderExtras');
+        const orderPrice = document.getElementById('orderPrice');
+
+        if (!this.currentOrder.type && !this.currentOrder.flavor) {
+          orderSummary.classList.remove('show');
+          return;
+        }
+
+        // Update display
+        if (this.currentOrder.type) {
+          orderItem.textContent = this.currentOrder.type;
+        }
+
+        if (this.currentOrder.flavor) {
+          orderFlavor.textContent = `Flavor: ${this.currentOrder.flavor.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}`;
+          orderFlavor.style.display = 'block';
+        } else {
+          orderFlavor.style.display = 'none';
+        }
+
+        // Update extras display
+        if (this.currentOrder.extras.length > 0) {
+          const extrasText = this.currentOrder.extras.map(extra => extra.displayName).join(', ');
+          orderExtras.textContent = `Extras: ${extrasText}`;
+          orderExtras.style.display = 'block';
+        } else {
+          orderExtras.style.display = 'none';
+        }
+
+        // Calculate total price
+        let totalPrice = this.currentOrder.price;
+        totalPrice += this.currentOrder.extras.reduce((sum, extra) => sum + extra.price, 0);
+
+        orderPrice.textContent = `₡${totalPrice.toLocaleString()}`;
+        orderSummary.classList.add('show');
+      }
+
+      finishOrder() {
+        alert('🎉 Almost ready!\n\nYour order is being prepared. Please visit one of our locations to complete your purchase!\n\n📍 Puerto Viejo\n📍 Cocles');
+        this.clearOrder();
+      }
+
+      clearOrder() {
+        this.currentOrder = {
+          category: null,
+          subcategory: null,
+          flavor: null,
+          type: null,
+          price: 0,
+          extras: []
+        };
+
+        // Remove all selections
+        document.querySelectorAll('.flavor-option, .boba-flavor, .extra-option').forEach(opt => {
+          opt.classList.remove('selected');
+        });
+
+        // Disable next buttons
+        document.getElementById('icecreamNextBtn').disabled = true;
+        document.getElementById('bobaDrinksNextBtn').disabled = true;
+        document.getElementById('smoothieNextBtn').disabled = true;
+
+        // Hide order summary
+        document.getElementById('orderSummary').classList.remove('show');
+
+        // Go back to main screen
+        this.goToScreen('main');
+      }
+
+      placeOrder() {
+        if (!this.currentOrder.type) {
+          alert('Please select an item first!');
+          return;
+        }
+
+        let orderText = `🛍️ Your Order:\n\n`;
+        orderText += `${this.currentOrder.type}`;
+        
+        if (this.currentOrder.flavor) {
+          orderText += `\nFlavor: ${this.currentOrder.flavor.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}`;
+        }
+        
+        if (this.currentOrder.extras.length > 0) {
+          orderText += `\nExtras: ${this.currentOrder.extras.map(e => e.displayName).join(', ')}`;
+        }
+        
+        let totalPrice = this.currentOrder.price + this.currentOrder.extras.reduce((sum, extra) => sum + extra.price, 0);
+        orderText += `\nTotal: ₡${totalPrice.toLocaleString()}`;
+        orderText += `\n\n📍 Visit us at:\n• Puerto Viejo\n• Cocles\n\nThank you for choosing Hola Boba! 🧋`;
+
+        alert(orderText);
+        this.clearOrder();
+      }
+    }
+
+    // Initialize menu system
+    let menuSystem;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize menu system
+      menuSystem = new MenuSystem();
+
+      // Rest of initialization code for slideshow, detection, etc.
+      // (keeping original slideshow and detection code...)
+    });
+  </script>
+</body>
+</html>
