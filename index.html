@@ -158,28 +158,35 @@
 
     .slideshow {
       position: relative;
-      height: 250px;
+      height: 400px;
       overflow: hidden;
       margin-top: 2rem;
       border-radius: 20px;
+      width: 100%;
+      background: #f8f9fa;
     }
 
     .slideshow-container {
       display: flex;
       transition: transform 0.5s ease;
       height: 100%;
+      width: 400%; /* 4 slides × 100% each */
     }
 
     .slide {
-      min-width: 100%;
+      min-width: 25%; /* Each slide takes 25% of container width */
+      width: 25%;
       height: 100%;
       position: relative;
+      flex-shrink: 0;
     }
 
     .slide img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Show full image without cropping */
+      object-position: center;
+      background: white;
     }
 
     .pagination-dots {
@@ -233,6 +240,18 @@
 
     .next-button {
       right: 10px;
+    }
+
+    .slide-counter {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: bold;
     }
 
     .menu {
@@ -753,27 +772,28 @@
 
         <!-- Gallery under main categories -->
         <div class="slideshow">
-          <div class="slideshow-container">
+          <div class="slideshow-container" id="slideshowContainer">
             <div class="slide">
-              <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Hola Boba 1">
+              <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Hola Boba 1" loading="eager">
             </div>
             <div class="slide">
-              <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Hola Boba 2">
+              <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Hola Boba 2" loading="eager">
             </div>
             <div class="slide">
-              <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Hola Boba 3">
+              <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Hola Boba 3" loading="eager">
             </div>
             <div class="slide">
-              <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Hola Boba 4">
+              <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Hola Boba 4" loading="eager">
             </div>
           </div>
-          <div class="pagination-dots"></div>
+          <div class="pagination-dots" id="paginationDots"></div>
           <button class="nav-button prev-button">
             <i class="fas fa-chevron-left"></i>
           </button>
           <button class="nav-button next-button">
             <i class="fas fa-chevron-right"></i>
           </button>
+          <div class="slide-counter" id="slideCounter">1 / 4</div>
         </div>
       </div>
 
@@ -1469,9 +1489,10 @@
       });
 
       // Slideshow functionality
-      const slideshow = document.querySelector('.slideshow-container');
+      const slideshowContainer = document.getElementById('slideshowContainer');
       const slides = document.querySelectorAll('.slide');
-      const dotsContainer = document.querySelector('.pagination-dots');
+      const dotsContainer = document.getElementById('paginationDots');
+      const slideCounter = document.getElementById('slideCounter');
       const prevButton = document.querySelector('.prev-button');
       const nextButton = document.querySelector('.next-button');
       
@@ -1479,6 +1500,8 @@
       let startX = 0;
       let currentX = 0;
       let isDragging = false;
+
+      console.log('Initializing slideshow with', slides.length, 'slides');
 
       // Create pagination dots
       slides.forEach((_, index) => {
@@ -1495,10 +1518,17 @@
         });
       }
 
+      function updateCounter() {
+        slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+      }
+
       function goToSlide(index) {
         currentSlide = index;
-        slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
+        const translateValue = -currentSlide * 25; // 25% per slide since each slide is 25% width
+        slideshowContainer.style.transform = `translateX(${translateValue}%)`;
         updateDots();
+        updateCounter();
+        console.log('Going to slide', index + 1, 'translateX:', translateValue + '%');
       }
 
       function nextSlide() {
@@ -1512,34 +1542,36 @@
       }
 
       // Touch and mouse events
-      slideshow.addEventListener('mousedown', startDragging);
-      slideshow.addEventListener('touchstart', startDragging);
-      window.addEventListener('mousemove', drag);
-      window.addEventListener('touchmove', drag);
-      window.addEventListener('mouseup', stopDragging);
-      window.addEventListener('touchend', stopDragging);
+      slideshowContainer.addEventListener('mousedown', startDragging);
+      slideshowContainer.addEventListener('touchstart', startDragging);
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('touchmove', drag);
+      document.addEventListener('mouseup', stopDragging);
+      document.addEventListener('touchend', stopDragging);
 
       function startDragging(e) {
         isDragging = true;
         startX = e.type === 'mousedown' ? e.pageX : e.touches[0].pageX;
-        currentX = -currentSlide * 100;
+        currentX = -currentSlide * 25;
       }
 
       function drag(e) {
         if (!isDragging) return;
         e.preventDefault();
         const x = e.type === 'mousemove' ? e.pageX : e.touches[0].pageX;
-        const walk = (x - startX) / slideshow.offsetWidth * 100;
-        slideshow.style.transform = `translateX(${currentX + walk}%)`;
+        const containerWidth = slideshowContainer.offsetWidth / 4; // Divide by 4 since container is 400% wide
+        const walk = (x - startX) / containerWidth * 25; // Convert to percentage
+        slideshowContainer.style.transform = `translateX(${currentX + walk}%)`;
       }
 
       function stopDragging(e) {
         if (!isDragging) return;
         isDragging = false;
         const x = e.type === 'mouseup' ? e.pageX : e.changedTouches[0].pageX;
-        const walk = (x - startX) / slideshow.offsetWidth * 100;
+        const containerWidth = slideshowContainer.offsetWidth / 4;
+        const walk = (x - startX) / containerWidth * 25;
         
-        if (Math.abs(walk) > 20) {
+        if (Math.abs(walk) > 5) { // Reduced threshold for easier swiping
           if (walk > 0) prevSlide();
           else nextSlide();
         } else {
@@ -1551,8 +1583,12 @@
       prevButton.addEventListener('click', prevSlide);
       nextButton.addEventListener('click', nextSlide);
 
-      // Auto-advance slides every 4 seconds
-      setInterval(nextSlide, 4000);
+      // Initialize
+      updateCounter();
+      goToSlide(0);
+
+      // Auto-advance slides every 6 seconds
+      setInterval(nextSlide, 6000);
     });
   </script>
 </body>
