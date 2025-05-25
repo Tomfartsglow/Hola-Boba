@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hola Boba Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
@@ -19,18 +18,20 @@
       color: #333;
       overflow-x: hidden;
     }
-
+    body {
+      position: relative;
+    }
     .menu {
       background-color: #FFFFFF;
       padding: 2rem;
       border-radius: 20px;
       max-width: 800px;
-      margin: 3rem auto;
+      margin: 3rem auto 1rem auto;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      backdrop-filter: blur(6px);
       color: #333;
       animation: fadeInUp 1.2s ease-out;
     }
-
     @keyframes fadeInUp {
       from {
         transform: translateY(30px);
@@ -41,17 +42,14 @@
         opacity: 1;
       }
     }
-
     .logo-container {
       text-align: center;
       margin-bottom: 2rem;
     }
-
     .logo-container img {
       max-width: 150px;
       opacity: 0.85;
     }
-
     h1 {
       color: #F8C300;
       margin-bottom: 0;
@@ -59,35 +57,39 @@
       font-size: 2.5rem;
       text-align: center;
     }
-
     section {
       margin-bottom: 2rem;
     }
-
     section h2 {
       color: #00B0B9;
       border-bottom: 2px solid #F8C300;
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
     }
-
     ul {
       list-style: none;
       padding-left: 0;
+      color: #333;
     }
-
     li {
       padding: 0.4rem 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
-
+    /* Add colones symbol behind price numbers */
+    li::after {
+      content: " ₡";
+      font-weight: normal;
+    }
+    /* Exclude li items that already have a price in text (like "Add Ice Cream: +500") from double colones */
+    li:has(strong), li:has(span) {
+      content: none;
+    }
     .buttons {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 1rem;
     }
-
     .buttons a {
       background-color: #F8C300;
       color: #000;
@@ -100,29 +102,30 @@
       gap: 0.5rem;
       transition: background-color 0.3s;
     }
-
     .buttons a:hover {
       background-color: #e6b800;
     }
-
+    /* Gallery styles */
     .gallery {
-      max-width: 1000px;
-      margin: 4rem auto 2rem;
+      max-width: 800px;
+      margin: 0 auto 3rem auto;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      overflow-x: auto;
       gap: 1rem;
-      padding: 0 1rem;
+      padding: 1rem 0;
     }
-
     .gallery img {
-      width: 300px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      flex: 0 0 auto;
+      height: 180px;
+      border-radius: 15px;
       object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
+      cursor: pointer;
     }
-
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
     @media (max-width: 600px) {
       .menu {
         padding: 1rem;
@@ -136,7 +139,7 @@
         justify-content: center;
       }
       .gallery img {
-        width: 100%;
+        height: 120px;
       }
     }
   </style>
@@ -150,7 +153,7 @@
     <h1>Hola Boba Menu</h1>
 
     <section>
-      <h2>🍵 Green Tea Refreshers – ₡2.000</h2>
+      <h2>🍵 Green Tea Refreshers – 2.000 ₡</h2>
       <ul>
         <li>Strawberry Lemonade</li>
         <li>Passionfruit</li>
@@ -161,7 +164,7 @@
     </section>
 
     <section>
-      <h2>🧋 Milk Tea – ₡2.500</h2>
+      <h2>🧋 Milk Tea – 2.500 ₡</h2>
       <ul>
         <li>Original Black Tea</li>
         <li>Vanilla</li>
@@ -175,7 +178,7 @@
     </section>
 
     <section>
-      <h2>🍓 Natural Smoothies – ₡2.300</h2>
+      <h2>🍓 Natural Smoothies – 2.300 ₡</h2>
       <ul>
         <li>Mango</li>
         <li>Strawberry</li>
@@ -186,7 +189,7 @@
     </section>
 
     <section>
-      <h2>🥤 Frappes in Milk – ₡2.800</h2>
+      <h2>🥤 Frappes in Milk – 2.800 ₡</h2>
       <ul>
         <li>Matcha</li>
         <li>Taro</li>
@@ -199,16 +202,16 @@
     <section>
       <h2>☕ Others</h2>
       <ul>
-        <li>Brown Sugar Latte – ₡2.500</li>
-        <li>Vietnamese Coffee – ₡2.300</li>
+        <li>Brown Sugar Latte – 2.500 ₡</li>
+        <li>Vietnamese Coffee – 2.300 ₡</li>
       </ul>
     </section>
 
     <section>
-      <h2>🧇 Bubble Waffles – ₡2.000</h2>
+      <h2>🧇 Bubble Waffles – 2.000 ₡</h2>
       <ul>
-        <li>Add Ice Cream: +₡500</li>
-        <li>Add Strawberries: +₡200</li>
+        <li>Add Ice Cream: +500 ₡</li>
+        <li>Add Strawberries: +200 ₡</li>
       </ul>
     </section>
 
@@ -216,10 +219,10 @@
       <h2>✨ Extras</h2>
       <ul>
         <li>Vegan Option (Homemade Coconut Milk)</li>
-        <li>Add: +₡300</li>
-        <li>Change or Substitute: +₡0</li>
-        <li>Tapioca: +₡300</li>
-        <li>Popping Pearls: +₡500</li>
+        <li>Add: +300 ₡</li>
+        <li>Change or Substitute: +0 ₡</li>
+        <li>Tapioca: +300 ₡</li>
+        <li>Popping Pearls: +500 ₡</li>
       </ul>
     </section>
 
@@ -250,10 +253,10 @@
 
   <!-- Photo Gallery at the bottom -->
   <div class="gallery">
-    <img src="IMG_0799.JPG" alt="Boba Drink">
-    <img src="IMG_0800.JPG" alt="Boba Cup">
-    <img src="IMG_0801.JPG" alt="Bubble Waffle">
-    <img src="IMG_0803.JPG" alt="Hola Boba Store">
+    <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Boba Drink" />
+    <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Boba Cup" />
+    <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Bubble Waffle" />
+    <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Hola Boba Store" />
   </div>
 
 </body>
