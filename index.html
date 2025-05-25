@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hola Boba Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -19,79 +19,81 @@
       color: #333;
       overflow-x: hidden;
     }
-
     body {
       position: relative;
+      padding: 2rem 1rem; /* give some padding so galleries don’t touch edges */
     }
 
     /* GALLERY CONTAINERS */
     .gallery-container {
       position: relative;
       width: 100%;
-      height: 7rem; /* increased height */
+      height: 7rem;
       overflow: hidden;
-      background-color: transparent;
-      border-bottom: 1.5px solid white;
-      margin-bottom: 1rem;
+      background-color: #f0f0f0; /* subtle contrast */
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 1rem 0;
       z-index: 1;
     }
+    /* bottom gallery with subtle top border to separate from menu */
     .gallery-container.bottom {
-      border-bottom: none;
       border-top: 1.5px solid white;
       margin-top: 1rem;
     }
 
-    /* SCROLLING TRACK */
+    /* TRACK OF IMAGES */
     .gallery-track {
       display: flex;
-      width: max-content;
-      height: 100%;
-      animation: scrollLeft 40s linear infinite;
-    }
-    .gallery-container.bottom .gallery-track {
-      animation-direction: reverse;
+      width: calc(200% + 32px); /* double plus spacing */
+      animation: scrollLeft 30s linear infinite;
     }
 
-    /* IMAGES */
     .gallery-track img {
       height: 100%;
       width: auto;
       object-fit: cover;
       border-left: 1px solid white;
       border-right: 1px solid white;
-      border-radius: 0 !important;
+      border-radius: 8px;
       flex-shrink: 0;
+      margin: 0 4px;
+      user-select: none;
+      pointer-events: none;
     }
+    /* Remove border and margin on first and last image for clean edges */
     .gallery-track img:first-child {
       border-left: none;
+      margin-left: 0;
     }
     .gallery-track img:last-child {
       border-right: none;
+      margin-right: 0;
     }
 
-    /* SCROLL ANIMATION */
     @keyframes scrollLeft {
       0% {
         transform: translateX(0);
       }
       100% {
-        transform: translateX(-50%);
+        /* Scroll exactly half the width minus margin spacing for seamless loop */
+        transform: translateX(calc(-50% - 16px));
       }
     }
 
-    /* MENU */
+    /* MENU STYLES */
     .menu {
       background-color: #FFFFFF;
       padding: 2rem;
       border-radius: 20px;
       max-width: 800px;
-      margin: 2rem auto;
+      margin: 0 auto; /* centered */
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       backdrop-filter: blur(6px);
       color: #333;
       animation: fadeInUp 1.2s ease-out;
       position: relative;
-      z-index: 2;
+      z-index: 2; /* above galleries */
     }
     @keyframes fadeInUp {
       from {
@@ -124,6 +126,7 @@
     section {
       margin-bottom: 2rem;
     }
+
     section h2 {
       color: #00B0B9;
       border-bottom: 2px solid #F8C300;
@@ -136,18 +139,24 @@
       padding-left: 0;
       color: #333;
     }
+
     li {
       padding: 0.4rem 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
-    /* Price with colones symbol before numbers */
-    li span.price::before {
-      content: "₡";
-      margin-right: 0.2rem;
-      font-weight: 700;
+    /* Currency colon styling - fixed next to numbers */
+    .price {
+      font-weight: bold;
+      color: #333;
+    }
+    .price::before {
+      content: '₡ ';
+      font-weight: normal;
+      margin-right: 0.15rem;
     }
 
     .buttons {
@@ -156,6 +165,7 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
+
     .buttons a {
       background-color: #F8C300;
       color: #000;
@@ -168,14 +178,16 @@
       gap: 0.5rem;
       transition: background-color 0.3s;
     }
+
     .buttons a:hover {
       background-color: #e6b800;
     }
 
+    /* Responsive */
     @media (max-width: 600px) {
       .menu {
         padding: 1rem;
-        margin: 1.5rem;
+        margin: 0.5rem;
       }
       section h2 {
         font-size: 1.2rem;
@@ -185,26 +197,28 @@
         justify-content: center;
       }
       .gallery-container {
-        height: 5rem;
-        margin-bottom: 0.5rem;
+        height: 5.5rem;
+        border-radius: 10px;
+      }
+      .gallery-track img {
+        border-radius: 6px;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- TOP SCROLLING GALLERY -->
+  <!-- TOP GALLERY -->
   <div class="gallery-container top">
     <div class="gallery-track">
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3" />
       <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4" />
-      <!-- Repeat images to create seamless infinite effect -->
-      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1" />
-      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2" />
-      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3" />
-      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4" />
+      <!-- Repeat for seamless scroll -->
+      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1 repeat" />
+      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2 repeat" />
+      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3 repeat" />
+      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4 repeat" />
     </div>
   </div>
 
@@ -215,7 +229,7 @@
     <h1>Hola Boba Menu</h1>
 
     <section>
-      <h2>🍵 Green Tea Refreshers – <span class="price">2,000</span></h2>
+      <h2>🍵 Green Tea Refreshers – <span class="price">2.000</span></h2>
       <ul>
         <li>Strawberry Lemonade</li>
         <li>Passionfruit</li>
@@ -226,7 +240,7 @@
     </section>
 
     <section>
-      <h2>🧋 Milk Tea – <span class="price">2,500</span></h2>
+      <h2>🧋 Milk Tea – <span class="price">2.500</span></h2>
       <ul>
         <li>Original Black Tea</li>
         <li>Vanilla</li>
@@ -240,7 +254,7 @@
     </section>
 
     <section>
-      <h2>🍓 Natural Smoothies – <span class="price">2,300</span></h2>
+      <h2>🍓 Natural Smoothies – <span class="price">2.300</span></h2>
       <ul>
         <li>Mango</li>
         <li>Strawberry</li>
@@ -251,7 +265,7 @@
     </section>
 
     <section>
-      <h2>🥤 Frappes in Milk – <span class="price">2,800</span></h2>
+      <h2>🥤 Frappes in Milk – <span class="price">2.800</span></h2>
       <ul>
         <li>Matcha</li>
         <li>Taro</li>
@@ -264,13 +278,13 @@
     <section>
       <h2>☕ Others</h2>
       <ul>
-        <li>Brown Sugar Latte – <span class="price">2,500</span></li>
-        <li>Vietnamese Coffee – <span class="price">2,300</span></li>
+        <li>Brown Sugar Latte – <span class="price">2.500</span></li>
+        <li>Vietnamese Coffee – <span class="price">2.300</span></li>
       </ul>
     </section>
 
     <section>
-      <h2>🧇 Bubble Waffles – <span class="price">2,000</span></h2>
+      <h2>🧇 Bubble Waffles – <span class="price">2.000</span></h2>
       <ul>
         <li>Add Ice Cream: +<span class="price">500</span></li>
         <li>Add Strawberries: +<span class="price">200</span></li>
@@ -313,20 +327,19 @@
     </section>
   </div>
 
-  <!-- BOTTOM SCROLLING GALLERY -->
+  <!-- BOTTOM GALLERY -->
   <div class="gallery-container bottom">
     <div class="gallery-track">
       <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1" />
       <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2" />
       <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3" />
       <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4" />
-      <!-- Repeat images to create seamless infinite effect -->
-      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1" />
-      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2" />
-      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3" />
-      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4" />
+      <!-- Repeat for seamless scroll -->
+      <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Gallery image 1 repeat" />
+      <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Gallery image 2 repeat" />
+      <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Gallery image 3 repeat" />
+      <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Gallery image 4 repeat" />
     </div>
   </div>
-
 </body>
 </html>
