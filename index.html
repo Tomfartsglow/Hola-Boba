@@ -737,111 +737,127 @@
         </button>
         <h2 class="category-title">🧋 Boba & Drinks</h2>
         
-        <div class="menu-section">
-          <h3>Green Tea Refreshers</h3>
-          <div class="menu-items">
-            <div class="menu-item" data-item="green-tea-refresher" data-price="2000" data-has-flavors="true">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Green Tea Refresher</div>
-              </div>
-              <div class="menu-item-price">₡2.000</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-          </div>
-          <div class="flavor-selection" id="greenTeaFlavors">
-            <h4 class="flavor-title">Choose your flavor:</h4>
-            <div class="flavor-options">
-              <div class="flavor-option" data-flavor="strawberry-lemonade">Strawberry Lemonade</div>
-              <div class="flavor-option" data-flavor="passionfruit">Passionfruit</div>
-              <div class="flavor-option" data-flavor="lemonade">Lemonade</div>
-              <div class="flavor-option" data-flavor="strawberry-orange">Strawberry Orange</div>
-              <div class="flavor-option" data-flavor="raspberry">Raspberry</div>
-            </div>
+        <div class="category-buttons">
+          <button class="category-btn green-tea" data-subcategory="green-tea">
+            <i class="fas fa-leaf"></i>
+            <span>Green Tea Refreshers</span>
+            <small>₡2.000</small>
+          </button>
+          <button class="category-btn milk-tea" data-subcategory="milk-tea">
+            <i class="fas fa-mug-hot"></i>
+            <span>Milk Tea</span>
+            <small>₡2.500</small>
+          </button>
+          <button class="category-btn smoothies" data-subcategory="smoothies">
+            <i class="fas fa-blender"></i>
+            <span>Natural Smoothies</span>
+            <small>₡2.300</small>
+          </button>
+          <button class="category-btn frappes" data-subcategory="frappes">
+            <i class="fas fa-snowflake"></i>
+            <span>Frappes in Milk</span>
+            <small>₡2.800</small>
+          </button>
+          <button class="category-btn extras" data-subcategory="extras">
+            <i class="fas fa-plus-circle"></i>
+            <span>Extras & Add-ons</span>
+            <small>+₡300-500</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Green Tea Refreshers Subcategory -->
+      <div class="category-view" id="greenTeaView">
+        <button class="back-btn" data-back="boba">
+          <i class="fas fa-arrow-left"></i>
+          Back to Boba & Drinks
+        </button>
+        <h2 class="category-title">🍃 Green Tea Refreshers - ₡2.000</h2>
+        
+        <div class="flavor-selection show">
+          <h4 class="flavor-title">Choose your Green Tea Refresher flavor:</h4>
+          <div class="flavor-options">
+            <div class="flavor-option" data-flavor="strawberry-lemonade" data-price="2000">Strawberry Lemonade</div>
+            <div class="flavor-option" data-flavor="passionfruit" data-price="2000">Passionfruit</div>
+            <div class="flavor-option" data-flavor="lemonade" data-price="2000">Lemonade</div>
+            <div class="flavor-option" data-flavor="strawberry-orange" data-price="2000">Strawberry Orange</div>
+            <div class="flavor-option" data-flavor="raspberry" data-price="2000">Raspberry</div>
           </div>
         </div>
+      </div>
 
-        <div class="menu-section">
-          <h3>Milk Tea</h3>
-          <div class="menu-items">
-            <div class="menu-item" data-item="milk-tea" data-price="2500" data-has-flavors="true">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Milk Tea</div>
-              </div>
-              <div class="menu-item-price">₡2.500</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-          </div>
-          <div class="flavor-selection" id="milkTeaFlavors">
-            <h4 class="flavor-title">Choose your flavor:</h4>
-            <div class="flavor-options">
-              <div class="flavor-option" data-flavor="original-black">Original Black Tea</div>
-              <div class="flavor-option" data-flavor="vanilla">Vanilla</div>
-              <div class="flavor-option" data-flavor="caramel">Caramel</div>
-              <div class="flavor-option" data-flavor="matcha">Matcha</div>
-              <div class="flavor-option" data-flavor="taro">Taro</div>
-              <div class="flavor-option" data-flavor="oolong">Oolong</div>
-              <div class="flavor-option" data-flavor="thai-tea">Thai Tea</div>
-              <div class="flavor-option" data-flavor="jasmine-green">Jasmine Green Tea</div>
-            </div>
+      <!-- Milk Tea Subcategory -->
+      <div class="category-view" id="milkTeaView">
+        <button class="back-btn" data-back="boba">
+          <i class="fas fa-arrow-left"></i>
+          Back to Boba & Drinks
+        </button>
+        <h2 class="category-title">🥛 Milk Tea - ₡2.500</h2>
+        
+        <div class="flavor-selection show">
+          <h4 class="flavor-title">Choose your Milk Tea flavor:</h4>
+          <div class="flavor-options">
+            <div class="flavor-option" data-flavor="original-black" data-price="2500">Original Black Tea</div>
+            <div class="flavor-option" data-flavor="vanilla" data-price="2500">Vanilla</div>
+            <div class="flavor-option" data-flavor="caramel" data-price="2500">Caramel</div>
+            <div class="flavor-option" data-flavor="matcha" data-price="2500">Matcha</div>
+            <div class="flavor-option" data-flavor="taro" data-price="2500">Taro</div>
+            <div class="flavor-option" data-flavor="oolong" data-price="2500">Oolong</div>
+            <div class="flavor-option" data-flavor="thai-tea" data-price="2500">Thai Tea</div>
+            <div class="flavor-option" data-flavor="jasmine-green" data-price="2500">Jasmine Green Tea</div>
           </div>
         </div>
+      </div>
 
-        <div class="menu-section">
-          <h3>Natural Smoothies</h3>
-          <div class="menu-items">
-            <div class="menu-item" data-item="smoothie" data-price="2300" data-has-flavors="true">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Natural Smoothie</div>
-              </div>
-              <div class="menu-item-price">₡2.300</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-          </div>
-          <div class="flavor-selection" id="smoothieFlavors">
-            <h4 class="flavor-title">Choose your flavor:</h4>
-            <div class="flavor-options">
-              <div class="flavor-option" data-flavor="mango">Mango</div>
-              <div class="flavor-option" data-flavor="strawberry">Strawberry</div>
-              <div class="flavor-option" data-flavor="banana-cacao">Banana Cacao</div>
-              <div class="flavor-option" data-flavor="blueberry-banana">Blueberry Banana</div>
-              <div class="flavor-option" data-flavor="strawberry-banana">Strawberry Banana</div>
-            </div>
+      <!-- Natural Smoothies Subcategory -->
+      <div class="category-view" id="smoothiesView">
+        <button class="back-btn" data-back="boba">
+          <i class="fas fa-arrow-left"></i>
+          Back to Boba & Drinks
+        </button>
+        <h2 class="category-title">🍓 Natural Smoothies - ₡2.300</h2>
+        
+        <div class="flavor-selection show">
+          <h4 class="flavor-title">Choose your Natural Smoothie flavor:</h4>
+          <div class="flavor-options">
+            <div class="flavor-option" data-flavor="mango" data-price="2300">Mango</div>
+            <div class="flavor-option" data-flavor="strawberry" data-price="2300">Strawberry</div>
+            <div class="flavor-option" data-flavor="banana-cacao" data-price="2300">Banana Cacao</div>
+            <div class="flavor-option" data-flavor="blueberry-banana" data-price="2300">Blueberry Banana</div>
+            <div class="flavor-option" data-flavor="strawberry-banana" data-price="2300">Strawberry Banana</div>
           </div>
         </div>
+      </div>
 
-        <div class="menu-section">
-          <h3>Frappes in Milk</h3>
-          <div class="menu-items">
-            <div class="menu-item" data-item="frappe" data-price="2800" data-has-flavors="true">
-              <div class="menu-item-info">
-                <div class="menu-item-name">Frappe in Milk</div>
-              </div>
-              <div class="menu-item-price">₡2.800</div>
-              <div class="selection-icon">
-                <i class="fas fa-check-circle"></i>
-              </div>
-            </div>
-          </div>
-          <div class="flavor-selection" id="frappeFlavors">
-            <h4 class="flavor-title">Choose your flavor:</h4>
-            <div class="flavor-options">
-              <div class="flavor-option" data-flavor="matcha">Matcha</div>
-              <div class="flavor-option" data-flavor="taro">Taro</div>
-              <div class="flavor-option" data-flavor="thai-tea">Thai Tea</div>
-              <div class="flavor-option" data-flavor="mocha">Mocha</div>
-              <div class="flavor-option" data-flavor="chocolate">Chocolate</div>
-            </div>
+      <!-- Frappes Subcategory -->
+      <div class="category-view" id="frappesView">
+        <button class="back-btn" data-back="boba">
+          <i class="fas fa-arrow-left"></i>
+          Back to Boba & Drinks
+        </button>
+        <h2 class="category-title">🥤 Frappes in Milk - ₡2.800</h2>
+        
+        <div class="flavor-selection show">
+          <h4 class="flavor-title">Choose your Frappe flavor:</h4>
+          <div class="flavor-options">
+            <div class="flavor-option" data-flavor="matcha" data-price="2800">Matcha</div>
+            <div class="flavor-option" data-flavor="taro" data-price="2800">Taro</div>
+            <div class="flavor-option" data-flavor="thai-tea" data-price="2800">Thai Tea</div>
+            <div class="flavor-option" data-flavor="mocha" data-price="2800">Mocha</div>
+            <div class="flavor-option" data-flavor="chocolate" data-price="2800">Chocolate</div>
           </div>
         </div>
+      </div>
 
+      <!-- Extras Subcategory -->
+      <div class="category-view" id="extrasView">
+        <button class="back-btn" data-back="boba">
+          <i class="fas fa-arrow-left"></i>
+          Back to Boba & Drinks
+        </button>
+        <h2 class="category-title">✨ Extras & Add-ons</h2>
+        
         <div class="menu-section">
-          <h3>Extras</h3>
           <div class="menu-items">
             <div class="menu-item" data-item="tapioca" data-price="300">
               <div class="menu-item-info">
@@ -864,6 +880,7 @@
             <div class="menu-item" data-item="vegan-milk" data-price="300">
               <div class="menu-item-info">
                 <div class="menu-item-name">Vegan Coconut Milk</div>
+                <div style="font-size: 0.8rem; color: #666;">Add or substitute</div>
               </div>
               <div class="menu-item-price">+₡300</div>
               <div class="selection-icon">
@@ -1261,7 +1278,13 @@
         document.querySelectorAll('.category-btn').forEach(btn => {
           btn.addEventListener('click', (e) => {
             const category = e.currentTarget.dataset.category;
-            this.showCategory(category);
+            const subcategory = e.currentTarget.dataset.subcategory;
+            
+            if (subcategory) {
+              this.showSubcategory(subcategory);
+            } else if (category) {
+              this.showCategory(category);
+            }
           });
         });
 
@@ -1271,6 +1294,8 @@
             const backTo = e.currentTarget.dataset.back;
             if (backTo === 'category') {
               this.showCategorySelection();
+            } else if (backTo === 'boba') {
+              this.showCategory('boba');
             }
           });
         });
@@ -1310,6 +1335,20 @@
 
         // Show selected category
         const viewId = category + 'View';
+        const view = document.getElementById(viewId);
+        if (view) {
+          view.style.display = 'block';
+        }
+      }
+
+      showSubcategory(subcategory) {
+        // Hide all category views
+        document.querySelectorAll('.category-view').forEach(view => {
+          view.style.display = 'none';
+        });
+
+        // Show selected subcategory
+        const viewId = subcategory + 'View';
         const view = document.getElementById(viewId);
         if (view) {
           view.style.display = 'block';
@@ -1405,32 +1444,69 @@
         // Select current flavor
         flavorElement.classList.add('selected');
 
+        // Get flavor data
+        const flavorName = flavorElement.textContent;
+        const flavorPrice = parseInt(flavorElement.dataset.price);
+        
+        // Determine item type based on current view
+        let itemType = 'Drink';
+        const currentView = document.querySelector('.category-view[style*="block"]');
+        if (currentView) {
+          const viewId = currentView.id;
+          switch(viewId) {
+            case 'greenTeaView':
+              itemType = 'Green Tea Refresher';
+              break;
+            case 'milkTeaView':
+              itemType = 'Milk Tea';
+              break;
+            case 'smoothiesView':
+              itemType = 'Natural Smoothie';
+              break;
+            case 'frappesView':
+              itemType = 'Frappe in Milk';
+              break;
+            case 'icecreamView':
+              itemType = 'Bubble Waffle';
+              break;
+          }
+        }
+
         // Update order
-        this.currentOrder.flavor = flavorElement.dataset.flavor;
+        this.currentOrder.item = itemType;
+        this.currentOrder.flavor = flavorName;
+        this.currentOrder.price = flavorPrice;
 
         // Update order summary
         this.updateOrderSummary();
       }
 
       updateOrderSummary() {
-        if (!this.currentOrder.item) return;
+        if (!this.currentOrder.item && !this.currentOrder.flavor) return;
 
         const orderSummary = document.getElementById('orderSummary');
         const orderItem = document.getElementById('orderItem');
         const orderFlavor = document.getElementById('orderFlavor');
         const orderPrice = document.getElementById('orderPrice');
 
-        orderItem.textContent = this.currentOrder.item;
-        
-        if (this.currentOrder.flavor) {
-          orderFlavor.textContent = `Flavor: ${this.currentOrder.flavor.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}`;
+        // For flavor-based selections (drinks)
+        if (this.currentOrder.flavor && this.currentOrder.item) {
+          orderItem.textContent = this.currentOrder.item;
+          orderFlavor.textContent = `Flavor: ${this.currentOrder.flavor}`;
           orderFlavor.style.display = 'block';
-        } else {
-          orderFlavor.style.display = 'none';
+        } 
+        // For regular menu items
+        else if (this.currentOrder.item) {
+          orderItem.textContent = this.currentOrder.item;
+          if (this.currentOrder.flavor) {
+            orderFlavor.textContent = `Flavor: ${this.currentOrder.flavor}`;
+            orderFlavor.style.display = 'block';
+          } else {
+            orderFlavor.style.display = 'none';
+          }
         }
 
         orderPrice.textContent = `₡${this.currentOrder.price.toLocaleString()}`;
-
         orderSummary.classList.add('show');
       }
 
@@ -1460,26 +1536,20 @@
       }
 
       placeOrder() {
-        if (!this.currentOrder.item) {
+        if (!this.currentOrder.item && !this.currentOrder.flavor) {
           alert('Please select an item first!');
-          return;
-        }
-
-        // Check if item requires flavor and no flavor is selected
-        const selectedItem = document.querySelector('.menu-item.selected');
-        const requiresFlavor = selectedItem?.dataset.hasFlavors === 'true';
-        
-        if (requiresFlavor && !this.currentOrder.flavor) {
-          alert('Please select a flavor for your item!');
           return;
         }
 
         // Create order summary
         let orderText = `🛍️ Your Order:\n\n`;
-        orderText += `${this.currentOrder.item}`;
-        if (this.currentOrder.flavor) {
-          orderText += `\nFlavor: ${this.currentOrder.flavor.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}`;
+        
+        if (this.currentOrder.item && this.currentOrder.flavor) {
+          orderText += `${this.currentOrder.item}\nFlavor: ${this.currentOrder.flavor}`;
+        } else if (this.currentOrder.item) {
+          orderText += `${this.currentOrder.item}`;
         }
+        
         orderText += `\nPrice: ₡${this.currentOrder.price.toLocaleString()}`;
         orderText += `\n\n📍 Visit us at:\n• Puerto Viejo\n• Cocles\n\nThank you for choosing Hola Boba! 🧋`;
 
