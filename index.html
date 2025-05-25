@@ -1,4 +1,284 @@
-<!DOCTYPE html>
+// NFC/Code Detection System
+    class AccessDetection {
+      constructor() {
+        this.detectionMethods = [];
+        this.result = null;
+        this.confidence = 0;
+        this.init();
+      }
+
+      init() {
+        this.detectAccessMethod();
+        this.showDetectionResult();
+      }
+
+      detectAccessMethod() {
+        const detectionFactors = {
+          hasReferrer: this.checkReferrer(),
+          userAgent: this.analyzeUserAgent(),
+          navigationTiming: this.checkNavigationTiming(),
+          touchCapability: this.checkTouchCapability(),
+          urlParameters: this.checkURLParameters(),
+          documentReadyState: this.checkDocumentState(),
+          focusEvents: this.checkFocusEvents()
+        };
+
+        this.calculateResult(detectionFactors);
+      }
+
+      checkReferrer() {
+        const referrer = document.referrer;
+        if (!referrer || referrer === '') {
+          this.detectionMethods.push('No referrer (could be NFC, manual typing, or bookmark)');
+          return { isNFC: null, confidence: 0.3 };
+        } else {
+          this.detectionMethods.push(`Referrer found: ${referrer} (likely from another website)`);
+          return { isNFC: false, confidence: 0.6 };
+        }
+      }
+
+      analyzeUserAgent() {
+        const ua = navigator.userAgent;
+        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+        
+        if (isMobile) {
+          this.detectionMethods.push('Mobile device detected (supports NFC)');
+          return { isNFC: null, confidence: 0.3 };
+        } else {
+          this.detectionMethods.push('Desktop device detected (likely programmatic)');
+          return { isNFC: false, confidence: 0.6 };
+        }
+      }
+
+      checkNavigationTiming() {
+        if (performance && performance.navigation) {
+          const navType = performance.navigation.type;
+          
+          if (navType === 0) {
+            this.detectionMethods.push('Direct navigation (could be manual typing, NFC, or bookmark)');
+            return { isNFC: null, confidence: 0.2 };
+          } else if (navType === 1) {
+            this.detectionMethods.push('Page reload (manual action)');
+            return { isNFC: false, confidence: 0.7 };
+          } else if (navType === 2) {
+            this.detectionMethods.push('Back/forward navigation (manual browser action)');
+            return { isNFC: false, confidence: 0.8 };
+          }
+        }
+        return { isNFC: null, confidence: 0 };
+      }
+
+      checkTouchCapability() {
+        const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        if (hasTouch) {
+          this.detectionMethods.push('Touch capability detected');
+          return { isNFC: null, confidence: 0.2 };
+        }
+        return { isNFC: false, confidence: 0.3 };
+      }
+
+      checkURLParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const hasNFCParam = urlParams.has('nfc') || urlParams.has('source');
+        
+        if (hasNFCParam) {
+          this.detectionMethods.push('NFC parameter detected in URL');
+          return { isNFC: true, confidence: 0.9 };
+        }
+        
+        if (urlParams.toString() === '') {
+          this.detectionMethods.push('No URL parameters (could indicate NFC)');
+          return { isNFC: true, confidence: 0.4 };
+        }
+        
+        return { isNFC: null, confidence: 0 };
+      }
+
+      checkDocumentState() {
+        const loadTime = performance.now();
+        if (loadTime < 100) {
+          this.detectionMethods.push('Very fast load time (possible programmatic)');
+          return { isNFC: false, confidence: 0.4 };
+        }
+        return { isNFC: null, confidence: 0 };
+      }
+
+      checkFocusEvents() {
+        let focusDetected = false;
+        
+        window.addEventListener('focus', () => {
+          focusDetected = true;
+        });
+        
+        setTimeout(() => {
+          if (!focusDetected && document.hasFocus()) {
+            this.detectionMethods.push('No focus event but document focused (NFC likely)');
+            return { isNFC: true, confidence: 0.6 };
+          }
+        }, 1000);
+        
+        return { isNFC: null, confidence: 0 };
+      }
+
+      calculateResult(factors) {
+        let nfcScore = 0;
+        let codeScore = 0;
+        let manualScore = 0;
+        let totalConfidence = 0;
+
+        Object.values(factors).forEach(factor => {
+          if (factor.isNFC === true) {
+            nfcScore += factor.confidence;
+          } else if (factor.isNFC === false) {
+            codeScore += factor.confidence;
+          }
+          totalConfidence += factor.confidence;
+        });
+
+        const isDirectTyping = this.checkDirectTyping();
+        if (isDirectTyping.isManual) {
+          manualScore = isDirectTyping.confidence;
+          totalConfidence += manualScore;
+        }
+
+        if (totalConfidence > 0) {
+          nfcScore = nfcScore / totalConfidence;
+          codeScore = codeScore / totalConfidence;
+          manualScore = manualScore / totalConfidence;
+        }
+
+        if (manualScore > Math.max(nfcScore, codeScore)) {
+          this.result = 'MANUAL';
+          this.confidence = Math.round(manualScore * 100);
+        } else if (nfcScore > codeScore) {
+          this.result = 'NFC';
+          this.confidence = Math.round(nfcScore * 100);
+        } else if (codeScore > nfcScore) {
+          this.result = 'CODE';
+          this.confidence = Math.round(codeScore * 100);
+        } else {
+          this.result = 'UNKNOWN';
+          this.confidence = 50;
+        }
+
+        console.log('🔍 Access Detection Results:');
+        console.log('Detection Methods:', this.detectionMethods);
+        console.log('Final Result:', this.result);
+        console.log('Confidence:', this.confidence + '%');
+      }
+
+      checkDirectTyping() {
+        const indicators = [];
+        let confidence = 0;
+
+        if (!document.referrer && 
+            performance.navigation && 
+            performance.navigation.type === 0 &&
+            !/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          indicators.push('Desktop with no referrer and direct navigation');
+          confidence += 0.7;
+        }
+
+        if (window.location.search === '' && window.location.hash === '') {
+          indicators.push('Clean URL with no parameters');
+          confidence += 0.6;
+        }
+
+        if (!/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          indicators.push('Desktop device (users more likely to type URLs)');
+          confidence += 0.4;
+        }
+
+        if (document.activeElement === document.body || document.activeElement === null) {
+          indicators.push('No specific element focused');
+          confidence += 0.3;
+        }
+
+        const url = window.location.href;
+        const isSimpleUrl = url.split('/').length <= 4 && !url.includes('?') && !url.includes('#');
+        if (isSimpleUrl) {
+          indicators.push('Simple, memorable URL structure');
+          confidence += 0.4;
+        }
+
+        if (indicators.length >= 3) {
+          confidence *= 1.2;
+        }
+
+        if (indicators.length > 0) {
+          this.detectionMethods.push(`Manual typing indicators: ${indicators.join(', ')}`);
+          return { isManual: true, confidence: Math.min(confidence, 1.0) };
+        }
+
+        return { isManual: false, confidence: 0 };
+      }
+
+      showDetectionResult() {
+        const banner = document.getElementById('detectionBanner');
+        const text = document.getElementById('detectionText');
+        const mainContent = document.getElementById('mainContent');
+        const orderModal = document.getElementById('orderModal');
+
+        let message = '';
+        let icon = '';
+
+        switch (this.result) {
+          case 'NFC':
+            icon = '📱';
+            message = `${icon} Opened via NFC Tag (${this.confidence}% confidence)`;
+            break;
+          case 'CODE':
+            icon = '💻';
+            message = `${icon} Opened via Code/Browser (${this.confidence}% confidence)`;
+            break;
+          case 'MANUAL':
+            icon = '⌨️';
+            message = `${icon} URL typed manually (${this.confidence}% confidence)`;
+            break;
+          default:
+            icon = '❓';
+            message = `${icon} Access method unknown (${this.confidence}% confidence)`;
+        }
+
+        text.textContent = message;
+        
+        setTimeout(() => {
+          banner.classList.add('show');
+          mainContent.classList.add('with-banner');
+        }, 500);
+
+        if (this.result === 'MANUAL') {
+          setTimeout(() => {
+            orderModal.classList.add('show');
+          }, 2000);
+        }
+
+        const bannerTimeout = this.result === 'MANUAL' ? 8000 : 5500;
+        setTimeout(() => {
+          banner.classList.remove('show');
+          mainContent.classList.remove('with-banner');
+        }, bannerTimeout);
+
+        this.handleDetectionResult();
+      }
+
+      handleDetectionResult() {
+        const data = {
+          method: this.result,
+          confidence: this.confidence,
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent,
+          referrer: document.referrer,
+          url: window.location.href
+        };
+
+        if (this.result === 'NFC') {
+          console.log('👋 Welcome NFC user!');
+        } else if (this.result === 'CODE') {
+          console.log('🤖 Programmatic access detected');
+        } else if (this.result === 'MANUAL') {
+          console.log('⌨️ Manual URL typing detected - showing order options');
+    <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -156,98 +436,6 @@
       margin-top: 60px;
     }
 
-    .slideshow {
-      position: relative;
-      height: 300px;
-      width: 100%;
-      max-width: 600px; /* Wider horizontally */
-      margin: 2rem auto 0;
-      overflow: hidden;
-      border-radius: 20px;
-      background: #f8f9fa;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-
-    .slideshow-container {
-      display: flex;
-      height: 100%;
-      transition: transform 0.5s ease;
-    }
-
-    .slide {
-      min-width: 100%;
-      height: 100%;
-      flex-shrink: 0;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .pagination-dots {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      z-index: 10;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.5);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: 2px solid rgba(255, 255, 255, 0.8);
-    }
-
-    .dot.active {
-      background-color: #F8C300;
-      border-color: #F8C300;
-      transform: scale(1.2);
-    }
-
-    .dot:hover {
-      background-color: rgba(255, 255, 255, 0.8);
-    }
-
-    .nav-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.3);
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: white;
-      font-size: 20px;
-      backdrop-filter: blur(5px);
-      transition: background-color 0.3s;
-    }
-
-    .nav-button:hover {
-      background: rgba(255, 255, 255, 0.5);
-    }
-
-    .prev-button {
-      left: 10px;
-    }
-
-    .next-button {
-      right: 10px;
-    }
-
     .menu {
       background-color: #FFFFFF;
       padding: 2rem;
@@ -308,7 +496,7 @@
 
     .category-btn {
       background: linear-gradient(145deg, #F8C300, #e6b800);
-      color: #000;
+      color: white;
       border: none;
       padding: 2rem 1rem;
       border-radius: 20px;
@@ -776,31 +964,6 @@
             <small>Coffee & Waffles</small>
           </button>
         </div>
-
-        <!-- Gallery under main categories -->
-        <div class="slideshow">
-          <div class="slideshow-container">
-            <div class="slide">
-              <img src="Screenshot_20250524_210435_Instagram[1].jpg" alt="Hola Boba 1">
-            </div>
-            <div class="slide">
-              <img src="Screenshot_20250524_210511_Instagram[1].jpg" alt="Hola Boba 2">
-            </div>
-            <div class="slide">
-              <img src="Screenshot_20250524_210523_Instagram[1].jpg" alt="Hola Boba 3">
-            </div>
-            <div class="slide">
-              <img src="Screenshot_20250524_210618_Instagram[1].jpg" alt="Hola Boba 4">
-            </div>
-          </div>
-          <div class="pagination-dots"></div>
-          <button class="nav-button prev-button">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <button class="nav-button next-button">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
       </div>
 
       <!-- Ice Cream Flavors Screen -->
@@ -1260,6 +1423,7 @@
         this.currentOrder.flavor = flavor;
         this.currentOrder.type = 'Ice Cream';
         this.currentOrder.price = 2000; // Base price for ice cream
+        this.currentOrder.extras = []; // Reset extras when flavor changes
 
         // Enable next button
         document.getElementById('icecreamNextBtn').disabled = false;
@@ -1524,8 +1688,11 @@
 
       function jumpToSlide(slideNumber) {
         activeSlide = slideNumber;
-        slideshowContainer.style.transform = `translateX(-${activeSlide * 100}%)`;
+        // Move by 25% increments since each slide is 25% width
+        const translatePercent = -slideNumber * 25;
+        slideshowContainer.style.transform = `translateX(${translatePercent}%)`;
         refreshDots();
+        console.log(`📍 Moving to slide ${slideNumber + 1}, transform: translateX(${translatePercent}%)`);
       }
 
       function moveToNext() {
